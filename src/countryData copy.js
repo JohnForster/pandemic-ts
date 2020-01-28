@@ -1,866 +1,866 @@
 module.exports = [
   {
-    "name": "London",
-    "id": 0,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'London',
+    id: 0,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Paris",
-    "id": 1,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Paris',
+    id: 1,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Madrid",
-    "id": 2,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Madrid',
+    id: 2,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Milan",
-    "id": 3,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Milan',
+    id: 3,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Essen",
-    "id": 4,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Essen',
+    id: 4,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "St Petersburg",
-    "id": 5,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'St Petersburg',
+    id: 5,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "New York",
-    "id": 6,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'New York',
+    id: 6,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Washington",
-    "id": 7,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Washington',
+    id: 7,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Chicago",
-    "id": 8,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Chicago',
+    id: 8,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Montreal",
-    "id": 9,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Montreal',
+    id: 9,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Atlanta",
-    "id": 10,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Atlanta',
+    id: 10,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "San Francisco",
-    "id": 11,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'San Francisco',
+    id: 11,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Lagos",
-    "id": 12,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Lagos',
+    id: 12,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Kinshasa",
-    "id": 13,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Kinshasa',
+    id: 13,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Johannesburg",
-    "id": 14,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Johannesburg',
+    id: 14,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Sao Paolo",
-    "id": 15,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Sao Paolo',
+    id: 15,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Buenos Aires",
-    "id": 16,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Buenos Aires',
+    id: 16,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Lima",
-    "id": 17,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Lima',
+    id: 17,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Santiago",
-    "id": 18,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Santiago',
+    id: 18,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Bogota",
-    "id": 19,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Bogota',
+    id: 19,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Mexico City",
-    "id": 20,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Mexico City',
+    id: 20,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Los Angeles",
-    "id": 21,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Los Angeles',
+    id: 21,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Istanbul",
-    "id": 22,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Istanbul',
+    id: 22,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Riyadh",
-    "id": 23,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Riyadh',
+    id: 23,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Cairo",
-    "id": 24,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Cairo',
+    id: 24,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Baghdad",
-    "id": 25,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Baghdad',
+    id: 25,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Tehran",
-    "id": 26,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Tehran',
+    id: 26,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Moscow",
-    "id": 27,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Moscow',
+    id: 27,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Mumbai",
-    "id": 28,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Mumbai',
+    id: 28,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Delhi",
-    "id": 29,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Delhi',
+    id: 29,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Kolkata",
-    "id": 30,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Kolkata',
+    id: 30,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Jakarta",
-    "id": 31,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Jakarta',
+    id: 31,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Chennai",
-    "id": 32,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Chennai',
+    id: 32,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Karachi",
-    "id": 33,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Karachi',
+    id: 33,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Hong Kong",
-    "id": 34,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Hong Kong',
+    id: 34,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Seoul",
-    "id": 35,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Seoul',
+    id: 35,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Tokyo",
-    "id": 36,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Tokyo',
+    id: 36,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Osaka",
-    "id": 37,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Osaka',
+    id: 37,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Beijing",
-    "id": 38,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Beijing',
+    id: 38,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Shanghai",
-    "id": 39,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Shanghai',
+    id: 39,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Bangkok",
-    "id": 40,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Bangkok',
+    id: 40,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Sydney",
-    "id": 41,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Sydney',
+    id: 41,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Taipei",
-    "id": 42,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Taipei',
+    id: 42,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Ho Chi Minh",
-    "id": 43,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Ho Chi Minh',
+    id: 43,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Manila",
-    "id": 44,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Manila',
+    id: 44,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Dar es Salaam",
-    "id": 45,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Dar es Salaam',
+    id: 45,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Caracas",
-    "id": 46,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Caracas',
+    id: 46,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Guayaquil",
-    "id": 47,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Guayaquil',
+    id: 47,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Brasilia",
-    "id": 48,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Brasilia',
+    id: 48,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Rio de Janeiro",
-    "id": 49,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Rio de Janeiro',
+    id: 49,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Accra",
-    "id": 50,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Accra',
+    id: 50,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Cape Town",
-    "id": 51,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Cape Town',
+    id: 51,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Medellin",
-    "id": 52,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Medellin',
+    id: 52,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Luanda",
-    "id": 53,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Luanda',
+    id: 53,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Houston",
-    "id": 54,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Houston',
+    id: 54,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Phoenix",
-    "id": 55,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Phoenix',
+    id: 55,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Toronto",
-    "id": 56,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Toronto',
+    id: 56,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Berlin",
-    "id": 57,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Berlin',
+    id: 57,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Kiev",
-    "id": 58,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Kiev',
+    id: 58,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Philadelphia",
-    "id": 59,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Philadelphia',
+    id: 59,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Warsaw",
-    "id": 60,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Warsaw',
+    id: 60,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Boston",
-    "id": 61,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Boston',
+    id: 61,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Kuala Lumpur",
-    "id": 62,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Kuala Lumpur',
+    id: 62,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Singapore",
-    "id": 63,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Singapore',
+    id: 63,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Hanoi",
-    "id": 64,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Hanoi',
+    id: 64,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Busan",
-    "id": 65,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Busan',
+    id: 65,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Dhaka",
-    "id": 66,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Dhaka',
+    id: 66,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Shenzhen",
-    "id": 67,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Shenzhen',
+    id: 67,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Chongqing",
-    "id": 68,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Chongqing',
+    id: 68,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Guangzhou",
-    "id": 69,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Guangzhou',
+    id: 69,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Tianjin",
-    "id": 70,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Tianjin',
+    id: 70,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Perth",
-    "id": 71,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Perth',
+    id: 71,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Bandung",
-    "id": 72,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Bandung',
+    id: 72,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Kabul",
-    "id": 73,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Kabul',
+    id: 73,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Lahore",
-    "id": 74,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Lahore',
+    id: 74,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Jeddah",
-    "id": 75,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Jeddah',
+    id: 75,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Ankara",
-    "id": 76,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Ankara',
+    id: 76,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Alexandria",
-    "id": 77,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Alexandria',
+    id: 77,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Beirut",
-    "id": 78,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Beirut',
+    id: 78,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Tashkent",
-    "id": 79,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Tashkent',
+    id: 79,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Antananarivo",
-    "id": 80,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Antananarivo',
+    id: 80,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Miami",
-    "id": 81,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Miami',
+    id: 81,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Addis Ababa",
-    "id": 82,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Addis Ababa',
+    id: 82,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Mogadishu",
-    "id": 83,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Mogadishu',
+    id: 83,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Novosibirsk",
-    "id": 84,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Novosibirsk',
+    id: 84,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Kathmandu",
-    "id": 85,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Kathmandu',
+    id: 85,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Ouagadougou",
-    "id": 86,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Ouagadougou',
+    id: 86,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Ibadan",
-    "id": 87,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Ibadan',
+    id: 87,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Kano",
-    "id": 88,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Kano',
+    id: 88,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Yaoundé",
-    "id": 89,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Yaoundé',
+    id: 89,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Khartoum",
-    "id": 90,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Khartoum',
+    id: 90,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Casablanca",
-    "id": 91,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Casablanca',
+    id: 91,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Havana",
-    "id": 92,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Havana',
+    id: 92,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Algiers",
-    "id": 93,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Algiers',
+    id: 93,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Bucharest",
-    "id": 94,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Bucharest',
+    id: 94,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
+    connections: [],
   },
   {
-    "name": "Nairobi",
-    "id": 95,
-    "location": {
-      "x": 0,
-      "y": 0
+    name: 'Nairobi',
+    id: 95,
+    location: {
+      x: 0,
+      y: 0,
     },
-    "connections": []
-  }
-]
+    connections: [],
+  },
+];

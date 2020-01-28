@@ -2,7 +2,7 @@ enum Colours {
   Red,
   Blue,
   Black,
-  Yellow
+  Yellow,
 }
 
-export default Colours
+export default Colours;

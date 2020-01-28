@@ -1,6 +1,6 @@
 import React, { MouseEvent } from 'react';
 
-import City from '../city/city'
+import City from '../city/city';
 
 import * as Styled from './styled';
 import Colours from '../../../enums/colours';
@@ -19,28 +19,28 @@ interface GameBoardProps {
         colour: Colours;
       };
       infection: number;
-    }[]
+    }[];
   };
   dev: {
     selectedId: number | undefined;
     setSelectedId: (id: number) => void;
-    changeLocation: (id: number, {x, y}: {x: number, y: number}) => void;
+    changeLocation: (id: number, { x, y }: { x: number; y: number }) => void;
     changeColour: (id: number) => void;
   };
 }
 
 const GameBoard: React.FC<GameBoardProps> = props => {
   const handleClick = (e: MouseEvent) => {
-    if(!props.dev.selectedId) return
-    const x = Math.round(e.pageX / window.innerWidth * 1000) / 10
-    const y = Math.round(e.pageY / (window.innerWidth * 0.51375687843) * 1000) / 10
-    props.dev.changeLocation(props.dev.selectedId, {x, y})
-    console.log(x, y)
-  }
+    if (!props.dev.selectedId) return;
+    const x = Math.round((e.pageX / window.innerWidth) * 1000) / 10;
+    const y = Math.round((e.pageY / (window.innerWidth * 0.51375687843)) * 1000) / 10;
+    props.dev.changeLocation(props.dev.selectedId, { x, y });
+    console.log(x, y);
+  };
 
   return (
     <Styled.GameBoard onClick={handleClick}>
-      <Styled.WorldMap src='./worldMap.png' />
+      <Styled.WorldMap src="./worldMap.png" />
       {props.gameData.cities.map((city, i) => (
         <City
           key={`city-${i}`}
@@ -52,6 +52,6 @@ const GameBoard: React.FC<GameBoardProps> = props => {
       ))}
     </Styled.GameBoard>
   );
-}
+};
 
 export default GameBoard;
