@@ -3,51 +3,36 @@ import React, { MouseEvent } from 'react';
 import City from '../city/city';
 
 import * as Styled from './styled';
-import Colours from '../../../enums/colours';
+import GameState from '../../../types/gameData';
 
 interface GameBoardProps {
-  gameData: {
-    cities: {
-      data: {
-        id: number;
-        name: string;
-        location: {
-          x: number;
-          y: number;
-        };
-        connections: any[];
-        colour: Colours;
-      };
-      infection: number;
-    }[];
-  };
+  gameState: GameState;
+  // ? Could probably be removed from dev?
   dev: {
     selectedId: number | undefined;
     setSelectedId: (id: number) => void;
-    changeLocation: (id: number, { x, y }: { x: number; y: number }) => void;
-    changeColour: (id: number) => void;
+    handleMapClick: ({ x, y }: { x: number; y: number }) => void;
+    handleCityClick: (id: number) => void;
   };
 }
 
-const GameBoard: React.FC<GameBoardProps> = props => {
-  const handleClick = (e: MouseEvent) => {
-    if (!props.dev.selectedId) return;
-    const x = Math.round((e.pageX / window.innerWidth) * 1000) / 10;
-    const y = Math.round((e.pageY / (window.innerWidth * 0.51375687843)) * 1000) / 10;
-    props.dev.changeLocation(props.dev.selectedId, { x, y });
-    console.log(x, y);
+const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
+  const handleClick = (e: MouseEvent): void => {
+    const MAP_IMAGE_HEIGHT_RATIO = 0.51375687843;
+    const x = e.pageX / window.innerWidth;
+    const y = e.pageY / (window.innerWidth * MAP_IMAGE_HEIGHT_RATIO);
+    props.dev.handleMapClick({ x, y });
   };
 
   return (
     <Styled.GameBoard onClick={handleClick}>
-      <Styled.WorldMap src="./worldMap.png" />
-      {props.gameData.cities.map((city, i) => (
+      <Styled.WorldMap src="./assets/worldMap.png" />
+      {props.gameState.cities.map((city, i) => (
         <City
           key={`city-${i}`}
-          data={city.data}
-          infection={city.infection}
-          selected={city.data.id === props.dev.selectedId}
-          onSelect={() => props.dev.setSelectedId(city.data.id)}
+          state={city}
+          isSelected={city.data.id === props.dev.selectedId}
+          onSelect={props.dev.handleCityClick}
         />
       ))}
     </Styled.GameBoard>

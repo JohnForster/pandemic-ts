@@ -5,10 +5,10 @@ import GameBoard from './components/gameBoard/gameBoard';
 import countryData from '../countryData';
 
 import * as Styled from './styled';
-import Colours from '../enums/colours';
 
-import cloneDeep from 'lodash.clonedeep';
-import enableChangeLocation from '../tools/enableChangeLocation';
+import clone from 'just-clone';
+import { changeLocation, changeColour } from '../tools/devTools';
+import GameState from '../types/gameData';
 
 // ! USE REACT CONTEXT FOR DEV STUFF
 
@@ -28,7 +28,7 @@ function copyStringToClipboard(str: string) {
   document.body.removeChild(el);
 }
 
-const initialTestData = {
+const initialGameState: GameState = {
   cities: countryData.map(c => ({
     data: {
       ...c,
@@ -38,41 +38,35 @@ const initialTestData = {
 };
 
 const App: React.FC = () => {
-  const [gameData, setGameData] = useState(initialTestData);
+  const [gameState, setGameState] = useState(initialGameState);
   const [isDev, setDev] = useState(false);
   const [selectedId, setSelectedId] = useState<number>();
 
-  const changeLocation = (id: number, { x, y }: { x: number; y: number }) => {
-    const cities = cloneDeep(gameData.cities);
-    const city = cities.find(c => c.data.id === id);
-    if (!city) return console.error('No city found with id', id);
-    city.data.location = { x, y };
-    const newGameData = { ...gameData, cities };
-    setGameData(newGameData);
-    console.log(JSON.stringify(newGameData.cities.map(c => c.data)));
+  const changeLocationOn = false;
+  const changeColourOn = true;
+
+  const handleMapClick = ({ x, y }: { x: number; y: number }): void => {
+    if (/* changeLocation === true */ changeLocationOn) {
+      if (selectedId || selectedId === 0)
+        return setGameState(changeLocation(selectedId, { x, y }, gameState));
+    }
   };
 
-  const changeColour = (id: number) => {
-    const cities = cloneDeep(gameData.cities);
-    const city = cities.find(c => c.data.id === id);
-    if (!city) return console.error('No city found with id', id);
-    city.data.colour = (city.data.colour + 1) % 4;
-    const newGameData = { ...gameData, cities };
-    setGameData(newGameData);
-    console.log(JSON.stringify(newGameData.cities.map(c => c.data)));
+  const handleCityClick = (id: number) => {
+    if (changeColourOn) return setGameState(changeColour(id, gameState));
   };
 
   const dev = {
     selectedId,
     setSelectedId,
-    changeLocation,
-    changeColour,
+    handleMapClick,
+    handleCityClick,
   };
 
   const save = () => {
     copyStringToClipboard(
       `module.exports = ${JSON.stringify(
-        gameData.cities.map(c => c.data),
+        gameState.cities.map(c => c.data),
         null,
         2,
       )}`,
@@ -86,7 +80,7 @@ const App: React.FC = () => {
 
   return (
     <Styled.App>
-      <GameBoard gameData={gameData} dev={dev} />
+      <GameBoard gameState={gameState} dev={dev} />
       <button onClick={toggleDev}>Toggle dev mode</button>
       <br />
       Dev mode: {isDev ? 'ON ' : 'OFF'}
@@ -94,17 +88,6 @@ const App: React.FC = () => {
       Selected: {dev.selectedId ?? 'none'}
       <button onClick={save}>Save</button>
       <br />
-      {Array(8)
-        .fill(null)
-        .map((x, i) => (
-          <Styled.Pawn key={`pawn${i}`} src={`pawns/pawn_${i}.png`} />
-        ))}
-      <br />
-      {Array(8)
-        .fill(null)
-        .map((x, i) => (
-          <Styled.Pawn key={`pawn${i + 8}`} src={`pawns/pawn_${i + 8}.png`} />
-        ))}
     </Styled.App>
   );
 };

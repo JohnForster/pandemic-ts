@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { lighten, darken } from 'polished';
-import Colours from '../../../enums/colours';
+import Colours from '../../../types/enums/colours';
 
 const $yellow = '#F5D547';
 const $black = '#3C3C3B';
@@ -16,8 +16,8 @@ interface ContainerProps {
 
 export const Container = styled.div`
   position: absolute;
-  top: ${({ y }: ContainerProps) => y}%;
-  left: ${({ x }: ContainerProps) => x}%;
+  top: ${({ y }: ContainerProps): number => y}%;
+  left: ${({ x }: ContainerProps): number => x}%;
   color: white;
   transform: translate(-50%, -50%);
   text-shadow: 0px 0px 8px black, 1px 1px 1px black;
@@ -37,9 +37,9 @@ interface NameProps {
 export const Name = styled.div`
   white-space: nowrap;
   pointer-events: none;
-  font-size: 14px;
+  font-size: 1rem;
 
-  color: ${({ colour }: NameProps) =>
+  color: ${({ colour }: NameProps): string =>
     colour === Colours.Yellow
       ? lighten(0.2, $yellow)
       : colour === Colours.Black
@@ -58,12 +58,22 @@ interface InfectionProps {
 export const Infection = styled.div`
   line-height: 19px;
   pointer-events: none;
-  font-size: ${({ x }: InfectionProps) =>
-    x === 0 ? '0px' : x === 1 ? '16px' : x === 2 ? '20px' : x === 3 ? '24px' : ''};
+  font-size: ${({ x }: InfectionProps): string =>
+    x === 0
+      ? '0px'
+      : x === 1
+      ? '16px'
+      : x === 2
+      ? '20px'
+      : x === 3
+      ? '24px'
+      : ''};
 
-  color: ${({ x }: InfectionProps) => (x === 2 ? 'orange' : x === 3 ? 'red' : '')};
+  color: ${({ x }: InfectionProps): string =>
+    x === 2 ? 'orange' : x === 3 ? 'red' : ''};
 
-  /* text-shadow: ${({ x }: InfectionProps) => (x === 3 ? '1px 1px 2px white, 1px 1px 2px white' : '')}; */
+  /* text-shadow: ${({ x }: InfectionProps) =>
+    x === 3 ? '1px 1px 2px white, 1px 1px 2px white' : ''}; */
 `;
 interface CircleProps {
   colour: Colours;
@@ -83,7 +93,8 @@ export const Circle = styled.div`
   justify-content: center;
   align-items: center; */
   transform: translate(${$circleSize / 2}, ${$circleSize / 2});
-  box-shadow: ${({ isSelected }: CircleProps) => (isSelected ? '0px 0px 10px white' : '')};
+  box-shadow: ${({ isSelected }: CircleProps): string =>
+    isSelected ? '0px 0px 10px white' : ''};
 
   border-radius: 50%;
   border: 2px solid
@@ -97,7 +108,7 @@ export const Circle = styled.div`
         : colour === Colours.Red
         ? darken(0.3, $red)
         : ''};
-  background-color: ${({ colour }: CircleProps) =>
+  background-color: ${({ colour }: CircleProps): string =>
     colour === Colours.Yellow
       ? $yellow
       : colour === Colours.Black
@@ -116,28 +127,25 @@ export const Pawn = styled.img`
   /* position: absolute; */
   z-index: -4;
   height: 30px;
-  transform: translate(0, -25px);
+  transform: translate(0, -85%);
   filter: drop-shadow(0px 0px 4px);
 
-  animation-duration: ${({ isSelected }: PawnProps) => (isSelected ? '2s' : '0')};
+  animation-duration: ${({ isSelected }: PawnProps): string =>
+    isSelected ? '2s' : '0'};
   animation-name: glowpulse;
   animation-iteration-count: infinite;
 
   @keyframes glowpulse {
     0% {
       filter: drop-shadow(0px 0px 50px);
-      height: 30px;
-      transform: translate(0, -25px);
     }
     80% {
       filter: drop-shadow(0px 0px 1px) brightness(1.5);
-      height: 35px;
-      transform: translate(0, -30px);
+      transform: translate(0, -90%) scale(1.15);
     }
     100% {
       filter: drop-shadow(0px 0px 50px);
-      height: 30px;
-      transform: translate(0, -25px);
+      transform: translate(0, -85%);
     }
   }
 `;
