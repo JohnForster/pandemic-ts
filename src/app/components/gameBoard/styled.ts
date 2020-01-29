@@ -9,11 +9,10 @@ export const GameBoard = styled.div`
 export const WorldMap = styled.img`
   position: relative;
   width: 100%;
-  /* filter: saturate(1.7) contrast(1.6) brightness(0.8); */
   filter: contrast(0.7);
 `;
 
-export const ConnectionContainer = styled.svg`
+export const ConnectionLayer = styled.svg`
   position: absolute;
   height: 100%;
   width: 100%;
@@ -22,7 +21,7 @@ export const ConnectionContainer = styled.svg`
 `;
 
 export const Connection = styled.line`
-  stroke: yellow;
+  stroke: white;
   z-index: 0.5;
-  stroke-width: 5;
+  stroke-width: 4;
 `;

@@ -37,8 +37,8 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
   return (
     <Styled.GameBoard onClick={handleClick}>
       <Styled.WorldMap src="./assets/worldMap.png" />
-      <Styled.ConnectionContainer width="100px" height="100px">
-        {[connection].map((c, i) => {
+      <Styled.ConnectionLayer width="100px" height="100px">
+        {props.boardData.connections.map((c, i) => {
           const [from, to] = [c.fromId, c.toId].map(getLocation);
           return (
             <Styled.Connection
@@ -50,7 +50,7 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
             />
           );
         })}
-      </Styled.ConnectionContainer>
+      </Styled.ConnectionLayer>
       {props.boardData.cities.map((city, i) => (
         <City
           key={`city-${i}`}

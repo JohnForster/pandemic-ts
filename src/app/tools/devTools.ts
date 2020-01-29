@@ -28,3 +28,19 @@ export const changeColour = (id: number, boardData: BoardData): BoardData => {
   const newGameData = { ...boardData, cities };
   return newGameData;
 };
+
+export const createRoute = (
+  id1: number,
+  id2: number,
+  boardData: BoardData,
+): BoardData => {
+  console.log(`Attempting to create route..`);
+  const newBoardData = clone(boardData);
+  const [a, b] = [id1, id2].sort();
+  newBoardData.connections.push({
+    fromId: a,
+    toId: b,
+    id: newBoardData.connections.length,
+  });
+  return newBoardData;
+};

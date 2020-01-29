@@ -6,7 +6,7 @@ import boardData from '../data/countryData';
 
 import * as Styled from './styled';
 
-import { changeLocation, changeColour } from './tools/devTools';
+import { changeLocation, changeColour, createRoute } from './tools/devTools';
 import GameState, { BoardData } from '../types/gameData';
 import DevPanel from './components/devPanel/devPanel';
 import GameStateContext from './contexts/gameStateContext';
@@ -26,7 +26,8 @@ const App: React.FC = () => {
   const [selectedId, setSelectedId] = useState<number>();
 
   const changeLocationOn = false;
-  const changeColourOn = true;
+  const changeColourOn = false;
+  const createRoutesOn = true;
 
   const handleMapClick = ({ x, y }: { x: number; y: number }): void => {
     if (/* changeLocation === true */ changeLocationOn) {
@@ -36,9 +37,12 @@ const App: React.FC = () => {
   };
 
   const handleCityClick = (id: number): void => {
-    console.log(`Clicked city ${id}`);
     if (changeColourOn) return setBoard(changeColour(id, board));
-    // if (createRoutesOn) return setGame;
+    if (createRoutesOn && (selectedId || selectedId === 0)) {
+      setBoard(createRoute(id, selectedId, board));
+      return setSelectedId(null);
+    }
+    setSelectedId(id);
   };
 
   const oldDev = {
@@ -55,12 +59,15 @@ const App: React.FC = () => {
     setDev(!isDev);
   };
 
+  const logRoutes = () => console.log(board.connections);
+
   return (
     <Styled.App>
       <GameStateContext.Provider value={gameState}>
         <GameBoard boardData={board} dev={oldDev} />
         {isDev && <DevPanel {...{ gameState, dev, toggleDev, board }} />}
       </GameStateContext.Provider>
+      <button onClick={logRoutes}>Log Routes</button>
     </Styled.App>
   );
 };

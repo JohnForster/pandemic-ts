@@ -15,12 +15,12 @@ interface ContainerProps {
 }
 
 export const Container = styled.div`
-  z-index: ${({ y }: ContainerProps): number => y};
+  /* z-index: ${({ y }: ContainerProps): number => y}; */
   position: absolute;
   top: ${({ y }: ContainerProps): number => y}%;
   left: ${({ x }: ContainerProps): number => x}%;
   color: white;
-  transform: translate(-50%, -50%);
+  transform: translate(0, -${$circleSize / 2 + 1}px);
   text-shadow: 0px 0px 8px black, 1px 1px 1px black;
 
   display: flex;
@@ -39,6 +39,8 @@ export const Name = styled.div`
   white-space: nowrap;
   pointer-events: none;
   font-size: 1rem;
+
+  z-index: 20;
 
   color: ${({ colour }: NameProps): string =>
     colour === Colours.Yellow
@@ -59,6 +61,7 @@ interface InfectionProps {
 export const Infection = styled.div`
   line-height: 19px;
   pointer-events: none;
+  z-index: 25;
   font-size: ${({ x }: InfectionProps): string =>
     x === 0
       ? '0px'
@@ -69,6 +72,7 @@ export const Infection = styled.div`
       : x === 3
       ? '24px'
       : ''};
+      
 
   color: ${({ x }: InfectionProps): string =>
     x === 2 ? 'orange' : x === 3 ? 'red' : ''};
@@ -86,14 +90,13 @@ export const Circle = styled.div`
   height: ${$circleSize}px;
 
   position: absolute;
-  z-index: -5;
+  z-index: 1;
 
   /* margin: auto;
   display:flex;
   flex-direction: column;
   justify-content: center;
   align-items: center; */
-  transform: translate(${$circleSize / 2}, ${$circleSize / 2});
   box-shadow: ${({ isSelected }: CircleProps): string =>
     isSelected ? '0px 0px 10px white' : ''};
 
@@ -131,7 +134,7 @@ const diff = MAX_SIZE - MIN_SIZE;
 
 export const Pawn = styled.img`
   /* position: absolute; */
-  z-index: -4;
+  z-index: 10;
   height: ${({ n }): number => MAX_SIZE - ((n - 1) * diff) / 11}px;
   transform: translate(0, -85%);
   filter: drop-shadow(0px 0px 4px);
