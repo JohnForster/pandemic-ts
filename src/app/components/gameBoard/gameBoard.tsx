@@ -3,7 +3,7 @@ import React, { useContext, MouseEvent } from 'react';
 import City from '../city/city';
 
 import * as Styled from './styled';
-import GameState, { BoardData } from '../../../types/gameData';
+import { BoardData } from '../../../types/gameData';
 import GameStateContext from '../../contexts/gameStateContext';
 
 interface GameBoardProps {

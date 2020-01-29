@@ -17,6 +17,8 @@ const City: React.FC<CityProps> = (props: CityProps) => {
   const showPawn = props.data.id === 10;
   const isSelected = props.data.id === 32;
 
+  const players = Array(1).fill({});
+
   return (
     <Styled.Container
       x={props.data.location.x}
@@ -25,8 +27,15 @@ const City: React.FC<CityProps> = (props: CityProps) => {
     >
       {showPawn && (
         <Styled.PawnContainer>
-          <Styled.Pawn isSelected={true} src={`assets/pawns/pawn_${0}.png`} />
-          <Styled.Pawn isSelected={false} src={`assets/pawns/pawn_${1}.png`} />
+          {players.map((p, i, { length: m }) => (
+            <Styled.Pawn
+              key={`pawn-${i}`}
+              isSelected={i === 0}
+              src={`assets/pawns/pawn_${i}.png`}
+              n={m}
+            />
+          ))}
+          {/* <Styled.Pawn isSelected={false} src={`assets/pawns/pawn_${1}.png`} />
           <Styled.Pawn isSelected={false} src={`assets/pawns/pawn_${2}.png`} />
           <Styled.Pawn isSelected={false} src={`assets/pawns/pawn_${3}.png`} />
           <Styled.Pawn isSelected={false} src={`assets/pawns/pawn_${4}.png`} />
@@ -36,7 +45,7 @@ const City: React.FC<CityProps> = (props: CityProps) => {
           <Styled.Pawn isSelected={false} src={`assets/pawns/pawn_${8}.png`} />
           <Styled.Pawn isSelected={false} src={`assets/pawns/pawn_${9}.png`} />
           <Styled.Pawn isSelected={false} src={`assets/pawns/pawn_${10}.png`} />
-          <Styled.Pawn isSelected={false} src={`assets/pawns/pawn_${11}.png`} />
+          <Styled.Pawn isSelected={false} src={`assets/pawns/pawn_${11}.png`} /> */}
         </Styled.PawnContainer>
       )}
       <Styled.Name colour={props.data.colour}>{props.data.name}</Styled.Name>

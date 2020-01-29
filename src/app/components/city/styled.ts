@@ -15,6 +15,7 @@ interface ContainerProps {
 }
 
 export const Container = styled.div`
+  z-index: ${({ y }: ContainerProps): number => y};
   position: absolute;
   top: ${({ y }: ContainerProps): number => y}%;
   left: ${({ x }: ContainerProps): number => x}%;
@@ -121,12 +122,17 @@ export const Circle = styled.div`
 `;
 interface PawnProps {
   isSelected: boolean;
+  n: number;
 }
+
+const MAX_SIZE = 50;
+const MIN_SIZE = 30;
+const diff = MAX_SIZE - MIN_SIZE;
 
 export const Pawn = styled.img`
   /* position: absolute; */
   z-index: -4;
-  height: 30px;
+  height: ${({ n }): number => MAX_SIZE - ((n - 1) * diff) / 11}px;
   transform: translate(0, -85%);
   filter: drop-shadow(0px 0px 4px);
 
