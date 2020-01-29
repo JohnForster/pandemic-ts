@@ -1,25 +1,26 @@
-import React, { MouseEvent } from 'react';
+import React from 'react';
 import * as Styled from './styled';
-import { CityState } from '../../../types/gameData';
+import { CityState, CityData } from '../../../types/gameData';
 
 interface CityProps {
   state: CityState;
+  data: CityData;
   isSelected: boolean;
   onSelect: (id: number) => unknown;
 }
 
 const City: React.FC<CityProps> = (props: CityProps) => {
   const handleClick = (e: React.MouseEvent): void => {
-    props.onSelect(props.state.data.id);
+    props.onSelect(props.data.id);
     e.stopPropagation();
   };
-  const showPawn = props.state.data.id === 10;
-  const isSelected = props.state.data.id === 32;
+  const showPawn = props.data.id === 10;
+  const isSelected = props.data.id === 32;
 
   return (
     <Styled.Container
-      x={props.state.data.location.x}
-      y={props.state.data.location.y}
+      x={props.data.location.x}
+      y={props.data.location.y}
       onClick={handleClick}
     >
       {showPawn && (
@@ -38,13 +39,11 @@ const City: React.FC<CityProps> = (props: CityProps) => {
           <Styled.Pawn isSelected={false} src={`assets/pawns/pawn_${11}.png`} />
         </Styled.PawnContainer>
       )}
-      <Styled.Name colour={props.state.data.colour}>
-        {props.state.data.name}
-      </Styled.Name>
+      <Styled.Name colour={props.data.colour}>{props.data.name}</Styled.Name>
       <Styled.Infection x={props.state.infection}>
         {props.state.infection}
       </Styled.Infection>
-      <Styled.Circle colour={props.state.data.colour} isSelected={isSelected} />
+      <Styled.Circle colour={props.data.colour} isSelected={isSelected} />
     </Styled.Container>
   );
 };
