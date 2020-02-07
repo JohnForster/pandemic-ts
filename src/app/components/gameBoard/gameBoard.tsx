@@ -1,11 +1,14 @@
 import React, { useContext, MouseEvent } from 'react';
 
 import City from '../city/city';
+import DevPanel from '../devPanel/devPanel';
 
-import * as Styled from './styled';
-import { BoardData, Connection } from '../../../types/gameData';
 import GameStateContext from '../../contexts/gameStateContext';
 
+import { BoardData } from '../../../types/gameData';
+
+import * as Styled from './styled';
+import ClickHandlers from '../../contexts/clickHandler.context';
 interface GameBoardProps {
   // gameState: GameState;
   boardData: BoardData;
@@ -13,26 +16,42 @@ interface GameBoardProps {
   dev: {
     selectedId: number | undefined;
     setSelectedId: (id: number) => void;
-    handleMapClick: ({ x, y }: { x: number; y: number }) => void;
-    handleCityClick: (id: number) => void;
+    isDev: boolean;
+    toggleDev: () => void;
+    devToggles: {
+      changeLocation: boolean;
+      changeColour: boolean;
+      createRoutes: boolean;
+      removeRoutes: boolean;
+    };
+    setDevToggles: (devToggles: {
+      changeLocation: boolean;
+      changeColour: boolean;
+      createRoutes: boolean;
+      removeRoutes: boolean;
+    }) => void;
+    // handleMapClick: ({ x, y }: { x: number; y: number }) => void;
+    // handleCityClick: (id: number) => void;
+    // handleRouteClick: (id: number) => void;
+    // handlePawnClick: (id: number) => void;
   };
 }
 
 const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
+  const gameState = useContext(GameStateContext);
+  const clickHandlers = useContext(ClickHandlers);
+
   const handleClick = (e: MouseEvent): void => {
     // ! Currently aspect ratio and path are hard-coded.
     const MAP_IMAGE_HEIGHT_RATIO = 0.51375687843;
     const x = e.pageX / window.innerWidth;
     const y = e.pageY / (window.innerWidth * MAP_IMAGE_HEIGHT_RATIO);
-    props.dev.handleMapClick({ x, y });
+    clickHandlers.handleMapClick({ x, y });
   };
 
   const getLocation = (id: number): { x: number; y: number } => {
     return props.boardData.cities[id].location;
   };
-
-  const gameState = useContext(GameStateContext);
-  const connection: Connection = { id: 0, fromId: 34, toId: 64 };
 
   return (
     <Styled.GameBoard onClick={handleClick}>
@@ -47,6 +66,7 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
               y1={`${from.y}%`}
               x2={`${to.x}%`}
               y2={`${to.y}%`}
+              onClick={(): void => clickHandlers.handleRouteClick(c.id)}
             />
           );
         })}
@@ -57,9 +77,12 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
           data={city}
           state={gameState.cities[city.id]}
           isSelected={city.id === props.dev.selectedId}
-          onSelect={props.dev.handleCityClick}
+          onSelect={clickHandlers.handleCityClick}
+          players={gameState.players.filter(p => p.locationId === city.id)}
+          handlePawnClick={clickHandlers.handlePawnClick}
         />
       ))}
+      <DevPanel gameState={gameState} board={props.boardData} dev={props.dev} />
     </Styled.GameBoard>
   );
 };

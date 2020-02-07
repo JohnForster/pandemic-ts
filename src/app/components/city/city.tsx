@@ -1,12 +1,14 @@
 import React from 'react';
 import * as Styled from './styled';
-import { CityState, CityData } from '../../../types/gameData';
+import { CityState, CityData, Player } from '../../../types/gameData';
 
 interface CityProps {
   state: CityState;
   data: CityData;
   isSelected: boolean;
   onSelect: (id: number) => unknown;
+  handlePawnClick: (id: number) => void;
+  players: Player[];
 }
 
 const City: React.FC<CityProps> = (props: CityProps) => {
@@ -14,10 +16,10 @@ const City: React.FC<CityProps> = (props: CityProps) => {
     props.onSelect(props.data.id);
     e.stopPropagation();
   };
-  const showPawn = props.data.id === 10;
+
   const isSelected = props.data.id === 32;
 
-  const players = Array(5).fill({});
+  // const players = Array(12).fill({});
 
   return (
     <Styled.Container
@@ -25,19 +27,20 @@ const City: React.FC<CityProps> = (props: CityProps) => {
       y={props.data.location.y}
       onClick={handleClick}
     >
-      {showPawn && (
-        <Styled.PawnContainer>
-          {players.map((p, i, { length: m }) => (
-            <Styled.Pawn
-              key={`pawn-${i}`}
-              isSelected={i === 0}
-              src={`assets/pawns/pawn_${i}.png`}
-              n={m}
-            />
-          ))}
-        </Styled.PawnContainer>
-      )}
-      <Styled.Name colour={props.data.colour}>{props.data.name}</Styled.Name>
+      <Styled.PawnContainer>
+        {props.players.map((p, i, { length }) => (
+          <Styled.Pawn
+            key={`pawn-${i}`}
+            isSelected={p.id === 0}
+            src={`assets/pawns/pawn_${p.colour}.png`}
+            n={length}
+            onClick={(): void => props.handlePawnClick(p.id)}
+          />
+        ))}
+      </Styled.PawnContainer>
+      <Styled.Name colour={props.data.colour} x={props.state.infection}>
+        {props.data.name}
+      </Styled.Name>
       <Styled.Circle colour={props.data.colour} isSelected={isSelected} />
       <Styled.Infection x={props.state.infection}>
         {props.state.infection}

@@ -1,14 +1,31 @@
-import React from 'react';
+import React, { Props } from 'react';
 import GameState, { BoardData } from '../../../types/gameData';
 import copyStringToClipboard from '../../utils/copyStringToClipboard';
+
+import * as Styled from './styled';
 
 interface DevPanelProps {
   gameState: GameState;
   board: BoardData;
   dev: {
     selectedId: number | undefined;
+    setSelectedId: (id: number) => void;
+    isDev: boolean;
+    toggleDev: () => void;
+    devToggles: {
+      [key: string]: boolean;
+      changeLocation: boolean;
+      changeColour: boolean;
+      createRoutes: boolean;
+      removeRoutes: boolean;
+    };
+    setDevToggles: (devToggles: {
+      changeLocation: boolean;
+      changeColour: boolean;
+      createRoutes: boolean;
+      removeRoutes: boolean;
+    }) => void;
   };
-  toggleDev: () => void;
 }
 
 const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
@@ -18,14 +35,48 @@ const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
     );
   };
 
+  const handleChange = (e: React.FormEvent) => {
+    const devToggles = {
+      changeLocation: false,
+      changeColour: false,
+      createRoutes: false,
+      removeRoutes: false,
+    };
+    const target = e.target as HTMLInputElement;
+    devToggles[target.value as keyof typeof devToggles] = true;
+    props.dev.setDevToggles(devToggles);
+    props.dev.setSelectedId(null);
+    e.stopPropagation();
+  };
+
   return (
-    <>
-      <button onClick={props.toggleDev}>Toggle dev mode</button>
-      <br />
-      Selected: {props.dev.selectedId ?? 'none'}
-      <button onClick={save}>Save</button>
-      <br />
-    </>
+    <Styled.DevPanel onClick={(e): void => e.stopPropagation()}>
+      {props.dev.isDev && (
+        <div>
+          Selected City: {props.dev.selectedId ?? 'none'} <br />
+          <form>
+            {Object.keys(props.dev.devToggles).map((devToggle, i) => (
+              <label key={`radio-element-${i}`}>
+                <input
+                  type="radio"
+                  checked={props.dev.devToggles[devToggle]}
+                  onChange={handleChange}
+                  value={devToggle as string}
+                />
+                {devToggle
+                  .replace(/([A-Z])/g, ' $1')
+                  .replace(/^./, str => str.toUpperCase())}
+                <br />
+              </label>
+            ))}
+          </form>
+          <button onClick={save}>Save</button>
+        </div>
+      )}
+      <button onClick={props.dev.toggleDev}>
+        {`Dev mode: ${props.dev.isDev ? 'ON' : 'OFF'}`}
+      </button>
+    </Styled.DevPanel>
   );
 };
 

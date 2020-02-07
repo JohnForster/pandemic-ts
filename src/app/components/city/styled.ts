@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { lighten, darken } from 'polished';
-import Colours from '../../../types/enums/colours';
+import CityColour from '../../../types/enums/cityColour';
 
 const $yellow = '#F5D547';
 const $black = '#3C3C3B';
@@ -15,7 +15,7 @@ interface ContainerProps {
 }
 
 export const Container = styled.div`
-  /* z-index: ${({ y }: ContainerProps): number => y}; */
+  z-index: ${({ y }: ContainerProps): number => Math.round(100 + y)};
   position: absolute;
   top: ${({ y }: ContainerProps): number => y}%;
   left: ${({ x }: ContainerProps): number => x}%;
@@ -32,26 +32,30 @@ export const Container = styled.div`
   width: 0;
 `;
 interface NameProps {
-  colour: Colours;
+  colour: CityColour;
+  x: number;
 }
 
 export const Name = styled.div`
   white-space: nowrap;
   pointer-events: none;
-  font-size: 1rem;
+  font-size: 1.1rem;
 
   z-index: 20;
+  
+   color: ${({ x }: NameProps): string =>
+     x === 2 ? 'orange' : x === 3 ? 'red' : 'white'};
+  /* color: ${({ colour }: NameProps): string =>
+    colour === CityColour.Yellow
+      ? lighten(0.3, $yellow)
+      : colour === CityColour.Black
+      ? lighten(0.65, $black)
+      : colour === CityColour.Blue
+      ? lighten(0.3, $blue)
+      : colour === CityColour.Red
+      ? lighten(0.4, $red)
+      : ''}; */
 
-  color: ${({ colour }: NameProps): string =>
-    colour === Colours.Yellow
-      ? lighten(0.2, $yellow)
-      : colour === Colours.Black
-      ? lighten(0.6, $black)
-      : colour === Colours.Blue
-      ? lighten(0.2, $blue)
-      : colour === Colours.Red
-      ? lighten(0.35, $red)
-      : ''};
 `;
 
 interface InfectionProps {
@@ -59,9 +63,12 @@ interface InfectionProps {
 }
 
 export const Infection = styled.div`
+  font-family: Impact, Charcoal, sans-serif;
+  font-weight: none;
+
   line-height: 19px;
   pointer-events: none;
-  z-index: 25;
+  z-index: 2;
   font-size: ${({ x }: InfectionProps): string =>
     x === 0
       ? '0px'
@@ -72,16 +79,12 @@ export const Infection = styled.div`
       : x === 3
       ? '24px'
       : ''};
-      
 
   color: ${({ x }: InfectionProps): string =>
     x === 2 ? 'orange' : x === 3 ? 'red' : ''};
-
-  /* text-shadow: ${({ x }: InfectionProps) =>
-    x === 3 ? '1px 1px 2px white, 1px 1px 2px white' : ''}; */
 `;
 interface CircleProps {
-  colour: Colours;
+  colour: CityColour;
   isSelected: boolean;
 }
 
@@ -103,23 +106,23 @@ export const Circle = styled.div`
   border-radius: 50%;
   border: 2px solid
     ${({ colour }: CircleProps) =>
-      colour === Colours.Yellow
+      colour === CityColour.Yellow
         ? darken(0.3, $yellow)
-        : colour === Colours.Black
+        : colour === CityColour.Black
         ? darken(0.3, $black)
-        : colour === Colours.Blue
+        : colour === CityColour.Blue
         ? darken(0.3, $blue)
-        : colour === Colours.Red
+        : colour === CityColour.Red
         ? darken(0.3, $red)
         : ''};
   background-color: ${({ colour }: CircleProps): string =>
-    colour === Colours.Yellow
+    colour === CityColour.Yellow
       ? $yellow
-      : colour === Colours.Black
+      : colour === CityColour.Black
       ? $black
-      : colour === Colours.Blue
+      : colour === CityColour.Blue
       ? $blue
-      : colour === Colours.Red
+      : colour === CityColour.Red
       ? $red
       : ''};
 `;

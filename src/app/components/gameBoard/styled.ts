@@ -21,7 +21,8 @@ export const ConnectionLayer = styled.svg`
 `;
 
 export const Connection = styled.line`
-  stroke: white;
+  stroke: gold;
+  border: 1px solid black;
   z-index: 0.5;
-  stroke-width: 4;
+  stroke-width: 3;
 `;

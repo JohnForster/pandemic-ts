@@ -1,5 +1,371 @@
 module.exports = {
-  connections: [],
+  connections: [
+    {
+      fromId: 12,
+      toId: 91,
+      id: 0,
+    },
+    {
+      fromId: 91,
+      toId: 93,
+      id: 1,
+    },
+    {
+      fromId: 77,
+      toId: 93,
+      id: 2,
+    },
+    {
+      fromId: 24,
+      toId: 77,
+      id: 3,
+    },
+    {
+      fromId: 24,
+      toId: 75,
+      id: 4,
+    },
+    {
+      fromId: 75,
+      toId: 82,
+      id: 5,
+    },
+    {
+      fromId: 82,
+      toId: 83,
+      id: 6,
+    },
+    {
+      fromId: 83,
+      toId: 95,
+      id: 7,
+    },
+    {
+      fromId: 45,
+      toId: 95,
+      id: 8,
+    },
+    {
+      fromId: 45,
+      toId: 80,
+      id: 9,
+    },
+    {
+      fromId: 14,
+      toId: 80,
+      id: 10,
+    },
+    {
+      fromId: 14,
+      toId: 45,
+      id: 11,
+    },
+    {
+      fromId: 14,
+      toId: 51,
+      id: 12,
+    },
+    {
+      fromId: 51,
+      toId: 53,
+      id: 13,
+    },
+    {
+      fromId: 53,
+      toId: 89,
+      id: 14,
+    },
+    {
+      fromId: 86,
+      toId: 89,
+      id: 15,
+    },
+    {
+      fromId: 50,
+      toId: 86,
+      id: 16,
+    },
+    {
+      fromId: 50,
+      toId: 88,
+      id: 17,
+    },
+    {
+      fromId: 12,
+      toId: 88,
+      id: 18,
+    },
+    {
+      fromId: 87,
+      toId: 88,
+      id: 19,
+    },
+    {
+      fromId: 87,
+      toId: 90,
+      id: 20,
+    },
+    {
+      fromId: 77,
+      toId: 90,
+      id: 21,
+    },
+    {
+      fromId: 24,
+      toId: 90,
+      id: 22,
+    },
+    {
+      fromId: 13,
+      toId: 90,
+      id: 23,
+    },
+    {
+      fromId: 13,
+      toId: 82,
+      id: 24,
+    },
+    {
+      fromId: 13,
+      toId: 95,
+      id: 25,
+    },
+    {
+      fromId: 86,
+      toId: 95,
+      id: 26,
+    },
+    {
+      fromId: 89,
+      toId: 95,
+      id: 27,
+    },
+    {
+      fromId: 53,
+      toId: 95,
+      id: 28,
+    },
+    {
+      fromId: 13,
+      toId: 86,
+      id: 29,
+    },
+    {
+      fromId: 50,
+      toId: 87,
+      id: 30,
+    },
+    {
+      fromId: 86,
+      toId: 87,
+      id: 31,
+    },
+    {
+      fromId: 2,
+      toId: 91,
+      id: 32,
+    },
+    {
+      fromId: 1,
+      toId: 2,
+      id: 33,
+    },
+    {
+      fromId: 0,
+      toId: 1,
+      id: 34,
+    },
+    {
+      fromId: 0,
+      toId: 57,
+      id: 35,
+    },
+    {
+      fromId: 1,
+      toId: 57,
+      id: 36,
+    },
+    {
+      fromId: 1,
+      toId: 3,
+      id: 37,
+    },
+    {
+      fromId: 3,
+      toId: 93,
+      id: 38,
+    },
+    {
+      fromId: 2,
+      toId: 93,
+      id: 39,
+    },
+    {
+      fromId: 22,
+      toId: 77,
+      id: 40,
+    },
+    {
+      fromId: 22,
+      toId: 3,
+      id: 41,
+    },
+    {
+      fromId: 22,
+      toId: 94,
+      id: 42,
+    },
+    {
+      fromId: 3,
+      toId: 94,
+      id: 43,
+    },
+    {
+      fromId: 60,
+      toId: 94,
+      id: 44,
+    },
+    {
+      fromId: 57,
+      toId: 60,
+      id: 45,
+    },
+    {
+      fromId: 4,
+      toId: 57,
+      id: 46,
+    },
+    {
+      fromId: 0,
+      toId: 4,
+      id: 47,
+    },
+    {
+      fromId: 4,
+      toId: 60,
+      id: 48,
+    },
+    {
+      fromId: 4,
+      toId: 58,
+      id: 49,
+    },
+    {
+      fromId: 3,
+      toId: 57,
+      id: 50,
+    },
+    {
+      fromId: 5,
+      toId: 58,
+      id: 51,
+    },
+    {
+      fromId: 5,
+      toId: 84,
+      id: 52,
+    },
+    {
+      fromId: 79,
+      toId: 84,
+      id: 53,
+    },
+    {
+      fromId: 27,
+      toId: 79,
+      id: 54,
+    },
+    {
+      fromId: 27,
+      toId: 5,
+      id: 55,
+    },
+    {
+      fromId: 27,
+      toId: 58,
+      id: 56,
+    },
+    {
+      fromId: 58,
+      toId: 60,
+      id: 57,
+    },
+    {
+      fromId: 58,
+      toId: 94,
+      id: 58,
+    },
+    {
+      fromId: 22,
+      toId: 76,
+      id: 59,
+    },
+    {
+      fromId: 22,
+      toId: 27,
+      id: 60,
+    },
+    {
+      fromId: 27,
+      toId: 94,
+      id: 61,
+    },
+    {
+      fromId: 26,
+      toId: 27,
+      id: 63,
+    },
+    {
+      fromId: 26,
+      toId: 76,
+      id: 63,
+    },
+    {
+      fromId: 76,
+      toId: 78,
+      id: 64,
+    },
+    {
+      fromId: 25,
+      toId: 26,
+      id: 65,
+    },
+    {
+      fromId: 25,
+      toId: 78,
+      id: 66,
+    },
+    {
+      fromId: 22,
+      toId: 78,
+      id: 67,
+    },
+    {
+      fromId: 77,
+      toId: 78,
+      id: 68,
+    },
+    {
+      fromId: 75,
+      toId: 78,
+      id: 69,
+    },
+    {
+      fromId: 23,
+      toId: 75,
+      id: 70,
+    },
+    {
+      fromId: 23,
+      toId: 25,
+      id: 71,
+    },
+    {
+      fromId: 26,
+      toId: 79,
+      id: 72,
+    },
+  ],
   cities: [
     {
       name: 'London',
@@ -839,7 +1205,7 @@ module.exports = {
         y: 55.6,
       },
       connections: [],
-      colour: 3,
+      colour: 2,
     },
     {
       name: 'Novosibirsk',

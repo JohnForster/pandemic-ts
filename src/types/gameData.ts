@@ -1,4 +1,5 @@
-import Colour from './enums/colours';
+import CityColour from './enums/cityColour';
+import PawnColour from './enums/pawnColour';
 
 export interface CityData {
   id: number;
@@ -8,7 +9,7 @@ export interface CityData {
     y: number;
   };
   connections: any[];
-  colour: Colour;
+  colour: CityColour;
 }
 
 export interface CityState {
@@ -34,19 +35,21 @@ export interface CityState {
 }
 
 // enum Role {}
-// export interface Player {
-//   id: number;
-//   colour: number;
-//   role: Role;
-//   locationId: number;
-//   name: string;
-//   /* moveHistory: Move[] */
-// }
+
+export interface Player {
+  id: number;
+  colour: PawnColour;
+  // role: Role;
+  locationId: number;
+  // name: string;
+  /* moveHistory: Move[] */
+}
 
 export default interface GameState {
   // turnNumber: number;
   // currentPlayerId: number;
   cities: CityState[];
-  // players: Player[];
+  players: Player[];
+  devMode: boolean;
   /* players: PlayerData */
 }
