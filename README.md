@@ -3,7 +3,7 @@
 A large-scale version of pandemic, for 8-12 players. This app serves as the board for the game.
 
 This app is designed for QHD displays, at least 2560x1440. It may not work properly on smaller screens.
-
+If viewing on a smaller screen, you may need to zoom out to view it properly.
 
 ### Installation
 
