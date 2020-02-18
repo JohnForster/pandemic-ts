@@ -5,6 +5,8 @@ interface ClickHandlersList {
   handleCityClick(id: number): void;
   handleRouteClick(id: number): void;
   handlePawnClick(id: number): void;
+  incrementCity(id: number): void;
+  decrementCity(id: number): void;
 }
 
 const ClickHandlers = React.createContext<ClickHandlersList>(null);

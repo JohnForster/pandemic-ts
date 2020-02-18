@@ -11,6 +11,8 @@ import * as Styled from './styled';
 import ClickHandlers from '../../contexts/clickHandler.context';
 import DisplayPanel from '../displayPanel/displayPanel';
 import PlayerPanel from '../playerPanel/playerPanel';
+import RadialBarChart from '../radialBarChart/radialBarChart';
+import CityColour from '../../../types/enums/cityColour';
 interface GameBoardProps {
   // gameState: GameState;
   boardData: BoardData;
@@ -55,9 +57,48 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
     return props.boardData.cities[id].location;
   };
 
+  const findTotal = (colour: CityColour): number => {
+    const cityIds = props.boardData.cities
+      .filter(c => c.colour === colour)
+      .map(c => c.id);
+    const cities = gameState.cities.filter((c, i) => cityIds.includes(i));
+    let count = 0;
+    cities.forEach(city => {
+      count += city.infection;
+    });
+    return count;
+  };
+
   return (
     <Styled.GameBoard onClick={handleClick}>
       <Styled.WorldMap src="./assets/worldMap.png" />
+      <Styled.VirusChartContainer>
+        <Styled.Heading>Global Intensity</Styled.Heading>
+        <Styled.VirusChart
+          progress={findTotal(CityColour.Blue)}
+          maxValue={48}
+          dimension={120}
+          color={CityColour.Blue}
+        />
+        <Styled.VirusChart
+          progress={findTotal(CityColour.Yellow)}
+          maxValue={48}
+          dimension={120}
+          color={CityColour.Yellow}
+        />
+        <Styled.VirusChart
+          progress={findTotal(CityColour.Black)}
+          maxValue={48}
+          dimension={120}
+          color={CityColour.Black}
+        />
+        <Styled.VirusChart
+          progress={findTotal(CityColour.Red)}
+          maxValue={48}
+          dimension={120}
+          color={CityColour.Red}
+        />
+      </Styled.VirusChartContainer>
       <Styled.ConnectionLayer width="100px" height="100px">
         {props.boardData.connections.map((c, i) => {
           const [from, to] = [c.fromId, c.toId].map(getLocation);
@@ -82,6 +123,8 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
           onSelect={clickHandlers.handleCityClick}
           players={gameState.players.filter(p => p.locationId === city.id)}
           handlePawnClick={clickHandlers.handlePawnClick}
+          incrementCity={clickHandlers.incrementCity}
+          decrementCity={clickHandlers.decrementCity}
         />
       ))}
       <DisplayPanel

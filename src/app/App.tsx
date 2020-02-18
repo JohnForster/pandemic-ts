@@ -13,6 +13,8 @@ import {
   createRoute,
   removeRoute,
 } from './tools/devTools';
+
+import { increment, decrement } from './helpers/changeInfection';
 import GameState, { BoardData } from '../types/gameData';
 import DevPanel from './components/devPanel/devPanel';
 import GameStateContext from './contexts/gameStateContext';
@@ -80,6 +82,7 @@ const App: React.FC = () => {
   };
 
   const handleCityClick = (id: number): void => {
+    console.log('selectedId:', selectedId);
     if (id === selectedId) return;
     if (devToggles.changeColour) return setBoard(changeColour(id, board));
     if (devToggles.createRoutes && (selectedId || selectedId === 0)) {
@@ -102,11 +105,18 @@ const App: React.FC = () => {
     setSelectedPawnId(id);
   };
 
+  const incrementCity = (id: number): void =>
+    setGameState(increment(id, gameState));
+  const decrementCity = (id: number): void =>
+    setGameState(decrement(id, gameState));
+
   const clickHandlers = {
     handleMapClick,
     handleCityClick,
     handleRouteClick,
     handlePawnClick,
+    incrementCity,
+    decrementCity,
   };
 
   const dev = { selectedId };

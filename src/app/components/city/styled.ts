@@ -42,9 +42,9 @@ export const Name = styled.div`
   font-size: 1.1rem;
 
   z-index: 20;
-  
-   color: ${({ x }: NameProps): string =>
-     x === 2 ? 'orange' : x === 3 ? 'red' : 'white'};
+  transition: color 0.5s ease;
+  color: ${({ x }: NameProps): string =>
+    x === 2 ? 'orange' : x === 3 ? 'red' : 'white'};
   /* color: ${({ colour }: NameProps): string =>
     colour === CityColour.Yellow
       ? lighten(0.3, $yellow)
@@ -71,7 +71,7 @@ export const Infection = styled.div`
   z-index: 2;
   font-size: ${({ x }: InfectionProps): string =>
     x === 0
-      ? '0px'
+      ? '0'
       : x === 1
       ? '16px'
       : x === 2
@@ -80,6 +80,7 @@ export const Infection = styled.div`
       ? '24px'
       : ''};
 
+  transition: color 0.5s ease;
   color: ${({ x }: InfectionProps): string =>
     x === 2 ? 'orange' : x === 3 ? 'red' : ''};
 `;
@@ -104,6 +105,7 @@ export const Circle = styled.div`
     isSelected ? '0px 0px 10px white' : ''};
 
   border-radius: 50%;
+  transition: border 0.2s ease, background-color 0.2s ease;
   border: 2px solid
     ${({ colour }: CircleProps) =>
       colour === CityColour.Yellow
@@ -187,4 +189,5 @@ export const CounterButton = styled.div`
   height: 14px;
   width: 14px;
   font-size: 22px;
+  user-select: none;
 `;

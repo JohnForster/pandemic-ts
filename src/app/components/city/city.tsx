@@ -8,24 +8,29 @@ interface CityProps {
   isSelected: boolean;
   onSelect: (id: number) => unknown;
   handlePawnClick: (id: number) => void;
+  incrementCity: (id: number) => void;
+  decrementCity: (id: number) => void;
   players: Player[];
 }
 
 const City: React.FC<CityProps> = (props: CityProps) => {
-  const handleClick = (e: React.MouseEvent): void => {
-    props.onSelect(props.data.id);
+  const handle = (fn: (id: number) => void) => (e: React.MouseEvent): void => {
+    fn(props.data.id);
+    e.stopPropagation();
+  };
+
+  const handlePawnClick = (id: number) => (e: React.MouseEvent): void => {
+    props.handlePawnClick(id);
     e.stopPropagation();
   };
 
   const isSelected = props.data.id === 32;
 
-  // const players = Array(12).fill({});
-
   return (
     <Styled.Container
       x={props.data.location.x}
       y={props.data.location.y}
-      onClick={handleClick}
+      onClick={handle(props.onSelect)}
     >
       <Styled.PawnContainer>
         {props.players.map((p, i, { length }) => (
@@ -34,7 +39,7 @@ const City: React.FC<CityProps> = (props: CityProps) => {
             isSelected={p.id === 0}
             src={`assets/pawns/pawn_${p.colour}.png`}
             n={length}
-            onClick={(): void => props.handlePawnClick(p.id)}
+            onClick={handlePawnClick(p.id)}
           />
         ))}
       </Styled.PawnContainer>
@@ -47,12 +52,12 @@ const City: React.FC<CityProps> = (props: CityProps) => {
       </Styled.Infection>
       <Styled.CounterContainer>
         {props.isSelected && (
-          <Styled.CounterButton>
+          <Styled.CounterButton onClick={handle(props.decrementCity)}>
             <span>−</span>
           </Styled.CounterButton>
         )}
         {props.isSelected && (
-          <Styled.CounterButton>
+          <Styled.CounterButton onClick={handle(props.incrementCity)}>
             <span>+</span>
           </Styled.CounterButton>
         )}
