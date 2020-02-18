@@ -166,3 +166,25 @@ export const PawnContainer = styled.div`
   position: absolute;
   display: flex;
 `;
+
+export const CounterContainer = styled.div`
+  position: absolute;
+  top: 23px;
+  z-index: 30;
+  display: flex;
+  width: 56px;
+  justify-content: space-between;
+`;
+
+export const CounterButton = styled.div`
+  font-family: arial;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px white solid;
+  border-radius: 10%;
+  height: 14px;
+  width: 14px;
+  font-size: 22px;
+`;

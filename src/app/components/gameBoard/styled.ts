@@ -9,7 +9,7 @@ export const GameBoard = styled.div`
 export const WorldMap = styled.img`
   position: relative;
   width: 100%;
-  filter: contrast(0.7);
+  filter: saturate(0.9);
 `;
 
 export const ConnectionLayer = styled.svg`

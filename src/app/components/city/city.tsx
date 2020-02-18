@@ -38,13 +38,25 @@ const City: React.FC<CityProps> = (props: CityProps) => {
           />
         ))}
       </Styled.PawnContainer>
+      <Styled.Circle colour={props.data.colour} isSelected={isSelected} />
       <Styled.Name colour={props.data.colour} x={props.state.infection}>
         {props.data.name}
       </Styled.Name>
-      <Styled.Circle colour={props.data.colour} isSelected={isSelected} />
       <Styled.Infection x={props.state.infection}>
         {props.state.infection}
       </Styled.Infection>
+      <Styled.CounterContainer>
+        {props.isSelected && (
+          <Styled.CounterButton>
+            <span>−</span>
+          </Styled.CounterButton>
+        )}
+        {props.isSelected && (
+          <Styled.CounterButton>
+            <span>+</span>
+          </Styled.CounterButton>
+        )}
+      </Styled.CounterContainer>
     </Styled.Container>
   );
 };

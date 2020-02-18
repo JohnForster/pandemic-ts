@@ -27,6 +27,21 @@ const colours = shuffle(
     .fill('')
     .map((x, i) => i),
 );
+
+const names = shuffle([
+  'John',
+  'Jemil',
+  'Jamie',
+  'Lola',
+  'Siobhan',
+  'Hakim',
+  'Peter',
+  'Paddy',
+  'Paolo',
+  'Rio',
+  'Alice',
+  'Samir',
+]);
 const initialGameState: GameState = {
   cities: boardData.cities.map(c => ({
     infection: c.id % 4,
@@ -37,6 +52,7 @@ const initialGameState: GameState = {
       id: i,
       colour: colours.pop(),
       locationId: Math.floor(Math.random() * 96),
+      name: names.pop(),
     })),
   devMode: false,
 };
@@ -127,7 +143,7 @@ const App: React.FC = () => {
       <button onClick={logRoutes}>Log Routes</button>
       <button
         onClick={() =>
-          copyStringToClipboard(`module.exports = ${JSON.stringify(boardData)}`)
+          copyStringToClipboard(`module.exports = ${JSON.stringify(board)}`)
         }
       >
         Save

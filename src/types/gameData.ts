@@ -41,7 +41,7 @@ export interface Player {
   colour: PawnColour;
   // role: Role;
   locationId: number;
-  // name: string;
+  name: string;
   /* moveHistory: Move[] */
 }
 

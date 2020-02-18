@@ -9,6 +9,8 @@ import { BoardData } from '../../../types/gameData';
 
 import * as Styled from './styled';
 import ClickHandlers from '../../contexts/clickHandler.context';
+import DisplayPanel from '../displayPanel/displayPanel';
+import PlayerPanel from '../playerPanel/playerPanel';
 interface GameBoardProps {
   // gameState: GameState;
   boardData: BoardData;
@@ -82,7 +84,22 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
           handlePawnClick={clickHandlers.handlePawnClick}
         />
       ))}
-      <DevPanel gameState={gameState} board={props.boardData} dev={props.dev} />
+      <DisplayPanel
+        side={props.dev.isDev ? 1 : 2}
+        sideOne={
+          <DevPanel
+            gameState={gameState}
+            board={props.boardData}
+            dev={props.dev}
+          />
+        }
+        sideTwo={<PlayerPanel />}
+        bottom={
+          <button onClick={props.dev.toggleDev}>
+            {`Dev mode: ${props.dev.isDev ? 'ON' : 'OFF'}`}
+          </button>
+        }
+      />
     </Styled.GameBoard>
   );
 };

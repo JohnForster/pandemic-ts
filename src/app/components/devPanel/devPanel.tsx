@@ -50,33 +50,28 @@ const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
   };
 
   return (
-    <Styled.DevPanel onClick={(e): void => e.stopPropagation()}>
-      {props.dev.isDev && (
-        <div>
-          Selected City: {props.dev.selectedId ?? 'none'} <br />
-          <form>
-            {Object.keys(props.dev.devToggles).map((devToggle, i) => (
-              <label key={`radio-element-${i}`}>
-                <input
-                  type="radio"
-                  checked={props.dev.devToggles[devToggle]}
-                  onChange={handleChange}
-                  value={devToggle as string}
-                />
-                {devToggle
-                  .replace(/([A-Z])/g, ' $1')
-                  .replace(/^./, str => str.toUpperCase())}
-                <br />
-              </label>
-            ))}
-          </form>
-          <button onClick={save}>Save</button>
-        </div>
-      )}
-      <button onClick={props.dev.toggleDev}>
-        {`Dev mode: ${props.dev.isDev ? 'ON' : 'OFF'}`}
-      </button>
-    </Styled.DevPanel>
+    <>
+      <div>
+        Selected City: {props.dev.selectedId ?? 'none'} <br />
+        <form>
+          {Object.keys(props.dev.devToggles).map((devToggle, i) => (
+            <label key={`radio-element-${i}`}>
+              <input
+                type="radio"
+                checked={props.dev.devToggles[devToggle]}
+                onChange={handleChange}
+                value={devToggle as string}
+              />
+              {devToggle
+                .replace(/([A-Z])/g, ' $1')
+                .replace(/^./, str => str.toUpperCase())}
+              <br />
+            </label>
+          ))}
+        </form>
+        <button onClick={save}>Save</button>
+      </div>
+    </>
   );
 };
 
