@@ -1,4 +1,4 @@
-# Pandemic: Catastrophe
+# ☣️ Pandemic: Catastrophe 🌍
 
 A large-scale version of pandemic, for 8-12 players. This app serves as the board for the game.
 
@@ -13,3 +13,6 @@ The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+![Pandemic board as of 18/02/20](https://user-images.githubusercontent.com/32373811/74722427-d0033380-5230-11ea-9e10-090743cc34e2.png)
+
