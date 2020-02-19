@@ -2,7 +2,6 @@
 import React from 'react';
 import * as Styled from './styled';
 import CityColour from '../../../types/enums/cityColour';
-import City from '../city/city';
 
 interface RadialBarChartProps {
   className?: string;
@@ -13,8 +12,6 @@ interface RadialBarChartProps {
   color?: CityColour;
   maxValue?: number;
 }
-
-const DEFAULT_COLOR = '#040404';
 
 const RadialBarChart: React.FC<RadialBarChartProps> = props => {
   const circleRadius = Math.min(props.radius, 85);

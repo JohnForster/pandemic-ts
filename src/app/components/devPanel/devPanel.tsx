@@ -1,15 +1,13 @@
-import React, { Props } from 'react';
+import React from 'react';
 import GameState, { BoardData } from '../../../types/gameData';
 import copyStringToClipboard from '../../utils/copyStringToClipboard';
-
-import * as Styled from './styled';
 
 interface DevPanelProps {
   gameState: GameState;
   board: BoardData;
   dev: {
-    selectedId: number | undefined;
-    setSelectedId: (id: number) => void;
+    selectedId: string | undefined;
+    setSelectedId: (id: string) => void;
     isDev: boolean;
     toggleDev: () => void;
     devToggles: {
@@ -35,7 +33,7 @@ const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
     );
   };
 
-  const handleChange = (e: React.FormEvent) => {
+  const handleChange = (e: React.FormEvent): void => {
     const devToggles = {
       changeLocation: false,
       changeColour: false,

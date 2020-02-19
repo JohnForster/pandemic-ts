@@ -1,5 +1,5 @@
 import clone from 'just-clone';
-import { BoardData } from '../../types/gameData';
+import { BoardData, Connection } from '../../types/gameData';
 
 const toPercentage = (n: number, decimalPlaces = 1): number => {
   const multiplier = Math.pow(10, decimalPlaces);
@@ -7,12 +7,12 @@ const toPercentage = (n: number, decimalPlaces = 1): number => {
 };
 
 export const changeLocation = (
-  id: number,
+  id: string,
   { x, y }: { x: number; y: number },
   boardData: BoardData,
 ): BoardData => {
   const cities = clone(boardData.cities);
-  const city = cities.find(c => c.id === id);
+  const city = cities[id];
   if (!city) throw new Error(`No city found with id, ${id}`);
 
   city.location = { x: toPercentage(x), y: toPercentage(y) };
@@ -20,9 +20,9 @@ export const changeLocation = (
   return newGameState;
 };
 
-export const changeColour = (id: number, boardData: BoardData): BoardData => {
+export const changeColour = (id: string, boardData: BoardData): BoardData => {
   const cities = clone(boardData.cities);
-  const city = cities.find(c => c.id === id);
+  const city = cities[id];
   if (!city) throw new Error(`No city found with id, ${id}`);
   city.colour = (city.colour + 1) % 4;
   const newGameData = { ...boardData, cities };
@@ -30,45 +30,61 @@ export const changeColour = (id: number, boardData: BoardData): BoardData => {
 };
 
 export const createRoute = (
-  id1: number,
-  id2: number,
+  id1: string,
+  id2: string,
   boardData: BoardData,
 ): BoardData => {
   console.log(`Attempting to create route..`);
   if (id1 === id2) return boardData;
   const [a, b] = [id1, id2].sort();
-  if (boardData.connections.find(c => c.fromId === a && c.toId === b))
-    return boardData;
+
+  const connectionExists = Object.values(boardData.connections).find(
+    c => c.fromId === a && c.toId === b,
+  );
+
+  if (connectionExists) return boardData;
 
   const newBoardData = clone(boardData);
-  newBoardData.connections.push({
+  const id = Object.keys(newBoardData.connections).length.toString();
+  newBoardData.connections[id] = {
     fromId: a,
     toId: b,
-    id: newBoardData.connections.length,
-  });
+    id,
+  };
   return newBoardData;
 };
 
-export const removeRoute = (id: number, board: BoardData): BoardData => {
+export const removeRoute = (id: string, board: BoardData): BoardData => {
   const newBoard = clone(board);
-  newBoard.connections = newBoard.connections.filter(c => c.id !== id);
+  const connections = Object.values(newBoard.connections);
+  const newConnections: { [key: string]: Connection } = {};
+  connections
+    .filter(c => c.id !== id)
+    .forEach((c, i) => {
+      const id = i.toString();
+      newConnections[id] = {
+        ...c,
+        id,
+      };
+    });
+  newBoard.connections = newConnections;
   return newBoard;
 };
 
-// * Call this at runtime, do not save the connections within each city's data.
-const generateLinks = (board: BoardData) => {
-  const newBoard = clone(board);
-  newBoard.connections.forEach(connection => {
-    const city1 = board.cities.find(c => c.id === connection.fromId);
-    const city2 = board.cities.find(c => c.id === connection.toId);
-    if (
-      city1.connections.includes(city2.id) ||
-      city2.connections.includes(city1.id)
-    )
-      throw new Error('Duplicate connection!');
-    city1.connections.push(city2.id);
-    city2.connections.push(city1.id);
-  });
+// TODO Call this at runtime, do not save the connections within each city's data.
+// const generateLinks = (board: BoardData) => {
+//   const newBoard = clone(board);
+//   newBoard.connections.forEach(connection => {
+//     const city1 = board.cities.find(c => c.id === connection.fromId);
+//     const city2 = board.cities.find(c => c.id === connection.toId);
+//     if (
+//       city1.connections.includes(city2.id) ||
+//       city2.connections.includes(city1.id)
+//     )
+//       throw new Error('Duplicate connection!');
+//     city1.connections.push(city2.id);
+//     city2.connections.push(city1.id);
+//   });
 
-  return newBoard;
-};
+//   return newBoard;
+// };

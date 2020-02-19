@@ -8,10 +8,14 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
 
   return (
     <div>
-      {gameState.players.map((player, i) => (
+      {Object.values(gameState.players).map(player => (
         // TODO make into a horizontal flex box with center justified.
-        <div key={`player-${i}`}>
-          <img src={`assets/pawns/pawn_${player.colour}.png`} height={'40px'} />
+        <div key={`player-${player.id}`}>
+          <img
+            src={`assets/pawns/pawn_${player.colour}.png`}
+            height={'40px'}
+            alt={`${player.name}'s Pawn`}
+          />
           <span> {player.name}</span>
         </div>
       ))}

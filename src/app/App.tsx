@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import shuffle from 'just-shuffle';
 
 import GameBoard from './components/gameBoard/gameBoard';
 
@@ -15,56 +14,23 @@ import {
 } from './tools/devTools';
 
 import { increment, decrement } from './helpers/changeInfection';
-import GameState, { BoardData } from '../types/gameData';
-import DevPanel from './components/devPanel/devPanel';
+import { BoardData } from '../types/gameData';
 import GameStateContext from './contexts/gameStateContext';
 import copyStringToClipboard from './utils/copyStringToClipboard';
 import movePawn from './helpers/movePawn';
 import ClickHandlers from './contexts/clickHandler.context';
-// import PawnColour from '../types/enums/pawnColour';
+import createInitialGameState from './helpers/createInitialGameState';
 
 // ! USE REACT CONTEXT FOR DEV STUFF
-const colours = shuffle(
-  Array(12)
-    .fill('')
-    .map((x, i) => i),
-);
 
-const names = shuffle([
-  'John',
-  'Jemil',
-  'Jamie',
-  'Lola',
-  'Siobhan',
-  'Hakim',
-  'Peter',
-  'Paddy',
-  'Paolo',
-  'Rio',
-  'Alice',
-  'Samir',
-]);
-const initialGameState: GameState = {
-  cities: boardData.cities.map(c => ({
-    infection: c.id % 4,
-  })),
-  players: Array(12)
-    .fill('')
-    .map((x, i) => ({
-      id: i,
-      colour: colours.pop(),
-      locationId: Math.floor(Math.random() * 96),
-      name: names.pop(),
-    })),
-  devMode: false,
-};
+const initialGameState = createInitialGameState({ numberOfPlayers: 12 });
 
 const App: React.FC = () => {
   const [gameState, setGameState] = useState(initialGameState);
   const [board, setBoard] = useState<BoardData>(boardData);
   const [isDev, setDev] = useState(false);
-  const [selectedId, setSelectedId] = useState<number>();
-  const [selectedPawnId, setSelectedPawnId] = useState<number>();
+  const [selectedId, setSelectedId] = useState<string>();
+  const [selectedPawnId, setSelectedPawnId] = useState<string>();
   const [devToggles, setDevToggles] = useState({
     changeLocation: false,
     changeColour: false,
@@ -76,38 +42,38 @@ const App: React.FC = () => {
   // * Create a 'clickHandler' context?
   const handleMapClick = ({ x, y }: { x: number; y: number }): void => {
     if (/* changeLocation === true */ devToggles.changeLocation) {
-      if (selectedId || selectedId === 0)
+      if (selectedId)
         return setBoard(changeLocation(selectedId, { x, y }, board));
     }
   };
 
-  const handleCityClick = (id: number): void => {
+  const handleCityClick = (id: string): void => {
     console.log('selectedId:', selectedId);
     if (id === selectedId) return;
     if (devToggles.changeColour) return setBoard(changeColour(id, board));
-    if (devToggles.createRoutes && (selectedId || selectedId === 0)) {
+    if (devToggles.createRoutes && selectedId) {
       setBoard(createRoute(id, selectedId, board));
       return setSelectedId(null);
     }
-    if (selectedPawnId || selectedPawnId === 0) {
+    if (selectedPawnId) {
       setGameState(movePawn(selectedPawnId, id, gameState));
       return setSelectedPawnId(null);
     }
     setSelectedId(id);
   };
 
-  const handleRouteClick = (id: number): void => {
+  const handleRouteClick = (id: string): void => {
     if (devToggles.removeRoutes) return setBoard(removeRoute(id, board));
   };
 
-  const handlePawnClick = (id: number): void => {
+  const handlePawnClick = (id: string): void => {
     if (selectedPawnId === id) return;
     setSelectedPawnId(id);
   };
 
-  const incrementCity = (id: number): void =>
+  const incrementCity = (id: string): void =>
     setGameState(increment(id, gameState));
-  const decrementCity = (id: number): void =>
+  const decrementCity = (id: string): void =>
     setGameState(decrement(id, gameState));
 
   const clickHandlers = {
@@ -119,10 +85,8 @@ const App: React.FC = () => {
     decrementCity,
   };
 
-  const dev = { selectedId };
-
   const toggleDev = (): void => {
-    setSelectedId(isDev ? undefined : 0);
+    setSelectedId(isDev ? undefined : '0');
     setDev(!isDev);
   };
 
@@ -133,11 +97,6 @@ const App: React.FC = () => {
     toggleDev,
     devToggles,
     setDevToggles,
-
-    // handleMapClick,
-    // handleCityClick,
-    // handleRouteClick,
-    // handlePawnClick,
   };
 
   const logRoutes = (): void => console.log(board.connections);

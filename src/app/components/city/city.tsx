@@ -6,25 +6,25 @@ interface CityProps {
   state: CityState;
   data: CityData;
   isSelected: boolean;
-  onSelect: (id: number) => unknown;
-  handlePawnClick: (id: number) => void;
-  incrementCity: (id: number) => void;
-  decrementCity: (id: number) => void;
+  onSelect: (id: string) => unknown;
+  handlePawnClick: (id: string) => void;
+  incrementCity: (id: string) => void;
+  decrementCity: (id: string) => void;
   players: Player[];
 }
 
 const City: React.FC<CityProps> = (props: CityProps) => {
-  const handle = (fn: (id: number) => void) => (e: React.MouseEvent): void => {
+  const handle = (fn: (id: string) => void) => (e: React.MouseEvent): void => {
     fn(props.data.id);
     e.stopPropagation();
   };
 
-  const handlePawnClick = (id: number) => (e: React.MouseEvent): void => {
+  const handlePawnClick = (id: string) => (e: React.MouseEvent): void => {
     props.handlePawnClick(id);
     e.stopPropagation();
   };
 
-  const isSelected = props.data.id === 32;
+  const isSelected = props.data.id === '32';
 
   return (
     <Styled.Container
@@ -36,7 +36,7 @@ const City: React.FC<CityProps> = (props: CityProps) => {
         {props.players.map((p, i, { length }) => (
           <Styled.Pawn
             key={`pawn-${i}`}
-            isSelected={p.id === 0}
+            isSelected={p.id === '0'}
             src={`assets/pawns/pawn_${p.colour}.png`}
             n={length}
             onClick={handlePawnClick(p.id)}
