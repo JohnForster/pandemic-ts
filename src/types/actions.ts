@@ -1,3 +1,5 @@
+import GameState from './gameData';
+
 export enum ActionType {
   INCREMENT_CITY = 'INCREMENT_CITY',
   DECREMENT_CITY = 'DECREMENT_CITY',
@@ -5,6 +7,7 @@ export enum ActionType {
   SELECT_PAWN = 'SELECT_PAWN',
   SELECT_CITY = 'SELECT_CITY',
   TOGGLE_DEV = 'TOGGLE_DEV',
+  TOGGLE_DEV_FUNCTION = 'TOGGLE_DEV_FUNCTION',
 }
 export type Action =
   | IncrementAction
@@ -12,7 +15,8 @@ export type Action =
   | MovePlayerAction
   | SelectPawnAction
   | SelectCityAction
-  | ToggleDevAction;
+  | ToggleDevAction
+  | ToggleDevFunction;
 
 export interface GenericAction {
   type: ActionType;
@@ -48,4 +52,9 @@ export interface SelectCityAction extends GenericAction {
 
 export interface ToggleDevAction extends GenericAction {
   type: ActionType.TOGGLE_DEV;
+}
+
+export interface ToggleDevFunction extends GenericAction {
+  type: ActionType.TOGGLE_DEV_FUNCTION;
+  payload: { function: keyof GameState['devToggles'] };
 }

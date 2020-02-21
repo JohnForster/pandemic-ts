@@ -27,6 +27,12 @@ const createInitialGameState = (
   ]);
 
   const initialGameState: GameState = {
+    devToggles: {
+      changeLocation: false,
+      changeColour: false,
+      createRoutes: false,
+      removeRoutes: false,
+    },
     cities: {},
     players: {},
     selectedPawnId: '',

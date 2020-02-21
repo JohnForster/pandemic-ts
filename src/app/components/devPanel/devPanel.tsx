@@ -3,25 +3,10 @@ import GameState, { BoardData } from '../../../types/gameData';
 import copyStringToClipboard from '../../utils/copyStringToClipboard';
 import GameStateContext from '../../contexts/gameStateContext';
 import { ActionType } from '../../../types/actions';
+import keys from '../../utils/keys';
 
 interface DevPanelProps {
-  gameState: GameState;
   board: BoardData;
-  dev: {
-    devToggles: {
-      [key: string]: boolean;
-      changeLocation: boolean;
-      changeColour: boolean;
-      createRoutes: boolean;
-      removeRoutes: boolean;
-    };
-    setDevToggles: (devToggles: {
-      changeLocation: boolean;
-      changeColour: boolean;
-      createRoutes: boolean;
-      removeRoutes: boolean;
-    }) => void;
-  };
 }
 
 const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
@@ -33,15 +18,11 @@ const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
   };
 
   const handleChange = (e: React.FormEvent): void => {
-    const devToggles = {
-      changeLocation: false,
-      changeColour: false,
-      createRoutes: false,
-      removeRoutes: false,
-    };
     const target = e.target as HTMLInputElement;
-    devToggles[target.value as keyof typeof devToggles] = true;
-    props.dev.setDevToggles(devToggles);
+    dispatch({
+      type: ActionType.TOGGLE_DEV_FUNCTION,
+      payload: { function: target.value as keyof GameState['devToggles'] },
+    });
     dispatch({
       type: ActionType.SELECT_CITY,
       payload: { id: null },
@@ -54,13 +35,13 @@ const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
       <div>
         Selected City: {gameState.selectedCityId ?? 'none'} <br />
         <form>
-          {Object.keys(props.dev.devToggles).map((devToggle, i) => (
+          {keys(gameState.devToggles).map((devToggle, i) => (
             <label key={`radio-element-${i}`}>
               <input
                 type="radio"
-                checked={props.dev.devToggles[devToggle]}
+                checked={gameState.devToggles[devToggle]}
                 onChange={handleChange}
-                value={devToggle as string}
+                value={devToggle}
               />
               {devToggle
                 .replace(/([A-Z])/g, ' $1')

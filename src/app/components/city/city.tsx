@@ -23,7 +23,8 @@ const City: React.FC<CityProps> = (props: CityProps) => {
 
   const handlePawnClick = (id: string) => (e: React.MouseEvent): void => {
     e.stopPropagation();
-    if (id === gameState.selectedPawnId) return;
+    if (id === gameState.selectedPawnId)
+      return dispatch({ type: ActionType.SELECT_PAWN, payload: { id: null } });
     dispatch({ type: ActionType.SELECT_PAWN, payload: { id } });
   };
 
@@ -43,7 +44,8 @@ const City: React.FC<CityProps> = (props: CityProps) => {
         {props.players.map((p, i, { length }) => (
           <Styled.Pawn
             key={`pawn-${i}`}
-            isSelected={p.id === '0'}
+            isCurrentTurn={p.id === '0'}
+            isSelected={gameState.selectedPawnId === p.id}
             src={`assets/pawns/pawn_${p.colour}.png`}
             n={length}
             onClick={handlePawnClick(p.id)}

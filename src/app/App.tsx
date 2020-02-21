@@ -29,16 +29,16 @@ const App: React.FC = () => {
   // TODO incorporate this into gameState?
   const [board, setBoard] = useState<BoardData>(boardData);
 
-  const [devToggles, setDevToggles] = useState({
-    changeLocation: false,
-    changeColour: false,
-    createRoutes: false,
-    removeRoutes: false,
-  });
+  // const [gameState.devToggles, setDevToggles] = useState({
+  //   changeLocation: false,
+  //   changeColour: false,
+  //   createRoutes: false,
+  //   removeRoutes: false,
+  // });
 
   // * *************** These should all be handled with dispatch ****************
   const handleMapClick = ({ x, y }: { x: number; y: number }): void => {
-    if (/* changeLocation === true */ devToggles.changeLocation) {
+    if (/* changeLocation === true */ gameState.devToggles.changeLocation) {
       if (gameState.selectedCityId)
         return setBoard(
           changeLocation(gameState.selectedCityId, { x, y }, board),
@@ -47,12 +47,6 @@ const App: React.FC = () => {
   };
 
   const handleCityClick = (id: string): void => {
-    if (id === gameState.selectedCityId) return;
-    if (devToggles.changeColour) return setBoard(changeColour(id, board));
-    if (devToggles.createRoutes && gameState.selectedCityId) {
-      setBoard(createRoute(id, gameState.selectedCityId, board));
-      return dispatch({ type: ActionType.SELECT_CITY, payload: { id } });
-    }
     if (gameState.selectedPawnId) {
       dispatch({
         type: ActionType.MOVE_PLAYER,
@@ -60,12 +54,21 @@ const App: React.FC = () => {
       });
       return dispatch({ type: ActionType.SELECT_PAWN, payload: { id: null } });
     }
+    if (id === gameState.selectedCityId) return;
+    if (gameState.devToggles.changeColour)
+      return setBoard(changeColour(id, board));
+    if (gameState.devToggles.createRoutes && gameState.selectedCityId) {
+      setBoard(createRoute(id, gameState.selectedCityId, board));
+      return dispatch({ type: ActionType.SELECT_CITY, payload: { id } });
+    }
+
     dispatch({ type: ActionType.SELECT_CITY, payload: { id } });
     console.log('selectedId:', gameState.selectedCityId);
   };
 
   const handleRouteClick = (id: string): void => {
-    if (devToggles.removeRoutes) return setBoard(removeRoute(id, board));
+    if (gameState.devToggles.removeRoutes)
+      return setBoard(removeRoute(id, board));
   };
 
   const clickHandlers = {
@@ -75,18 +78,13 @@ const App: React.FC = () => {
   };
   // * **************************************************************************
 
-  const oldDev = {
-    devToggles,
-    setDevToggles,
-  };
-
   const logRoutes = (): void => console.log(board.connections);
 
   return (
     <Styled.App>
       <GameStateContext.Provider value={[gameState, dispatch]}>
         <ClickHandlers.Provider value={clickHandlers}>
-          <GameBoard boardData={board} dev={oldDev} />
+          <GameBoard boardData={board} />
           {/* {isDev && <DevPanel {...{ gameState, dev, toggleDev, board }} />} */}
         </ClickHandlers.Provider>
       </GameStateContext.Provider>

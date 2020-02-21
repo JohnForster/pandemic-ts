@@ -16,21 +16,6 @@ import { ActionType } from '../../../types/actions';
 
 interface GameBoardProps {
   boardData: BoardData;
-  // ? Could probably be removed from dev?
-  dev: {
-    devToggles: {
-      changeLocation: boolean;
-      changeColour: boolean;
-      createRoutes: boolean;
-      removeRoutes: boolean;
-    };
-    setDevToggles: (devToggles: {
-      changeLocation: boolean;
-      changeColour: boolean;
-      createRoutes: boolean;
-      removeRoutes: boolean;
-    }) => void;
-  };
 }
 
 const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
@@ -107,13 +92,7 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
       ))}
       <DisplayPanel
         side={gameState.devMode ? 1 : 2}
-        sideOne={
-          <DevPanel
-            gameState={gameState}
-            board={props.boardData}
-            dev={props.dev}
-          />
-        }
+        sideOne={<DevPanel board={props.boardData} />}
         sideTwo={<PlayerPanel />}
         bottom={
           <button

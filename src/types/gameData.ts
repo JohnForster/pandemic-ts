@@ -45,6 +45,12 @@ export interface Player {
 export default interface GameState {
   // turnNumber: number;
   // currentPlayerId: string;
+  devToggles: {
+    changeLocation: boolean;
+    changeColour: boolean;
+    createRoutes: boolean;
+    removeRoutes: boolean;
+  };
   selectedCityId: string;
   selectedPawnId: string;
   cities: { [id: string]: CityState }; // add id to CityState?

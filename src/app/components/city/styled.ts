@@ -130,6 +130,7 @@ export const Circle = styled.div`
 `;
 interface PawnProps {
   isSelected: boolean;
+  isCurrentTurn: boolean;
   n: number;
 }
 
@@ -141,11 +142,15 @@ export const Pawn = styled.img`
   /* position: absolute; */
   z-index: 10;
   height: ${({ n }): number => MAX_SIZE - ((n - 1) * diff) / 11}px;
-  transform: translate(0, -85%);
+  transform: translate(
+    0,
+    ${({ isSelected }: PawnProps): string => (isSelected ? '-105%' : '-85%')}
+  );
+
   filter: drop-shadow(0px 0px 4px);
 
-  animation-duration: ${({ isSelected }: PawnProps): string =>
-    isSelected ? '2s' : '0'};
+  animation-duration: ${({ isCurrentTurn }: PawnProps): string =>
+    isCurrentTurn ? '2s' : '0'};
   animation-name: glowpulse;
   animation-iteration-count: infinite;
 

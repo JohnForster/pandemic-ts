@@ -13,9 +13,14 @@ const DisplayPanel: React.FC<DisplayPanelProps> = (
 ) => {
   return (
     <div onClick={(e): void => e.stopPropagation()}>
-      <Styled.Side isShowing={props.side === 1}>{props.sideOne}</Styled.Side>
-      <Styled.Side isShowing={props.side === 2}>{props.sideTwo}</Styled.Side>
-      {props.bottom}
+      <Styled.Side isShowing={props.side === 1}>
+        {props.sideOne}
+        {props.bottom}
+      </Styled.Side>
+      <Styled.Side isShowing={props.side === 2}>
+        {props.sideTwo}
+        {props.bottom}
+      </Styled.Side>
     </div>
   );
 };
