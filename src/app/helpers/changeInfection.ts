@@ -2,16 +2,22 @@ import GameState from '../../types/gameData';
 import clone from 'just-clone';
 import clamp from 'just-clamp';
 
-export const increment = (cityId: string, gameState: GameState): GameState => {
-  const newGameState = clone(gameState);
-  const city = newGameState.cities[cityId];
+export const increment = (
+  citiesState: GameState['cities'],
+  cityId: string,
+): GameState['cities'] => {
+  const newCitiesState = clone(citiesState);
+  const city = newCitiesState[cityId];
   city.infection = clamp(0, city.infection + 1, 3);
-  return newGameState;
+  return newCitiesState;
 };
 
-export const decrement = (cityId: string, gameState: GameState): GameState => {
-  const newGameState = clone(gameState);
-  const city = newGameState.cities[cityId];
+export const decrement = (
+  citiesState: GameState['cities'],
+  cityId: string,
+): GameState['cities'] => {
+  const newCitiesState = clone(citiesState);
+  const city = newCitiesState[cityId];
   city.infection = clamp(0, city.infection - 1, 3);
-  return newGameState;
+  return newCitiesState;
 };

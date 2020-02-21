@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 
 import GameBoard from './components/gameBoard/gameBoard';
 
@@ -13,24 +13,29 @@ import {
   removeRoute,
 } from './tools/devTools';
 
-import { increment, decrement } from './helpers/changeInfection';
 import { BoardData } from '../types/gameData';
 import GameStateContext from './contexts/gameStateContext';
 import copyStringToClipboard from './utils/copyStringToClipboard';
-import movePawn from './helpers/movePawn';
 import ClickHandlers from './contexts/clickHandler.context';
 import createInitialGameState from './helpers/createInitialGameState';
+import { gameStateReducer } from './state/gameStateReducer';
+import { ActionType } from '../types/actions';
 
 // ! USE REACT CONTEXT FOR DEV STUFF
-
 const initialGameState = createInitialGameState({ numberOfPlayers: 12 });
 
 const App: React.FC = () => {
-  const [gameState, setGameState] = useState(initialGameState);
+  const [gameState, dispatch] = useReducer(gameStateReducer, initialGameState);
+  // const [gameState, setGameState] = useState(initialGameState);
+
+  // TODO incorporate this into gameState?
   const [board, setBoard] = useState<BoardData>(boardData);
+
+  // TODO incorporate these into gameState
   const [isDev, setDev] = useState(false);
   const [selectedId, setSelectedId] = useState<string>();
   const [selectedPawnId, setSelectedPawnId] = useState<string>();
+
   const [devToggles, setDevToggles] = useState({
     changeLocation: false,
     changeColour: false,
@@ -38,8 +43,7 @@ const App: React.FC = () => {
     removeRoutes: false,
   });
 
-  // * Handle with events instead?
-  // * Create a 'clickHandler' context?
+  // * *************** These should all be handled with dispatch ****************
   const handleMapClick = ({ x, y }: { x: number; y: number }): void => {
     if (/* changeLocation === true */ devToggles.changeLocation) {
       if (selectedId)
@@ -56,7 +60,10 @@ const App: React.FC = () => {
       return setSelectedId(null);
     }
     if (selectedPawnId) {
-      setGameState(movePawn(selectedPawnId, id, gameState));
+      dispatch({
+        type: ActionType.MOVE_PLAYER,
+        payload: { playerId: selectedPawnId, cityId: id },
+      });
       return setSelectedPawnId(null);
     }
     setSelectedId(id);
@@ -70,19 +77,13 @@ const App: React.FC = () => {
     if (selectedPawnId === id) return;
     setSelectedPawnId(id);
   };
-
-  const incrementCity = (id: string): void =>
-    setGameState(increment(id, gameState));
-  const decrementCity = (id: string): void =>
-    setGameState(decrement(id, gameState));
+  // * **************************************************************************
 
   const clickHandlers = {
     handleMapClick,
     handleCityClick,
     handleRouteClick,
     handlePawnClick,
-    incrementCity,
-    decrementCity,
   };
 
   const toggleDev = (): void => {
@@ -103,7 +104,7 @@ const App: React.FC = () => {
 
   return (
     <Styled.App>
-      <GameStateContext.Provider value={gameState}>
+      <GameStateContext.Provider value={[gameState, dispatch]}>
         <ClickHandlers.Provider value={clickHandlers}>
           <GameBoard boardData={board} dev={oldDev} />
           {/* {isDev && <DevPanel {...{ gameState, dev, toggleDev, board }} />} */}
@@ -111,7 +112,7 @@ const App: React.FC = () => {
       </GameStateContext.Provider>
       <button onClick={logRoutes}>Log Routes</button>
       <button
-        onClick={() =>
+        onClick={(): void =>
           copyStringToClipboard(`module.exports = ${JSON.stringify(board)}`)
         }
       >

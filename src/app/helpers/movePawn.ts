@@ -2,16 +2,16 @@ import GameState from '../../types/gameData';
 import clone from 'just-clone';
 
 const movePawn = (
+  playersState: GameState['players'],
   pawnId: string,
   cityId: string,
-  gameState: GameState,
-): GameState => {
+): GameState['players'] => {
   console.log('pawnId, cityId:', pawnId, cityId);
-  const newGameState = clone(gameState);
-  const player = newGameState.players[pawnId];
-  console.log(newGameState.players);
+  const newPlayersState = clone(playersState);
+  const player = newPlayersState[pawnId];
+  console.log(newPlayersState.players);
   player.locationId = cityId;
-  return newGameState;
+  return newPlayersState;
 };
 
 export default movePawn;

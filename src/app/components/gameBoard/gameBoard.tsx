@@ -12,8 +12,8 @@ import ClickHandlers from '../../contexts/clickHandler.context';
 import DisplayPanel from '../displayPanel/displayPanel';
 import PlayerPanel from '../playerPanel/playerPanel';
 import CityColour from '../../../types/enums/cityColour';
+
 interface GameBoardProps {
-  // gameState: GameState;
   boardData: BoardData;
   // ? Could probably be removed from dev?
   dev: {
@@ -33,15 +33,11 @@ interface GameBoardProps {
       createRoutes: boolean;
       removeRoutes: boolean;
     }) => void;
-    // handleMapClick: ({ x, y }: { x: number; y: number }) => void;
-    // handleCityClick: (id: string) => void;
-    // handleRouteClick: (id: string) => void;
-    // handlePawnClick: (id: string) => void;
   };
 }
 
 const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
-  const gameState = useContext(GameStateContext);
+  const [gameState] = useContext(GameStateContext);
   const clickHandlers = useContext(ClickHandlers);
 
   const handleClick = (e: MouseEvent): void => {
@@ -75,30 +71,15 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
       <Styled.WorldMap src="./assets/worldMap.png" />
       <Styled.VirusChartContainer>
         <Styled.Heading>Global Intensity</Styled.Heading>
-        <Styled.VirusChart
-          progress={findTotal(CityColour.Blue)}
-          maxValue={48}
-          dimension={120}
-          color={CityColour.Blue}
-        />
-        <Styled.VirusChart
-          progress={findTotal(CityColour.Yellow)}
-          maxValue={48}
-          dimension={120}
-          color={CityColour.Yellow}
-        />
-        <Styled.VirusChart
-          progress={findTotal(CityColour.Black)}
-          maxValue={48}
-          dimension={120}
-          color={CityColour.Black}
-        />
-        <Styled.VirusChart
-          progress={findTotal(CityColour.Red)}
-          maxValue={48}
-          dimension={120}
-          color={CityColour.Red}
-        />
+        {[0, 1, 2, 3].map(n => (
+          <Styled.VirusChart
+            key={`virusChart-${navigator}`}
+            progress={findTotal(n)}
+            maxValue={48}
+            dimension={120}
+            color={n}
+          />
+        ))}
       </Styled.VirusChartContainer>
       <Styled.ConnectionLayer width="100px" height="100px">
         {Object.values(props.boardData.connections).map(c => {
@@ -115,9 +96,9 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
           );
         })}
       </Styled.ConnectionLayer>
-      {Object.values(props.boardData.cities).map((city, i) => (
+      {Object.values(props.boardData.cities).map(city => (
         <City
-          key={`city-${i}`}
+          key={`city-${city.id}`}
           data={city}
           state={gameState.cities[city.id]}
           isSelected={city.id === props.dev.selectedId}
@@ -126,8 +107,6 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
             p => p.locationId === city.id,
           )}
           handlePawnClick={clickHandlers.handlePawnClick}
-          incrementCity={clickHandlers.incrementCity}
-          decrementCity={clickHandlers.decrementCity}
         />
       ))}
       <DisplayPanel

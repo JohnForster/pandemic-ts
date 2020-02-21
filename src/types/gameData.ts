@@ -22,20 +22,16 @@ export interface Connection {
   toId: string;
 }
 export interface BoardData {
-  // imagePath: string;
-  // heightRatio: number;
+  // * imagePath: string;
+  // * heightRatio: number;
   cities: { [id: string]: CityData };
   connections: { [id: string]: Connection };
 }
 
 export interface CityState {
   id: string;
-  // data: CityData;
   infection: number;
-  /* players: number[] */
 }
-
-// enum Role {}
 
 export interface Player {
   id: string;
@@ -52,21 +48,4 @@ export default interface GameState {
   cities: { [id: string]: CityState }; // add id to CityState?
   players: { [id: string]: Player };
   devMode: boolean;
-  /* players: PlayerData */
 }
-
-// // Normalised state:
-// enum Role {}
-// interface newGameState {
-//   cities: { [id: string]: { id: string; infection: number } };
-//   players: {
-//     [id: string]: {
-//       id: string;
-//       currentCityId: string;
-//       role: Role;
-//       name: string;
-//       colour: PawnColour;
-//     };
-//   };
-//   devMode: boolean;
-// }

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import * as Styled from './styled';
 import { CityState, CityData, Player } from '../../../types/gameData';
+import { ActionType } from '../../../types/actions';
+import GameStateContext from '../../contexts/gameStateContext';
 
 interface CityProps {
   state: CityState;
@@ -8,12 +10,12 @@ interface CityProps {
   isSelected: boolean;
   onSelect: (id: string) => unknown;
   handlePawnClick: (id: string) => void;
-  incrementCity: (id: string) => void;
-  decrementCity: (id: string) => void;
   players: Player[];
 }
 
 const City: React.FC<CityProps> = (props: CityProps) => {
+  const [, dispatch] = useContext(GameStateContext);
+
   const handle = (fn: (id: string) => void) => (e: React.MouseEvent): void => {
     fn(props.data.id);
     e.stopPropagation();
@@ -23,6 +25,12 @@ const City: React.FC<CityProps> = (props: CityProps) => {
     props.handlePawnClick(id);
     e.stopPropagation();
   };
+
+  const incrementCity = (id: string): void =>
+    dispatch({ type: ActionType.INCREMENT_CITY, payload: { id } });
+
+  const decrementCity = (id: string): void =>
+    dispatch({ type: ActionType.DECREMENT_CITY, payload: { id } });
 
   const isSelected = props.data.id === '32';
 
@@ -52,12 +60,12 @@ const City: React.FC<CityProps> = (props: CityProps) => {
       </Styled.Infection>
       <Styled.CounterContainer>
         {props.isSelected && (
-          <Styled.CounterButton onClick={handle(props.decrementCity)}>
+          <Styled.CounterButton onClick={handle(decrementCity)}>
             <span>−</span>
           </Styled.CounterButton>
         )}
         {props.isSelected && (
-          <Styled.CounterButton onClick={handle(props.incrementCity)}>
+          <Styled.CounterButton onClick={handle(incrementCity)}>
             <span>+</span>
           </Styled.CounterButton>
         )}

@@ -4,7 +4,7 @@ import GameStateContext from '../../contexts/gameStateContext';
 interface PlayerPanelProps {}
 
 const PlayerPanel: React.FC<PlayerPanelProps> = () => {
-  const gameState = useContext(GameStateContext);
+  const [gameState] = useContext(GameStateContext);
 
   return (
     <div>
