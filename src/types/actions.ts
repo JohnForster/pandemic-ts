@@ -2,27 +2,50 @@ export enum ActionType {
   INCREMENT_CITY = 'INCREMENT_CITY',
   DECREMENT_CITY = 'DECREMENT_CITY',
   MOVE_PLAYER = 'MOVE_PLAYER',
+  SELECT_PAWN = 'SELECT_PAWN',
+  SELECT_CITY = 'SELECT_CITY',
+  TOGGLE_DEV = 'TOGGLE_DEV',
 }
-export type Action = IncrementAction | DecrementAction | MovePlayerAction;
+export type Action =
+  | IncrementAction
+  | DecrementAction
+  | MovePlayerAction
+  | SelectPawnAction
+  | SelectCityAction
+  | ToggleDevAction;
 
-interface GenericAction {
+export interface GenericAction {
   type: ActionType;
-  payload: { [key: string]: unknown };
+  payload?: { [key: string]: unknown };
   error?: boolean;
   meta?: unknown;
 }
 
-interface IncrementAction extends GenericAction {
+export interface IncrementAction extends GenericAction {
   type: ActionType.INCREMENT_CITY;
   payload: { id: string };
 }
 
-interface DecrementAction extends GenericAction {
+export interface DecrementAction extends GenericAction {
   type: ActionType.DECREMENT_CITY;
   payload: { id: string };
 }
 
-interface MovePlayerAction extends GenericAction {
+export interface MovePlayerAction extends GenericAction {
   type: ActionType.MOVE_PLAYER;
   payload: { playerId: string; cityId: string };
+}
+
+export interface SelectPawnAction extends GenericAction {
+  type: ActionType.SELECT_PAWN;
+  payload: { id: string };
+}
+
+export interface SelectCityAction extends GenericAction {
+  type: ActionType.SELECT_CITY;
+  payload: { id: string };
+}
+
+export interface ToggleDevAction extends GenericAction {
+  type: ActionType.TOGGLE_DEV;
 }

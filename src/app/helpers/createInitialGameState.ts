@@ -29,6 +29,8 @@ const createInitialGameState = (
   const initialGameState: GameState = {
     cities: {},
     players: {},
+    selectedPawnId: '',
+    selectedCityId: '',
     devMode: false,
   };
 

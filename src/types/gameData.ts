@@ -45,6 +45,8 @@ export interface Player {
 export default interface GameState {
   // turnNumber: number;
   // currentPlayerId: string;
+  selectedCityId: string;
+  selectedPawnId: string;
   cities: { [id: string]: CityState }; // add id to CityState?
   players: { [id: string]: Player };
   devMode: boolean;

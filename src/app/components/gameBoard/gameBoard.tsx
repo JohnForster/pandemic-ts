@@ -12,15 +12,12 @@ import ClickHandlers from '../../contexts/clickHandler.context';
 import DisplayPanel from '../displayPanel/displayPanel';
 import PlayerPanel from '../playerPanel/playerPanel';
 import CityColour from '../../../types/enums/cityColour';
+import { ActionType } from '../../../types/actions';
 
 interface GameBoardProps {
   boardData: BoardData;
   // ? Could probably be removed from dev?
   dev: {
-    selectedId: string | undefined;
-    setSelectedId: (id: string) => void;
-    isDev: boolean;
-    toggleDev: () => void;
     devToggles: {
       changeLocation: boolean;
       changeColour: boolean;
@@ -37,7 +34,7 @@ interface GameBoardProps {
 }
 
 const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
-  const [gameState] = useContext(GameStateContext);
+  const [gameState, dispatch] = useContext(GameStateContext);
   const clickHandlers = useContext(ClickHandlers);
 
   const handleClick = (e: MouseEvent): void => {
@@ -73,7 +70,7 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
         <Styled.Heading>Global Intensity</Styled.Heading>
         {[0, 1, 2, 3].map(n => (
           <Styled.VirusChart
-            key={`virusChart-${navigator}`}
+            key={`virusChart-${n}`}
             progress={findTotal(n)}
             maxValue={48}
             dimension={120}
@@ -101,16 +98,15 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
           key={`city-${city.id}`}
           data={city}
           state={gameState.cities[city.id]}
-          isSelected={city.id === props.dev.selectedId}
+          isSelected={city.id === gameState.selectedCityId}
           onSelect={clickHandlers.handleCityClick}
           players={Object.values(gameState.players).filter(
             p => p.locationId === city.id,
           )}
-          handlePawnClick={clickHandlers.handlePawnClick}
         />
       ))}
       <DisplayPanel
-        side={props.dev.isDev ? 1 : 2}
+        side={gameState.devMode ? 1 : 2}
         sideOne={
           <DevPanel
             gameState={gameState}
@@ -120,8 +116,10 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
         }
         sideTwo={<PlayerPanel />}
         bottom={
-          <button onClick={props.dev.toggleDev}>
-            {`Dev mode: ${props.dev.isDev ? 'ON' : 'OFF'}`}
+          <button
+            onClick={(): void => dispatch({ type: ActionType.TOGGLE_DEV })}
+          >
+            {`Dev mode: ${gameState.devMode ? 'ON' : 'OFF'}`}
           </button>
         }
       />

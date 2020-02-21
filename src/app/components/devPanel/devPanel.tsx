@@ -1,15 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import GameState, { BoardData } from '../../../types/gameData';
 import copyStringToClipboard from '../../utils/copyStringToClipboard';
+import GameStateContext from '../../contexts/gameStateContext';
+import { ActionType } from '../../../types/actions';
 
 interface DevPanelProps {
   gameState: GameState;
   board: BoardData;
   dev: {
-    selectedId: string | undefined;
-    setSelectedId: (id: string) => void;
-    isDev: boolean;
-    toggleDev: () => void;
     devToggles: {
       [key: string]: boolean;
       changeLocation: boolean;
@@ -27,6 +25,7 @@ interface DevPanelProps {
 }
 
 const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
+  const [gameState, dispatch] = useContext(GameStateContext);
   const save = (): void => {
     copyStringToClipboard(
       `module.exports = ${JSON.stringify(props.board, null, 2)}`,
@@ -43,14 +42,17 @@ const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
     const target = e.target as HTMLInputElement;
     devToggles[target.value as keyof typeof devToggles] = true;
     props.dev.setDevToggles(devToggles);
-    props.dev.setSelectedId(null);
+    dispatch({
+      type: ActionType.SELECT_CITY,
+      payload: { id: null },
+    });
     e.stopPropagation();
   };
 
   return (
     <>
       <div>
-        Selected City: {props.dev.selectedId ?? 'none'} <br />
+        Selected City: {gameState.selectedCityId ?? 'none'} <br />
         <form>
           {Object.keys(props.dev.devToggles).map((devToggle, i) => (
             <label key={`radio-element-${i}`}>

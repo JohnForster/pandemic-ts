@@ -3,18 +3,18 @@ import * as Styled from './styled';
 import { CityState, CityData, Player } from '../../../types/gameData';
 import { ActionType } from '../../../types/actions';
 import GameStateContext from '../../contexts/gameStateContext';
+import { incrementCity, decrementCity } from '../../state/cities';
 
 interface CityProps {
   state: CityState;
   data: CityData;
   isSelected: boolean;
   onSelect: (id: string) => unknown;
-  handlePawnClick: (id: string) => void;
   players: Player[];
 }
-
+// TODO Extract Pawn into its own class
 const City: React.FC<CityProps> = (props: CityProps) => {
-  const [, dispatch] = useContext(GameStateContext);
+  const [gameState, dispatch] = useContext(GameStateContext);
 
   const handle = (fn: (id: string) => void) => (e: React.MouseEvent): void => {
     fn(props.data.id);
@@ -22,15 +22,14 @@ const City: React.FC<CityProps> = (props: CityProps) => {
   };
 
   const handlePawnClick = (id: string) => (e: React.MouseEvent): void => {
-    props.handlePawnClick(id);
     e.stopPropagation();
+    if (id === gameState.selectedPawnId) return;
+    dispatch({ type: ActionType.SELECT_PAWN, payload: { id } });
   };
 
-  const incrementCity = (id: string): void =>
-    dispatch({ type: ActionType.INCREMENT_CITY, payload: { id } });
+  const increment = (id: string): void => dispatch(incrementCity(id));
 
-  const decrementCity = (id: string): void =>
-    dispatch({ type: ActionType.DECREMENT_CITY, payload: { id } });
+  const decrement = (id: string): void => dispatch(decrementCity(id));
 
   const isSelected = props.data.id === '32';
 
@@ -60,12 +59,12 @@ const City: React.FC<CityProps> = (props: CityProps) => {
       </Styled.Infection>
       <Styled.CounterContainer>
         {props.isSelected && (
-          <Styled.CounterButton onClick={handle(decrementCity)}>
+          <Styled.CounterButton onClick={handle(decrement)}>
             <span>−</span>
           </Styled.CounterButton>
         )}
         {props.isSelected && (
-          <Styled.CounterButton onClick={handle(incrementCity)}>
+          <Styled.CounterButton onClick={handle(increment)}>
             <span>+</span>
           </Styled.CounterButton>
         )}
