@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 export const App = styled.div`
   /* font-family: ; */
-  font-family: 'Trebuchet MS', Helvetica, sans-serif;
-  font-weight: bold;
+  font-family: Impact, Haettenschweiler, Franklin Gothic Bold, Charcoal,
+    Helvetica Inserat, Bitstream Vera Sans Bold, Arial Black, sans serif;
+  /* font-weight: bold; */
 `;
 export const Pawn = styled.img`
   height: 30px;

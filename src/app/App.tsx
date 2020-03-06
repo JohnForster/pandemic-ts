@@ -79,6 +79,7 @@ const App: React.FC = () => {
   // * **************************************************************************
 
   const logRoutes = (): void => console.log(board.connections);
+  const loadGame = (): void => dispatch({ type: ActionType.LOAD });
 
   return (
     <Styled.App>
@@ -88,6 +89,7 @@ const App: React.FC = () => {
           {/* {isDev && <DevPanel {...{ gameState, dev, toggleDev, board }} />} */}
         </ClickHandlers.Provider>
       </GameStateContext.Provider>
+      <button onClick={loadGame}>Load game</button>
       <button onClick={logRoutes}>Log Routes</button>
     </Styled.App>
   );

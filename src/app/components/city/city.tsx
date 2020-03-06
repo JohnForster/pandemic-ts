@@ -44,7 +44,7 @@ const City: React.FC<CityProps> = (props: CityProps) => {
         {props.players.map((p, i, { length }) => (
           <Styled.Pawn
             key={`pawn-${i}`}
-            isCurrentTurn={p.id === '0'}
+            isCurrentTurn={p.id === gameState.currentPlayerId}
             isSelected={gameState.selectedPawnId === p.id}
             src={`assets/pawns/pawn_${p.colour}.png`}
             n={length}

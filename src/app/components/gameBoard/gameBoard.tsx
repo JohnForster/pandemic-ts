@@ -73,23 +73,26 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
               y1={`${from.y}%`}
               x2={`${to.x}%`}
               y2={`${to.y}%`}
+              dotted={c.dotted}
               onClick={(): void => clickHandlers.handleRouteClick(c.id)}
             />
           );
         })}
       </Styled.ConnectionLayer>
-      {Object.values(props.boardData.cities).map(city => (
-        <City
-          key={`city-${city.id}`}
-          data={city}
-          state={gameState.cities[city.id]}
-          isSelected={city.id === gameState.selectedCityId}
-          onSelect={clickHandlers.handleCityClick}
-          players={Object.values(gameState.players).filter(
-            p => p.locationId === city.id,
-          )}
-        />
-      ))}
+      {Object.values(props.boardData.cities)
+        .filter(c => !c.hidden)
+        .map(city => (
+          <City
+            key={`city-${city.id}`}
+            data={city}
+            state={gameState.cities[city.id]}
+            isSelected={city.id === gameState.selectedCityId}
+            onSelect={clickHandlers.handleCityClick}
+            players={Object.values(gameState.players).filter(
+              p => p.locationId === city.id,
+            )}
+          />
+        ))}
       <DisplayPanel
         side={gameState.devMode ? 1 : 2}
         sideOne={<DevPanel board={props.boardData} />}

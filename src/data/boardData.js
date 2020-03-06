@@ -960,6 +960,75 @@ module.exports = {
       connections: [],
       colour: 2,
     },
+    // *********************
+    //  Hidden route points
+    // *********************
+    '200': {
+      name: 'top_pacific_left',
+      id: '200',
+      location: {
+        x: 0,
+        y: 25,
+      },
+      connections: [],
+      colour: 0,
+      hidden: true,
+    },
+    '201': {
+      name: 'top_pacific_right',
+      id: '201',
+      location: {
+        x: 100,
+        y: 25,
+      },
+      connections: [],
+      colour: 0,
+      hidden: true,
+    },
+    '202': {
+      name: 'mid_pacific_left',
+      id: '202',
+      location: {
+        x: 0,
+        y: 35,
+      },
+      connections: [],
+      colour: 0,
+      hidden: true,
+    },
+    '203': {
+      name: 'mid_pacific_right',
+      id: '203',
+      location: {
+        x: 100,
+        y: 35,
+      },
+      connections: [],
+      colour: 0,
+      hidden: true,
+    },
+    '204': {
+      name: 'bottom_pacific_left',
+      id: '204',
+      location: {
+        x: 0,
+        y: 68,
+      },
+      connections: [],
+      colour: 0,
+      hidden: true,
+    },
+    '205': {
+      name: 'bottom_pacific_right',
+      id: '205',
+      location: {
+        x: 100,
+        y: 68,
+      },
+      connections: [],
+      colour: 0,
+      hidden: true,
+    },
   },
   connections: {
     '1': {
@@ -1476,16 +1545,19 @@ module.exports = {
       fromId: '49',
       toId: '50',
       id: '104',
+      dotted: true,
     },
     '105': {
       fromId: '12',
       toId: '46',
       id: '105',
+      dotted: true,
     },
     '106': {
       fromId: '12',
       toId: '69',
       id: '106',
+      dotted: true,
     },
     '107': {
       fromId: '49',
@@ -1511,11 +1583,13 @@ module.exports = {
       fromId: '6',
       toId: '91',
       id: '111',
+      dotted: true,
     },
     '112': {
       fromId: '0',
       toId: '6',
       id: '112',
+      dotted: true,
     },
     '113': {
       fromId: '59',
@@ -1636,6 +1710,7 @@ module.exports = {
       fromId: '71',
       toId: '80',
       id: '136',
+      dotted: true,
     },
     '137': {
       fromId: '31',
@@ -1846,6 +1921,45 @@ module.exports = {
       fromId: '12',
       toId: '91',
       id: '178',
+    },
+    // *******************
+    //  Split Connections
+    // *******************
+    '200': {
+      fromId: '11',
+      toId: '200',
+      id: '200',
+      dotted: true,
+    },
+    '201': {
+      fromId: '36',
+      toId: '201',
+      id: '201',
+      dotted: true,
+    },
+    '202': {
+      fromId: '21',
+      toId: '202',
+      id: '202',
+      dotted: true,
+    },
+    '203': {
+      fromId: '42',
+      toId: '203',
+      id: '203',
+      dotted: true,
+    },
+    '204': {
+      fromId: '20',
+      toId: '204',
+      id: '204',
+      dotted: true,
+    },
+    '205': {
+      fromId: '41',
+      toId: '205',
+      id: '205',
+      dotted: true,
     },
   },
 };

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import RadialBarChart from '../radialBarChart/radialBarChart';
 
 export const GameBoard = styled.div`
@@ -8,6 +8,7 @@ export const GameBoard = styled.div`
 `;
 
 export const WorldMap = styled.img`
+  background: black;
   position: relative;
   width: 100%;
   filter: saturate(0.75) contrast(0.8);
@@ -21,12 +22,15 @@ export const ConnectionLayer = styled.svg`
   left: 0;
 `;
 
-export const Connection = styled.line`
-  stroke: gold;
-  border: 1px solid black;
-  z-index: 0.5;
-  stroke-width: 3;
-`;
+export const Connection = styled.line(
+  ({ dotted }: { dotted: boolean }) => css`
+    stroke: gold;
+    border: 1px solid black;
+    z-index: 0.5;
+    stroke-width: 3;
+    stroke-dasharray: ${dotted ? '5,5' : ''};
+  `,
+);
 
 export const VirusChart = styled(RadialBarChart)``;
 

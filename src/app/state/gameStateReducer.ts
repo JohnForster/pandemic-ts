@@ -4,12 +4,20 @@ import { citiesReducer } from './cities';
 
 import { Action, ActionType } from '../../types/actions';
 import GameState from '../../types/gameData';
+import * as localStorage from 'local-storage';
 
 const offToggles: GameState['devToggles'] = {
   changeLocation: false,
   changeColour: false,
   createRoutes: false,
   removeRoutes: false,
+};
+
+const advanceCurrentPlayer = (gameState: GameState): GameState => {
+  const currentPlayerIdAsNumber = parseInt(gameState.currentPlayerId);
+  const numberOfPlayers = Object.keys(gameState.players).length;
+  const nextPlayerId = (currentPlayerIdAsNumber + 1) % numberOfPlayers;
+  return { ...gameState, currentPlayerId: nextPlayerId.toString() };
 };
 
 const miscReducer: React.Reducer<GameState, Action> = (state, action) => {
@@ -25,6 +33,10 @@ const miscReducer: React.Reducer<GameState, Action> = (state, action) => {
         ...state,
         devToggles: { ...offToggles, [action.payload.function]: true },
       };
+    case ActionType.NEXT_PLAYER:
+      return advanceCurrentPlayer(state);
+    case ActionType.LOAD:
+      return localStorage.get('game');
     default:
       return { ...state };
   }
@@ -34,10 +46,12 @@ export const gameStateReducer: React.Reducer<GameState, Action> = (
   state,
   action,
 ) => {
-  const newState = miscReducer(state, action);
-  return {
-    ...newState,
-    cities: citiesReducer(newState.cities, action),
-    players: playersReducer(newState.players, action),
+  const miscState = miscReducer(state, action);
+  const newState = {
+    ...miscState,
+    cities: citiesReducer(miscState.cities, action),
+    players: playersReducer(miscState.players, action),
   };
+  localStorage.set('game', newState);
+  return newState;
 };

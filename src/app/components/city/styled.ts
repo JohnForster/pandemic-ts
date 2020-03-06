@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { lighten, darken } from 'polished';
 import CityColour from '../../../types/enums/cityColour';
 
@@ -89,45 +89,40 @@ interface CircleProps {
   isSelected: boolean;
 }
 
-export const Circle = styled.div`
-  width: ${$circleSize}px;
-  height: ${$circleSize}px;
+const getRgb = (colour: CityColour): string => {
+  switch (colour) {
+    case CityColour.Yellow:
+      return $yellow;
+    case CityColour.Black:
+      return $black;
+    case CityColour.Blue:
+      return $blue;
+    case CityColour.Red:
+      return $red;
+  }
+};
 
-  position: absolute;
-  z-index: 1;
+export const Circle = styled.div(
+  ({ colour, isSelected }: CircleProps) => css`
+    width: ${$circleSize}px;
+    height: ${$circleSize}px;
 
-  /* margin: auto;
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
-  box-shadow: ${({ isSelected }: CircleProps): string =>
-    isSelected ? '0px 0px 10px white' : ''};
+    position: absolute;
+    z-index: 1;
 
-  border-radius: 50%;
-  transition: border 0.2s ease, background-color 0.2s ease;
-  border: 2px solid
-    ${({ colour }: CircleProps) =>
-      colour === CityColour.Yellow
-        ? darken(0.3, $yellow)
-        : colour === CityColour.Black
-        ? darken(0.3, $black)
-        : colour === CityColour.Blue
-        ? darken(0.3, $blue)
-        : colour === CityColour.Red
-        ? darken(0.3, $red)
-        : ''};
-  background-color: ${({ colour }: CircleProps): string =>
-    colour === CityColour.Yellow
-      ? $yellow
-      : colour === CityColour.Black
-      ? $black
-      : colour === CityColour.Blue
-      ? $blue
-      : colour === CityColour.Red
-      ? $red
-      : ''};
-`;
+    /* margin: auto;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+    box-shadow: ${isSelected ? '0px 0px 10px white' : ''};
+
+    border-radius: 50%;
+    transition: border 0.2s ease, background-color 0.2s ease;
+    border: 2px solid ${darken(0.3, getRgb(colour))};
+    background-color: ${getRgb(colour)};
+  `,
+);
 interface PawnProps {
   isSelected: boolean;
   isCurrentTurn: boolean;
@@ -138,36 +133,34 @@ const MAX_SIZE = 50;
 const MIN_SIZE = 30;
 const diff = MAX_SIZE - MIN_SIZE;
 
-export const Pawn = styled.img`
-  /* position: absolute; */
-  z-index: 10;
-  height: ${({ n }): number => MAX_SIZE - ((n - 1) * diff) / 11}px;
-  transform: translate(
-    0,
-    ${({ isSelected }: PawnProps): string => (isSelected ? '-105%' : '-85%')}
-  );
+export const Pawn = styled.img(
+  (props: PawnProps) => css`
+    /* position: absolute; */
+    z-index: 10;
+    height: ${MAX_SIZE - ((props.n - 1) * diff) / 11}px;
+    transform: translate(0, ${props.isSelected ? '-105%' : '-85%'});
 
-  filter: drop-shadow(0px 0px 4px);
+    filter: drop-shadow(0px 0px 4px);
 
-  animation-duration: ${({ isCurrentTurn }: PawnProps): string =>
-    isCurrentTurn ? '2s' : '0'};
-  animation-name: glowpulse;
-  animation-iteration-count: infinite;
+    animation-duration: ${props.isCurrentTurn ? '2s' : '0'};
+    animation-name: glowpulse;
+    animation-iteration-count: infinite;
 
-  @keyframes glowpulse {
-    0% {
-      filter: drop-shadow(0px 0px 50px);
+    @keyframes glowpulse {
+      0% {
+        filter: drop-shadow(0px 0px 50px);
+      }
+      80% {
+        filter: drop-shadow(0px 0px 1px) brightness(1.5);
+        transform: translate(0, -90%) scale(1.15);
+      }
+      100% {
+        filter: drop-shadow(0px 0px 50px);
+        transform: translate(0, -85%);
+      }
     }
-    80% {
-      filter: drop-shadow(0px 0px 1px) brightness(1.5);
-      transform: translate(0, -90%) scale(1.15);
-    }
-    100% {
-      filter: drop-shadow(0px 0px 50px);
-      transform: translate(0, -85%);
-    }
-  }
-`;
+  `,
+);
 
 export const PawnContainer = styled.div`
   position: absolute;

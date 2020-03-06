@@ -8,6 +8,9 @@ export enum ActionType {
   SELECT_CITY = 'SELECT_CITY',
   TOGGLE_DEV = 'TOGGLE_DEV',
   TOGGLE_DEV_FUNCTION = 'TOGGLE_DEV_FUNCTION',
+  LOAD = 'LOAD',
+  CHANGE_NAME = 'CHANGE_NAME',
+  NEXT_PLAYER = 'NEXT_PLAYER',
 }
 export type Action =
   | IncrementAction
@@ -16,7 +19,10 @@ export type Action =
   | SelectPawnAction
   | SelectCityAction
   | ToggleDevAction
-  | ToggleDevFunction;
+  | ToggleDevFunction
+  | LoadAction
+  | ChangeNameAction
+  | NextPlayerAction;
 
 export interface GenericAction {
   type: ActionType;
@@ -57,4 +63,16 @@ export interface ToggleDevAction extends GenericAction {
 export interface ToggleDevFunction extends GenericAction {
   type: ActionType.TOGGLE_DEV_FUNCTION;
   payload: { function: keyof GameState['devToggles'] };
+}
+
+export interface LoadAction extends GenericAction {
+  type: ActionType.LOAD;
+}
+
+export interface ChangeNameAction extends GenericAction {
+  type: ActionType.CHANGE_NAME;
+  payload: { playerId: string; name: string };
+}
+export interface NextPlayerAction extends GenericAction {
+  type: ActionType.NEXT_PLAYER;
 }

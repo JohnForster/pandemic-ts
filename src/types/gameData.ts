@@ -10,6 +10,7 @@ export interface CityData {
   };
   connections: string[];
   colour: CityColour;
+  hidden?: boolean;
 }
 
 export interface CityState {
@@ -20,6 +21,7 @@ export interface Connection {
   id: string;
   fromId: string;
   toId: string;
+  dotted?: boolean;
 }
 export interface BoardData {
   // * imagePath: string;
@@ -44,7 +46,7 @@ export interface Player {
 
 export default interface GameState {
   // turnNumber: number;
-  // currentPlayerId: string;
+  currentPlayerId: string;
   devToggles: {
     changeLocation: boolean;
     changeColour: boolean;

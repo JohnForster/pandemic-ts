@@ -27,6 +27,7 @@ const createInitialGameState = (
   ]);
 
   const initialGameState: GameState = {
+    currentPlayerId: '0',
     devToggles: {
       changeLocation: false,
       changeColour: false,
