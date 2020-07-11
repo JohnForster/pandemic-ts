@@ -30,6 +30,8 @@ const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
     e.stopPropagation();
   };
 
+  const numberOfPlayers = Object.keys(gameState.players).length;
+
   return (
     <>
       <div>
@@ -50,6 +52,10 @@ const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
             </label>
           ))}
         </form>
+        <button>-</button>
+        <span>{`${numberOfPlayers} players`}</span>
+        <button>+</button>
+        <br />
         <button onClick={save}>Save</button>
       </div>
     </>

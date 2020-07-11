@@ -7,7 +7,7 @@ const $black = '#3C3C3B';
 const $blue = '#5867e9';
 const $red = '#DB3069';
 
-const $circleSize = 25;
+const $circleSize = 35;
 
 interface ContainerProps {
   x: number;
@@ -44,7 +44,7 @@ export const Name = styled.div`
   z-index: 20;
   transition: color 0.5s ease;
   color: ${({ x }: NameProps): string =>
-    x === 2 ? 'orange' : x === 3 ? 'red' : 'white'};
+    x === 1 ? 'gold' : x === 2 ? 'orange' : x === 3 ? 'red' : ''};
   /* color: ${({ colour }: NameProps): string =>
     colour === CityColour.Yellow
       ? lighten(0.3, $yellow)
@@ -80,9 +80,9 @@ export const Infection = styled.div`
       ? '24px'
       : ''};
 
-  transition: color 0.5s ease;
+  transition: color 0.5s ease, font-size 0.5s ease;
   color: ${({ x }: InfectionProps): string =>
-    x === 2 ? 'orange' : x === 3 ? 'red' : ''};
+    x === 1 ? 'gold' : x === 2 ? 'orange' : x === 3 ? 'red' : ''};
 `;
 interface CircleProps {
   colour: CityColour;

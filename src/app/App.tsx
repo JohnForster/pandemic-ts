@@ -20,21 +20,18 @@ import createInitialGameState from './helpers/createInitialGameState';
 import { gameStateReducer } from './state/gameStateReducer';
 import { ActionType } from '../types/actions';
 
+const NUMBER_OF_PLAYERS = 8;
+
 // ! USE REACT CONTEXT FOR DEV STUFF
-const initialGameState = createInitialGameState({ numberOfPlayers: 12 });
+const initialGameState = createInitialGameState({
+  numberOfPlayers: NUMBER_OF_PLAYERS,
+});
 
 const App: React.FC = () => {
   const [gameState, dispatch] = useReducer(gameStateReducer, initialGameState);
 
   // TODO incorporate this into gameState?
   const [board, setBoard] = useState<BoardData>(boardData);
-
-  // const [gameState.devToggles, setDevToggles] = useState({
-  //   changeLocation: false,
-  //   changeColour: false,
-  //   createRoutes: false,
-  //   removeRoutes: false,
-  // });
 
   // * *************** These should all be handled with dispatch ****************
   const handleMapClick = ({ x, y }: { x: number; y: number }): void => {

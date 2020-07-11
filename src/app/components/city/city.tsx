@@ -57,7 +57,7 @@ const City: React.FC<CityProps> = (props: CityProps) => {
         {props.data.name}
       </Styled.Name>
       <Styled.Infection x={props.state.infection}>
-        {props.state.infection}
+        {props.state.infection || 1}
       </Styled.Infection>
       <Styled.CounterContainer>
         {props.isSelected && (
