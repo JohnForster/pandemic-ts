@@ -6,6 +6,7 @@ const $yellow = '#F5D547';
 const $black = '#3C3C3B';
 const $blue = '#5867e9';
 const $red = '#DB3069';
+// const $purple = '#BA55D3';
 
 const $circleSize = 35;
 
@@ -36,6 +37,7 @@ interface NameProps {
   x: number;
 }
 
+// prettier-ignore
 export const Name = styled.div`
   white-space: nowrap;
   pointer-events: none;
@@ -43,8 +45,19 @@ export const Name = styled.div`
 
   z-index: 20;
   transition: color 0.5s ease;
-  color: ${({ x }: NameProps): string =>
-    x === 1 ? 'gold' : x === 2 ? 'orange' : x === 3 ? 'red' : ''};
+  color: ${({ x, colour }: NameProps): string =>
+    x == 0 ? (
+      colour === CityColour.Yellow ? lighten(0.3, $yellow)
+      : colour === CityColour.Black ? lighten(0.65, $black)
+      : colour === CityColour.Blue ? lighten(0.3, $blue)
+      : colour === CityColour.Red ? lighten(0.4, $red)
+      : ''
+    )
+    : x === 1 ? 'gold'
+    : x === 2 ? 'orange'
+    : x === 3 ? 'red'
+    : ''
+  };
   /* color: ${({ colour }: NameProps): string =>
     colour === CityColour.Yellow
       ? lighten(0.3, $yellow)
@@ -55,7 +68,6 @@ export const Name = styled.div`
       : colour === CityColour.Red
       ? lighten(0.4, $red)
       : ''}; */
-
 `;
 
 interface InfectionProps {

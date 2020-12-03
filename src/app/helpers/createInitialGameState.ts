@@ -45,12 +45,13 @@ const createInitialGameState = (
     initialGameState.cities[c.id] = { id: c.id, infection: 0 };
   });
 
-  Array(numberOfPlayers)
+  new Array(numberOfPlayers)
     .fill('')
     .map((x, i) => ({
       id: i.toString(),
       colour: colours.pop(),
-      locationId: Math.floor(Math.random() * 96).toString(),
+      // locationId: Math.floor(Math.random() * 96).toString(),
+      locationId: '10', // Id for Atlanta
       name: names.pop(),
     }))
     .forEach(p => {

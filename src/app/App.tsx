@@ -20,7 +20,7 @@ import createInitialGameState from './helpers/createInitialGameState';
 import { gameStateReducer } from './state/gameStateReducer';
 import { ActionType } from '../types/actions';
 
-const NUMBER_OF_PLAYERS = 8;
+const NUMBER_OF_PLAYERS = 12;
 
 // ! USE REACT CONTEXT FOR DEV STUFF
 const initialGameState = createInitialGameState({
@@ -52,9 +52,15 @@ const App: React.FC = () => {
       return dispatch({ type: ActionType.SELECT_PAWN, payload: { id: null } });
     }
     if (id === gameState.selectedCityId) return;
-    if (gameState.devToggles.changeColour)
+
+    if (gameState.devMode && gameState.devToggles.changeColour)
       return setBoard(changeColour(id, board));
-    if (gameState.devToggles.createRoutes && gameState.selectedCityId) {
+
+    if (
+      gameState.devMode &&
+      gameState.devToggles.createRoutes &&
+      gameState.selectedCityId
+    ) {
       setBoard(createRoute(id, gameState.selectedCityId, board));
       return dispatch({ type: ActionType.SELECT_CITY, payload: { id } });
     }

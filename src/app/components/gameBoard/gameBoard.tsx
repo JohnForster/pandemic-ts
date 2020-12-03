@@ -13,6 +13,7 @@ import DisplayPanel from '../displayPanel/displayPanel';
 import PlayerPanel from '../playerPanel/playerPanel';
 import CityColour from '../../../types/enums/cityColour';
 import { ActionType } from '../../../types/actions';
+import { cities } from '../../../data/boardData';
 
 interface GameBoardProps {
   boardData: BoardData;
@@ -34,10 +35,13 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
     return props.boardData.cities[id].location;
   };
 
-  const findTotal = (colour: CityColour): number => {
-    const cityIds = Object.values(props.boardData.cities)
-      .filter(c => c.colour === colour)
+  const citiesByColour = (colourId: CityColour) => 
+    Object.values(props.boardData.cities)
+      .filter(c => c.colour === colourId)
       .map(c => c.id);
+
+  const findTotal = (colour: CityColour): number => {
+    const cityIds = citiesByColour(colour)
     const cities = Object.values(gameState.cities).filter(c =>
       cityIds.includes(c.id),
     );
@@ -50,13 +54,14 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
 
   return (
     <Styled.GameBoard onClick={handleClick}>
-      <Styled.WorldMap src="./assets/worldMap.png" />
+      <Styled.WorldMap src="./assets/worldMap3.png" />
       <Styled.VirusChartContainer>
         <Styled.Heading>Global Intensity</Styled.Heading>
         {[0, 1, 2, 3].map(n => (
           <Styled.VirusChart
             key={`virusChart-${n}`}
             progress={findTotal(n)}
+            totalCities={citiesByColour(n).length}
             maxValue={48}
             dimension={120}
             color={n}

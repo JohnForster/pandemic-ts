@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useContext } from 'react';
 import * as Styled from './styled';
 import CityColour from '../../../types/enums/cityColour';
+import GameStateContext from '../../contexts/gameStateContext';
 
 interface RadialBarChartProps {
   className?: string;
@@ -11,9 +12,11 @@ interface RadialBarChartProps {
   dimension?: number;
   color?: CityColour;
   maxValue?: number;
+  totalCities?: number;
 }
 
 const RadialBarChart: React.FC<RadialBarChartProps> = props => {
+  const [gameState] = useContext(GameStateContext)
   const circleRadius = Math.min(props.radius, 85);
   const circumference = 2 * 3.14 * circleRadius;
   const strokeLength = (circumference / props.maxValue) * props.progress;
@@ -21,6 +24,11 @@ const RadialBarChart: React.FC<RadialBarChartProps> = props => {
     <div className={props.className}>
       <Styled.Number>
         {Math.round((100 * props.progress) / props.maxValue)}%
+        {gameState.devMode && 
+          <div style={{ fontSize: '18px', color: 'gray' }}>
+            ({props.totalCities})
+          </div>
+        }
       </Styled.Number>
       <svg
         viewBox="0 0 180 180"

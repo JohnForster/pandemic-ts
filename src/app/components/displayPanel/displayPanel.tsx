@@ -12,6 +12,7 @@ const DisplayPanel: React.FC<DisplayPanelProps> = (
   props: DisplayPanelProps,
 ) => {
   return (
+    // Replace e.stopPropagation with css pointer-events?
     <div onClick={(e): void => e.stopPropagation()}>
       <Styled.Side isShowing={props.side === 1}>
         {props.sideOne}
