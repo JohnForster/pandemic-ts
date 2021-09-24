@@ -22,11 +22,7 @@ const RadialBarChart: React.FC<RadialBarChartProps> = props => {
       <Styled.Number>
         {Math.round((100 * props.progress) / props.maxValue)}%
       </Styled.Number>
-      <svg
-        viewBox="0 0 180 180"
-        width={props.dimension}
-        height={props.dimension}
-      >
+      <svg viewBox="0 0 180 180" style={{ height: '100%' }}>
         <Styled.Circle
           fillColour={props.color}
           strokeWidth={props.strokeWidth}

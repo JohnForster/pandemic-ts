@@ -1,5 +1,5 @@
 import GameState from '../../types/gameData';
-import boardData from '../../data/boardData';
+import { boardData } from '../../data/boardData';
 import shuffle from 'just-shuffle';
 
 const createInitialGameState = (
@@ -15,14 +15,14 @@ const createInitialGameState = (
     'John',
     'Jemil',
     'Jamie',
-    'Lola',
+    'Twix',
     'Siobhan',
     'Hakim',
     'Peter',
     'Paddy',
     'Paolo',
-    'Rio',
-    'Alice',
+    'Josh',
+    'Sam',
     'Samir',
   ]);
 
@@ -50,6 +50,7 @@ const createInitialGameState = (
     .map((x, i) => ({
       id: i.toString(),
       colour: colours.pop(),
+      // locationId: '10',
       locationId: Math.floor(Math.random() * 96).toString(),
       name: names.pop(),
     }))

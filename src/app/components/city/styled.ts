@@ -8,6 +8,7 @@ const $blue = '#5867e9';
 const $red = '#DB3069';
 
 const $circleSize = 35;
+const circleSize = 1.5;
 
 interface ContainerProps {
   x: number;
@@ -15,13 +16,14 @@ interface ContainerProps {
 }
 
 export const Container = styled.div`
-  z-index: ${({ y }: ContainerProps): number => Math.round(100 + y)};
+  z-index: ${({ y }: ContainerProps): number => Math.round(100 + y / 100)};
   position: absolute;
+  transform: translate(${({ x, y }: ContainerProps) => `${x}%, ${y}%`});
   top: ${({ y }: ContainerProps): number => y}%;
   left: ${({ x }: ContainerProps): number => x}%;
   color: white;
-  transform: translate(0, -${$circleSize / 2 + 1}px);
-  text-shadow: 0px 0px 8px black, 1px 1px 1px black;
+  transform: translateY(-${circleSize / 2}vw);
+  text-shadow: 0px 0px 1px black, 1px 1px 1px black;
 
   display: flex;
   flex-direction: column;
@@ -39,7 +41,7 @@ interface NameProps {
 export const Name = styled.div`
   white-space: nowrap;
   pointer-events: none;
-  font-size: 1.1rem;
+  font-size: 1vw;
 
   z-index: 20;
   transition: color 0.5s ease;
@@ -55,7 +57,6 @@ export const Name = styled.div`
       : colour === CityColour.Red
       ? lighten(0.4, $red)
       : ''}; */
-
 `;
 
 interface InfectionProps {
@@ -63,10 +64,10 @@ interface InfectionProps {
 }
 
 export const Infection = styled.div`
-  font-family: Impact, Charcoal, sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-weight: none;
 
-  line-height: 19px;
+  line-height: 1vw;
   pointer-events: none;
   z-index: 2;
   font-size: ${({ x }: InfectionProps): string =>
@@ -87,6 +88,7 @@ export const Infection = styled.div`
 interface CircleProps {
   colour: CityColour;
   isSelected: boolean;
+  infection: number;
 }
 
 const getRgb = (colour: CityColour): string => {
@@ -102,10 +104,27 @@ const getRgb = (colour: CityColour): string => {
   }
 };
 
-export const Circle = styled.div(
-  ({ colour, isSelected }: CircleProps) => css`
-    width: ${$circleSize}px;
-    height: ${$circleSize}px;
+const getBoxShadow = (
+  infection: number,
+  cityColour: CityColour,
+  isSelected: boolean,
+) => {
+  const shadowColour = isSelected ? 'white' : getRgb(cityColour);
+  const sizes: { [key: number]: string } = {
+    0: isSelected ? '0.4rem' : '0',
+    1: '0.5rem',
+    2: '0.7rem',
+    3: '1rem',
+  };
+
+  const size = sizes[infection];
+  return `0px 0px ${size} ${size} ${shadowColour}`;
+};
+
+export const Circle = styled.div<CircleProps>(
+  ({ colour, isSelected, infection }: CircleProps) => css`
+    width: ${circleSize}vw;
+    height: ${circleSize}vw;
 
     position: absolute;
     z-index: 1;
@@ -115,11 +134,13 @@ export const Circle = styled.div(
     flex-direction: column;
     justify-content: center;
     align-items: center; */
-    box-shadow: ${isSelected ? '0px 0px 10px white' : ''};
+    /* box-shadow: ${isSelected ? '0px 0px 10px white' : ''}; */
+    box-shadow: ${getBoxShadow(infection, colour, isSelected)};
+    
 
     border-radius: 50%;
-    transition: border 0.2s ease, background-color 0.2s ease;
-    border: 2px solid ${darken(0.3, getRgb(colour))};
+    transition: border 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    border: 0.1vw solid ${darken(0.3, getRgb(colour))};
     background-color: ${getRgb(colour)};
   `,
 );
@@ -129,15 +150,18 @@ interface PawnProps {
   n: number;
 }
 
-const MAX_SIZE = 50;
-const MIN_SIZE = 30;
+// const MAX_SIZE = 50;
+// const MIN_SIZE = 30;
+
+const MAX_SIZE = 2.1;
+const MIN_SIZE = 1.3;
 const diff = MAX_SIZE - MIN_SIZE;
 
-export const Pawn = styled.img(
+export const Pawn = styled.img<PawnProps>(
   (props: PawnProps) => css`
     /* position: absolute; */
     z-index: 10;
-    height: ${MAX_SIZE - ((props.n - 1) * diff) / 11}px;
+    height: ${MAX_SIZE - ((props.n - 1) * diff) / 11}vw;
     transform: translate(0, ${props.isSelected ? '-105%' : '-85%'});
 
     filter: drop-shadow(0px 0px 4px);
@@ -148,14 +172,14 @@ export const Pawn = styled.img(
 
     @keyframes glowpulse {
       0% {
-        filter: drop-shadow(0px 0px 50px);
+        filter: drop-shadow(0 0 2.1vw);
       }
       80% {
-        filter: drop-shadow(0px 0px 1px) brightness(1.5);
+        filter: drop-shadow(0 0 0.1vw) brightness(1.5);
         transform: translate(0, -90%) scale(1.15);
       }
       100% {
-        filter: drop-shadow(0px 0px 50px);
+        filter: drop-shadow(0 0 2.1vw);
         transform: translate(0, -85%);
       }
     }
@@ -163,16 +187,17 @@ export const Pawn = styled.img(
 );
 
 export const PawnContainer = styled.div`
+  z-index: 101;
   position: absolute;
   display: flex;
 `;
 
 export const CounterContainer = styled.div`
   position: absolute;
-  top: 23px;
+  top: 1vw;
   z-index: 30;
   display: flex;
-  width: 56px;
+  width: 2.4vw;
   justify-content: space-between;
 `;
 
@@ -181,11 +206,11 @@ export const CounterButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(0, 0, 0, 0.8);
   border: 1px white solid;
   border-radius: 10%;
-  height: 14px;
-  width: 14px;
-  font-size: 22px;
+  height: 0.6vw;
+  width: 0.6vw;
+  font-size: 0.9vw;
   user-select: none;
 `;

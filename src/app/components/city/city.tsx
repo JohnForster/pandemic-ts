@@ -32,13 +32,12 @@ const City: React.FC<CityProps> = (props: CityProps) => {
 
   const decrement = (id: string): void => dispatch(decrementCity(id));
 
-  const isSelected = props.data.id === '32';
-
   return (
     <Styled.Container
       x={props.data.location.x}
       y={props.data.location.y}
       onClick={handle(props.onSelect)}
+      id={props.data.name}
     >
       <Styled.PawnContainer>
         {props.players.map((p, i, { length }) => (
@@ -52,7 +51,11 @@ const City: React.FC<CityProps> = (props: CityProps) => {
           />
         ))}
       </Styled.PawnContainer>
-      <Styled.Circle colour={props.data.colour} isSelected={isSelected} />
+      <Styled.Circle
+        infection={props.state.infection}
+        colour={props.data.colour}
+        isSelected={props.isSelected}
+      />
       <Styled.Name colour={props.data.colour} x={props.state.infection}>
         {props.data.name}
       </Styled.Name>

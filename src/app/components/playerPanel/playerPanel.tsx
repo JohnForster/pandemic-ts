@@ -2,8 +2,24 @@ import React, { useContext, useState } from 'react';
 import GameStateContext from '../../contexts/gameStateContext';
 import * as Styled from './styled';
 import { ActionType } from '../../../types/actions';
+import { boardData } from '../../../data/boardData';
 
 interface PlayerPanelProps {}
+
+const getLocation = (id: string) => {
+  return boardData.cities[id].name;
+};
+
+const getLocationGrid = (id: string) => {
+  const DIVISIONS_Y = 4;
+  const DIVISIONS_X = 6;
+  const city = boardData.cities[id];
+  const letter = String.fromCharCode(
+    Math.floor(city.location.x / (100 / DIVISIONS_X)) + 65,
+  );
+  const number = Math.ceil(city.location.y / (100 / DIVISIONS_Y));
+  return letter + number.toString();
+};
 
 const PlayerPanel: React.FC<PlayerPanelProps> = () => {
   const [gameState, dispatch] = useContext(GameStateContext);
@@ -58,8 +74,13 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
           {nameChangeId !== player.id && (
             <span
               onDoubleClick={(): void => changeCurrentlyEditingName(player.id)}
+              style={
+                gameState.currentPlayerId === player.id
+                  ? { textDecoration: 'underline' }
+                  : {}
+              }
             >
-              {player.name}
+              {player.name} - {getLocation(player.locationId)}
             </span>
           )}
         </Styled.PlayerBox>

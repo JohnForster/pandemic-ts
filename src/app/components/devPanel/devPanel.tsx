@@ -12,9 +12,16 @@ interface DevPanelProps {
 const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
   const [gameState, dispatch] = useContext(GameStateContext);
   const save = (): void => {
-    copyStringToClipboard(
-      `module.exports = ${JSON.stringify(props.board, null, 2)}`,
-    );
+    const newBoard: BoardData = { cities: props.board.cities, connections: {} };
+    Object.values(props.board.connections).forEach((connection, i) => {
+      const id = (i + 1).toString();
+      newBoard.connections[id] = {
+        ...connection,
+        id,
+      };
+    });
+
+    copyStringToClipboard(JSON.stringify(newBoard, null, 2));
   };
 
   const handleChange = (e: React.FormEvent): void => {

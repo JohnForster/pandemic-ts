@@ -9,7 +9,7 @@ export interface CityData {
     y: number;
   };
   connections: string[];
-  colour: CityColour;
+  colour?: CityColour;
   hidden?: boolean;
 }
 

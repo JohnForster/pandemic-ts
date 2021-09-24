@@ -45,16 +45,21 @@ export const createRoute = (
   if (connectionExists) return boardData;
 
   const newBoardData = clone(boardData);
-  const id = Object.keys(newBoardData.connections).length.toString();
+  const idArray = Object.keys(newBoardData.connections);
+  const id =
+    idArray.map(idStr => parseInt(idStr)).sort((a, b) => a - b)[
+      idArray.length - 1
+    ] + 1;
   newBoardData.connections[id] = {
     fromId: a,
     toId: b,
-    id,
+    id: id.toString(),
   };
   return newBoardData;
 };
 
 export const removeRoute = (id: string, board: BoardData): BoardData => {
+  console.log('Removing route', id);
   const newBoard = clone(board);
   const connections = Object.values(newBoard.connections);
   const newConnections: { [key: string]: Connection } = {};

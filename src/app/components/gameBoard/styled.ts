@@ -22,30 +22,34 @@ export const ConnectionLayer = styled.svg`
   left: 0;
 `;
 
-export const Connection = styled.line(
-  ({ dotted }: { dotted: boolean }) => css`
+export const Connection = styled.line<{ dotted: boolean }>(
+  ({ dotted }) => css`
     stroke: gold;
-    border: 1px solid black;
+    border: 0.042vw solid black;
     z-index: 0.5;
-    stroke-width: 3;
+    stroke-width: 0.13vw;
     stroke-dasharray: ${dotted ? '5,5' : ''};
   `,
 );
 
-export const VirusChart = styled(RadialBarChart)``;
+export const VirusChart = styled(RadialBarChart)`
+  height: 100%;
+`;
 
 export const VirusChartContainer = styled.div`
-  width: 600px;
+  width: 25.2vw;
+  height: 5.25vw;
   background: rgba(255, 255, 255, 0.8);
-  border-radius: 20px;
+  border-radius: 0.84vw;
   position: absolute;
   display: flex;
   justify-content: space-around;
-  bottom: 60px;
+  bottom: 2.52vw;
   left: 60%;
 `;
 
 export const Heading = styled.h1`
+  font-size: 1.5vw;
   color: white;
   position: absolute;
   margin: auto;

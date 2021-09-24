@@ -2,7 +2,7 @@ import React, { useState, useReducer } from 'react';
 
 import GameBoard from './components/gameBoard/gameBoard';
 
-import boardData from '../data/boardData';
+import { boardData } from '../data/boardData';
 
 import * as Styled from './styled';
 
@@ -20,7 +20,7 @@ import createInitialGameState from './helpers/createInitialGameState';
 import { gameStateReducer } from './state/gameStateReducer';
 import { ActionType } from '../types/actions';
 
-const NUMBER_OF_PLAYERS = 8;
+const NUMBER_OF_PLAYERS = 12;
 
 // ! USE REACT CONTEXT FOR DEV STUFF
 const initialGameState = createInitialGameState({
@@ -51,12 +51,15 @@ const App: React.FC = () => {
       });
       return dispatch({ type: ActionType.SELECT_PAWN, payload: { id: null } });
     }
-    if (id === gameState.selectedCityId) return;
+    if (id === gameState.selectedCityId)
+      return dispatch({ type: ActionType.SELECT_CITY, payload: { id: null } });
+
     if (gameState.devToggles.changeColour)
       return setBoard(changeColour(id, board));
+
     if (gameState.devToggles.createRoutes && gameState.selectedCityId) {
       setBoard(createRoute(id, gameState.selectedCityId, board));
-      return dispatch({ type: ActionType.SELECT_CITY, payload: { id } });
+      return dispatch({ type: ActionType.SELECT_CITY, payload: { id: null } });
     }
 
     dispatch({ type: ActionType.SELECT_CITY, payload: { id } });
@@ -86,7 +89,7 @@ const App: React.FC = () => {
           {/* {isDev && <DevPanel {...{ gameState, dev, toggleDev, board }} />} */}
         </ClickHandlers.Provider>
       </GameStateContext.Provider>
-      <button onClick={loadGame}>Load game</button>
+      <button onClick={loadGame}>Load game?</button>
       <button onClick={logRoutes}>Log Routes</button>
     </Styled.App>
   );

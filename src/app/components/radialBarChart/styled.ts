@@ -32,7 +32,7 @@ export const Progress = styled.circle`
 export const Number = styled.div`
   position: relative;
   height: 0;
-  font-size: 40px;
-  top: 30%;
+  font-size: 1.68vw;
+  top: 21%;
   text-align: center;
 `;
