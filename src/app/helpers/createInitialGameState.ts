@@ -2,9 +2,25 @@ import GameState from '../../types/gameData';
 import { boardData } from '../../data/boardData';
 import shuffle from 'just-shuffle';
 
+const isGameState = (obj: unknown): obj is GameState => {
+  return true;
+};
+
 const createInitialGameState = (
   { numberOfPlayers } = { numberOfPlayers: 12 },
 ): GameState => {
+  const prevGameState = localStorage.getItem('game');
+  if (prevGameState) {
+    try {
+      const prevState = JSON.parse(prevGameState);
+      if (isGameState(prevState)) {
+        return prevState;
+      }
+    } catch (_) {
+      console.error('Unable to validate previous game state');
+    }
+  }
+
   const colours = shuffle(
     Array(12)
       .fill('')
@@ -16,13 +32,13 @@ const createInitialGameState = (
     'Jemil',
     'Jamie',
     'Twix',
-    'Siobhan',
+    'Sam',
     'Hakim',
     'Peter',
     'Paddy',
-    'Paolo',
-    'Josh',
-    'Sam',
+    'Tara',
+    'Joe',
+    'Emily',
     'Samir',
   ]);
 
@@ -50,8 +66,8 @@ const createInitialGameState = (
     .map((x, i) => ({
       id: i.toString(),
       colour: colours.pop(),
-      // locationId: '10',
-      locationId: Math.floor(Math.random() * 96).toString(),
+      locationId: '10',
+      // locationId: Math.floor(Math.random() * 96).toString(),
       name: names.pop(),
     }))
     .forEach(p => {

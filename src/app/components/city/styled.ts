@@ -148,21 +148,24 @@ interface PawnProps {
   isSelected: boolean;
   isCurrentTurn: boolean;
   n: number;
+  i: number;
 }
 
-// const MAX_SIZE = 50;
-// const MIN_SIZE = 30;
-
 const MAX_SIZE = 2.1;
-const MIN_SIZE = 1.3;
-const diff = MAX_SIZE - MIN_SIZE;
+const MIN_SIZE = 1.6;
+const SIZE_DIFF = MAX_SIZE - MIN_SIZE;
+
+const MAX_MARGIN = 0;
+const MIN_MARGIN = -0.3;
+const MARGIN_DIFF = MAX_MARGIN - MIN_MARGIN;
 
 export const Pawn = styled.img<PawnProps>(
   (props: PawnProps) => css`
     /* position: absolute; */
-    z-index: 10;
-    height: ${MAX_SIZE - ((props.n - 1) * diff) / 11}vw;
+    z-index: ${10 - props.i};
+    height: ${MAX_SIZE - ((props.n - 1) * SIZE_DIFF) / 11}vw;
     transform: translate(0, ${props.isSelected ? '-105%' : '-85%'});
+    margin-right: ${MAX_MARGIN - ((props.n - 1) * MARGIN_DIFF) / 11}vw;
 
     filter: drop-shadow(0px 0px 4px);
 

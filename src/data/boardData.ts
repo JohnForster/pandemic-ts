@@ -129,7 +129,7 @@ export const boardData: BoardData = {
       id: '10',
       location: {
         x: 18.7,
-        y: 39.1,
+        y: 41.1,
       },
       connections: [],
       colour: 1,

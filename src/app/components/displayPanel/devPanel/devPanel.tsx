@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import GameState, { BoardData } from '../../../types/gameData';
-import copyStringToClipboard from '../../utils/copyStringToClipboard';
-import GameStateContext from '../../contexts/gameStateContext';
-import { ActionType } from '../../../types/actions';
-import keys from '../../utils/keys';
+import GameState, { BoardData } from '../../../../types/gameData';
+import copyStringToClipboard from '../../../utils/copyStringToClipboard';
+import GameStateContext from '../../../contexts/gameStateContext';
+import { ActionType } from '../../../../types/actions';
+import keys from '../../../utils/keys';
 
 interface DevPanelProps {
   board: BoardData;

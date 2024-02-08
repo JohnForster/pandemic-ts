@@ -4,7 +4,6 @@ import { citiesReducer } from './cities';
 
 import { Action, ActionType } from '../../types/actions';
 import GameState from '../../types/gameData';
-import * as localStorage from 'local-storage';
 
 const offToggles: GameState['devToggles'] = {
   changeLocation: false,
@@ -45,13 +44,13 @@ const miscReducer: React.Reducer<GameState, Action> = (state, action) => {
 export const gameStateReducer: React.Reducer<GameState, Action> = (
   state,
   action,
-) => {
+): GameState => {
   const miscState = miscReducer(state, action);
-  const newState = {
+  const newState: GameState = {
     ...miscState,
     cities: citiesReducer(miscState.cities, action),
     players: playersReducer(miscState.players, action),
   };
-  localStorage.set('game', newState);
+  localStorage.setItem('game', JSON.stringify(newState));
   return newState;
 };

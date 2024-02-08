@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react';
-import GameStateContext from '../../contexts/gameStateContext';
+import GameStateContext from '../../../contexts/gameStateContext';
 import * as Styled from './styled';
-import { ActionType } from '../../../types/actions';
-import { boardData } from '../../../data/boardData';
+import { ActionType } from '../../../../types/actions';
+import { boardData } from '../../../../data/boardData';
 
 interface PlayerPanelProps {}
 
 const getLocation = (id: string) => {
-  return boardData.cities[id].name;
+  const city = boardData.cities[id];
+  return { name: city.name, colour: city.colour! };
 };
 
 const getLocationGrid = (id: string) => {
@@ -27,7 +28,6 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
   const [name, setName] = useState<string>(null);
 
   const onFormChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    console.log(event.target.value);
     setName(event.target.value);
   };
 
@@ -52,7 +52,7 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
   return (
     <div>
       {Object.values(gameState.players).map(player => (
-        // TODO make into a horizontal flex box with center justified.
+        // TODO make into a horizontal flex box with center justified?
         <Styled.PlayerBox key={`player-${player.id}`}>
           <Styled.PawnImage
             src={`assets/pawns/pawn_${player.colour}.png`}
@@ -80,7 +80,12 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
                   : {}
               }
             >
-              {player.name} - {getLocation(player.locationId)}
+              {player.name} -{' '}
+              <Styled.PlayerLocation
+                colour={getLocation(player.locationId).colour}
+              >
+                {getLocation(player.locationId).name}
+              </Styled.PlayerLocation>
             </span>
           )}
         </Styled.PlayerBox>
