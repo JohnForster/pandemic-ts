@@ -35,7 +35,7 @@ const App: React.FC = () => {
 
   // * *************** These should all be handled with dispatch ****************
   const handleMapClick = ({ x, y }: { x: number; y: number }): void => {
-    if (/* changeLocation === true */ gameState.devToggles.changeLocation) {
+    if (gameState.devToggles.changeLocation) {
       if (gameState.selectedCityId)
         return setBoard(
           changeLocation(gameState.selectedCityId, { x, y }, board),

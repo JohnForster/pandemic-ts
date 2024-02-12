@@ -3,6 +3,7 @@ import GameStateContext from '../../../contexts/gameStateContext';
 import * as Styled from './styled';
 import { ActionType } from '../../../../types/actions';
 import { boardData } from '../../../../data/boardData';
+import { ROLES } from '../../../../data/roles';
 
 interface PlayerPanelProps {}
 
@@ -49,14 +50,21 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
     dispatch({ type: ActionType.NEXT_PLAYER });
   };
 
+  const handlePawnClick = (id: string) => (e: React.MouseEvent): void => {
+    e.stopPropagation();
+    if (id === gameState.selectedPawnId)
+      return dispatch({ type: ActionType.SELECT_PAWN, payload: { id: null } });
+    dispatch({ type: ActionType.SELECT_PAWN, payload: { id } });
+  };
+
   return (
-    <div>
+    <Styled.Container>
       {Object.values(gameState.players).map(player => (
-        // TODO make into a horizontal flex box with center justified?
         <Styled.PlayerBox key={`player-${player.id}`}>
           <Styled.PawnImage
             src={`assets/pawns/pawn_${player.colour}.png`}
             alt={`${player.name}'s Pawn`}
+            onClick={handlePawnClick(player.id)}
           />
           {nameChangeId === player.id && (
             <Styled.NameInput
@@ -72,26 +80,31 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
             />
           )}
           {nameChangeId !== player.id && (
-            <span
-              onDoubleClick={(): void => changeCurrentlyEditingName(player.id)}
-              style={
-                gameState.currentPlayerId === player.id
-                  ? { textDecoration: 'underline' }
-                  : {}
-              }
-            >
-              {player.name} -{' '}
+            <>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <Styled.PlayerName
+                  isCurrentPlayer={gameState.currentPlayerId === player.id}
+                  onDoubleClick={(): void =>
+                    changeCurrentlyEditingName(player.id)
+                  }
+                >
+                  {player.name}
+                </Styled.PlayerName>
+                <span style={{ fontSize: 'small' }}>
+                  {ROLES[player.colour].role}
+                </span>
+              </div>
               <Styled.PlayerLocation
                 colour={getLocation(player.locationId).colour}
               >
                 {getLocation(player.locationId).name}
               </Styled.PlayerLocation>
-            </span>
+            </>
           )}
         </Styled.PlayerBox>
       ))}
       <button onClick={advanceToNextPlayer}>Next Turn</button>
-    </div>
+    </Styled.Container>
   );
 };
 

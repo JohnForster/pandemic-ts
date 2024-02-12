@@ -6,11 +6,18 @@ const isGameState = (obj: unknown): obj is GameState => {
   return true;
 };
 
+const defaultArgs = {
+  numberOfPlayers: 12,
+  loadExisting: true,
+};
+type CreateGameStateOptions = Partial<typeof defaultArgs>;
+
 const createInitialGameState = (
-  { numberOfPlayers } = { numberOfPlayers: 12 },
+  options: CreateGameStateOptions = {},
 ): GameState => {
+  const { numberOfPlayers, loadExisting } = { ...defaultArgs, ...options };
   const prevGameState = localStorage.getItem('game');
-  if (prevGameState) {
+  if (loadExisting && prevGameState) {
     try {
       const prevState = JSON.parse(prevGameState);
       if (isGameState(prevState)) {

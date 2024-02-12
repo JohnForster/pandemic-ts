@@ -37,6 +37,10 @@ const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
     e.stopPropagation();
   };
 
+  const reset = () => {
+    dispatch({ type: ActionType.RESET });
+  };
+
   const numberOfPlayers = Object.keys(gameState.players).length;
 
   return (
@@ -63,7 +67,8 @@ const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
         <span>{`${numberOfPlayers} players`}</span>
         <button>+</button>
         <br />
-        <button onClick={save}>Save</button>
+        <button onClick={save}>Copy Board to Clipboard</button>
+        <button onClick={reset}>Reset</button>
       </div>
     </>
   );

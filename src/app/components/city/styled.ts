@@ -109,7 +109,7 @@ const getBoxShadow = (
   cityColour: CityColour,
   isSelected: boolean,
 ) => {
-  const shadowColour = isSelected ? 'white' : getRgb(cityColour);
+  const shadowColour = isSelected ? 'white' : darken(0.3, getRgb(cityColour));
   const sizes: { [key: number]: string } = {
     0: isSelected ? '0.4rem' : '0',
     1: '0.5rem',
@@ -167,23 +167,36 @@ export const Pawn = styled.img<PawnProps>(
     transform: translate(0, ${props.isSelected ? '-105%' : '-85%'});
     margin-right: ${MAX_MARGIN - ((props.n - 1) * MARGIN_DIFF) / 11}vw;
 
-    filter: drop-shadow(0px 0px 4px);
+    filter: drop-shadow(0px 0px 5px);
 
-    animation-duration: ${props.isCurrentTurn ? '2s' : '0'};
-    animation-name: glowpulse;
+    animation-duration: 2s;
+    animation-name: ${props.isCurrentTurn
+      ? 'glowpulse'
+      : props.isSelected
+      ? ''
+      : 'pulse'};
     animation-iteration-count: infinite;
 
     @keyframes glowpulse {
       0% {
-        filter: drop-shadow(0 0 2.1vw);
+        filter: drop-shadow(0 0 2.1vw) drop-shadow(0 0 1vw) drop-shadow(0 0 5vw);
       }
       80% {
-        filter: drop-shadow(0 0 0.1vw) brightness(1.5);
-        transform: translate(0, -90%) scale(1.15);
+        filter: drop-shadow(0 0 0.1vw) drop-shadow(0 0 0.1vw)
+          drop-shadow(0 0 0.1vw) brightness(1.8);
+        transform: translate(0, -90%) scale(1.2);
       }
       100% {
-        filter: drop-shadow(0 0 2.1vw);
+        filter: drop-shadow(0 0 2.1vw) drop-shadow(0 0 1vw) drop-shadow(0 0 5vw);
         transform: translate(0, -85%);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+      }
+      50% {
+        filter: drop-shadow(0px 0px 3px);
       }
     }
   `,

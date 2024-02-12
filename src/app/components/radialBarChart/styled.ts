@@ -33,6 +33,6 @@ export const Number = styled.div`
   position: relative;
   height: 0;
   font-size: 1.68vw;
-  top: 21%;
+  top: 25%;
   text-align: center;
 `;

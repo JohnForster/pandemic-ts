@@ -4,6 +4,7 @@ import { citiesReducer } from './cities';
 
 import { Action, ActionType } from '../../types/actions';
 import GameState from '../../types/gameData';
+import createInitialGameState from '../helpers/createInitialGameState';
 
 const offToggles: GameState['devToggles'] = {
   changeLocation: false,
@@ -25,8 +26,15 @@ const miscReducer: React.Reducer<GameState, Action> = (state, action) => {
       return { ...state, selectedPawnId: action.payload.id };
     case ActionType.SELECT_CITY:
       return { ...state, selectedCityId: action.payload.id };
-    case ActionType.TOGGLE_DEV:
-      return { ...state, selectedCityId: '', devMode: !state.devMode };
+    case ActionType.DEV_MODE_OFF:
+      return {
+        ...state,
+        selectedCityId: '',
+        devMode: false,
+        devToggles: offToggles,
+      };
+    case ActionType.DEV_MODE_ON:
+      return { ...state, selectedCityId: '', devMode: true };
     case ActionType.TOGGLE_DEV_FUNCTION:
       return {
         ...state,
@@ -35,7 +43,9 @@ const miscReducer: React.Reducer<GameState, Action> = (state, action) => {
     case ActionType.NEXT_PLAYER:
       return advanceCurrentPlayer(state);
     case ActionType.LOAD:
-      return localStorage.get('game');
+      return JSON.parse(localStorage.getItem('game'));
+    case ActionType.RESET:
+      return createInitialGameState({ loadExisting: false });
     default:
       return { ...state };
   }

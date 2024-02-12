@@ -12,12 +12,14 @@ const rotate = keyframes`
 const panel = css`
   position: absolute;
   z-index: 400;
+
   /* Bottom & left could be done in a container div */
   bottom: 2.52vw;
-  left: 1%;
-  padding: 0.21vw;
+  margin-left: 1vw;
+  padding: 0.5rem;
+  box-sizing: border-box;
   border-radius: 0.24vw;
-  background-color: white;
+  background-color: #ffffffcc;
   font-size: 0.84vw;
   height: 45%;
   width: 10%;

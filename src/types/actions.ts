@@ -6,11 +6,13 @@ export enum ActionType {
   MOVE_PLAYER = 'MOVE_PLAYER',
   SELECT_PAWN = 'SELECT_PAWN',
   SELECT_CITY = 'SELECT_CITY',
-  TOGGLE_DEV = 'TOGGLE_DEV',
+  DEV_MODE_ON = 'DEV_MODE_ON',
+  DEV_MODE_OFF = 'DEV_MODE_OFF',
   TOGGLE_DEV_FUNCTION = 'TOGGLE_DEV_FUNCTION',
   LOAD = 'LOAD',
   CHANGE_NAME = 'CHANGE_NAME',
   NEXT_PLAYER = 'NEXT_PLAYER',
+  RESET = 'RESET',
 }
 export type Action =
   | IncrementAction
@@ -18,11 +20,13 @@ export type Action =
   | MovePlayerAction
   | SelectPawnAction
   | SelectCityAction
-  | ToggleDevAction
+  | EnableDevModeAction
+  | DisableDevModeAction
   | ToggleDevFunction
   | LoadAction
   | ChangeNameAction
-  | NextPlayerAction;
+  | NextPlayerAction
+  | ResetAction;
 
 export interface GenericAction {
   type: ActionType;
@@ -56,10 +60,6 @@ export interface SelectCityAction extends GenericAction {
   payload: { id: string };
 }
 
-export interface ToggleDevAction extends GenericAction {
-  type: ActionType.TOGGLE_DEV;
-}
-
 export interface ToggleDevFunction extends GenericAction {
   type: ActionType.TOGGLE_DEV_FUNCTION;
   payload: { function: keyof GameState['devToggles'] };
@@ -75,4 +75,16 @@ export interface ChangeNameAction extends GenericAction {
 }
 export interface NextPlayerAction extends GenericAction {
   type: ActionType.NEXT_PLAYER;
+}
+
+export interface ResetAction extends GenericAction {
+  type: ActionType.RESET;
+}
+
+export interface EnableDevModeAction extends GenericAction {
+  type: ActionType.DEV_MODE_ON;
+}
+
+export interface DisableDevModeAction extends GenericAction {
+  type: ActionType.DEV_MODE_OFF;
 }

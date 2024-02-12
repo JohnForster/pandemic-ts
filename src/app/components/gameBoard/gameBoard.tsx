@@ -13,8 +13,8 @@ import DisplayPanel from '../displayPanel/displayPanel';
 import PlayerPanel from '../displayPanel/playerPanel/playerPanel';
 import CityColour from '../../../types/enums/cityColour';
 import { ActionType } from '../../../types/actions';
-import worldMap from '../world.svg';
 import { WorldMap } from '../worldMap/worldMap';
+import ConnectionLayer from './connectionLayer';
 
 interface GameBoardProps {
   boardData: BoardData;
@@ -75,22 +75,10 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
         }}
       /> */}
       <WorldMap>
-        <Styled.ConnectionLayer>
-          {Object.values(props.boardData.connections).map(c => {
-            const [from, to] = [c.fromId, c.toId].map(getLocation);
-            return (
-              <Styled.Connection
-                key={`connection-${c.id}`}
-                x1={`${from.x}%`}
-                y1={`${from.y}%`}
-                x2={`${to.x}%`}
-                y2={`${to.y}%`}
-                dotted={c.dotted}
-                onClick={(): void => clickHandlers.handleRouteClick(c.id)}
-              />
-            );
-          })}
-        </Styled.ConnectionLayer>
+        <ConnectionLayer
+          connections={Object.values(props.boardData.connections)}
+          getPath={getLocation}
+        />
         {Object.values(props.boardData.cities)
           .filter(c => !c.hidden)
           .map(city => (
@@ -124,9 +112,15 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
         sideTwo={<PlayerPanel />}
         bottom={
           <button
-            onClick={(): void => dispatch({ type: ActionType.TOGGLE_DEV })}
+            onClick={() =>
+              dispatch({
+                type: gameState.devMode
+                  ? ActionType.DEV_MODE_OFF
+                  : ActionType.DEV_MODE_ON,
+              })
+            }
           >
-            {`Dev mode: ${gameState.devMode ? 'ON' : 'OFF'}`}
+            {gameState.devMode ? 'Disable Dev Mode' : 'Enable Dev Mode'}
           </button>
         }
       />
