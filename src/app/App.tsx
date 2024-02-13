@@ -86,10 +86,9 @@ const App: React.FC = () => {
       <GameStateContext.Provider value={[gameState, dispatch]}>
         <ClickHandlers.Provider value={clickHandlers}>
           <GameBoard boardData={board} />
-          {/* {isDev && <DevPanel {...{ gameState, dev, toggleDev, board }} />} */}
         </ClickHandlers.Provider>
       </GameStateContext.Provider>
-      <button onClick={loadGame}>Load game?</button>
+      <button onClick={loadGame}>Load game</button>
       <button onClick={logRoutes}>Log Routes</button>
     </Styled.App>
   );

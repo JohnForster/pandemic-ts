@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import RadialBarChart from '../radialBarChart/radialBarChart';
 
 export const GameBoard = styled.div`
   /* text-align: center; */
@@ -31,27 +30,3 @@ export const Connection = styled.line<{ dotted: boolean }>(
     stroke-dasharray: ${dotted ? '5,5' : ''};
   `,
 );
-
-export const VirusChart = styled(RadialBarChart)`
-  height: 100%;
-`;
-
-export const VirusChartContainer = styled.div`
-  width: 25.2vw;
-  height: 5.25vw;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 0.84vw;
-  position: absolute;
-  display: flex;
-  justify-content: space-around;
-  bottom: 2.52vw;
-  left: 60%;
-`;
-
-export const Heading = styled.h1`
-  font-size: 1.5vw;
-  color: white;
-  position: absolute;
-  margin: auto;
-  top: -40%;
-`;

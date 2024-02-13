@@ -12,16 +12,17 @@ const getLocation = (id: string) => {
   return { name: city.name, colour: city.colour! };
 };
 
-const getLocationGrid = (id: string) => {
-  const DIVISIONS_Y = 4;
-  const DIVISIONS_X = 6;
-  const city = boardData.cities[id];
-  const letter = String.fromCharCode(
-    Math.floor(city.location.x / (100 / DIVISIONS_X)) + 65,
-  );
-  const number = Math.ceil(city.location.y / (100 / DIVISIONS_Y));
-  return letter + number.toString();
-};
+// ? Location grid?
+// const getLocationGrid = (id: string) => {
+//   const DIVISIONS_Y = 4;
+//   const DIVISIONS_X = 6;
+//   const city = boardData.cities[id];
+//   const letter = String.fromCharCode(
+//     Math.floor(city.location.x / (100 / DIVISIONS_X)) + 65,
+//   );
+//   const number = Math.ceil(city.location.y / (100 / DIVISIONS_Y));
+//   return letter + number.toString();
+// };
 
 const PlayerPanel: React.FC<PlayerPanelProps> = () => {
   const [gameState, dispatch] = useContext(GameStateContext);

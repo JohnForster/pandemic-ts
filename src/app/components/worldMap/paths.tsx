@@ -1,7 +1,6 @@
 import React from 'react';
 
 export const Paths = () => {
-  // Add Component Logic Here
   return (
     <>
       <path

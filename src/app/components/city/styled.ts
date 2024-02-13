@@ -7,7 +7,6 @@ const $black = '#3C3C3B';
 const $blue = '#5867e9';
 const $red = '#DB3069';
 
-const $circleSize = 35;
 const circleSize = 1.5;
 
 interface ContainerProps {
@@ -15,6 +14,7 @@ interface ContainerProps {
   y: number;
 }
 
+// TODO Position should probably be relative to parent, or fixed.
 export const Container = styled.div`
   z-index: ${({ y }: ContainerProps): number => Math.round(100 + y / 100)};
   position: absolute;
