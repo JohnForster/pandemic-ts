@@ -3,6 +3,9 @@ import CityColour from '../../../../types/enums/cityColour';
 
 export const Container = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
 `;
 
 export const PlayerBox = styled.div`
@@ -10,21 +13,21 @@ export const PlayerBox = styled.div`
   align-items: center;
   width: 100%;
   padding: 2px;
-  font-weight: 400;
+  // font-weight: 300;
 `;
 
 const PAWN_HEIGHT = 1.5;
 export const PawnImage = styled.img`
   height: ${PAWN_HEIGHT}vw;
   padding-right: 5px;
-  filter: drop-shadow(2px 2px 2px #222);
+  filter: drop-shadow(1px 1px 0px #fff) drop-shadow(-1px -1px 0px #fff)
+    drop-shadow(-1px 1px 0px #fff) drop-shadow(1px -1px 0px #fff);
   flex: 0;
 `;
 
 export const NameInput = styled.input`
   margin-right: 0.42vw;
   font-size: 0.84vw;
-  width: 100%;
 `;
 
 const $yellow = '#F5D547';
@@ -58,6 +61,11 @@ type PlayerNameProps = { isCurrentPlayer: boolean };
 export const PlayerName = styled.span<PlayerNameProps>(
   (props: PlayerNameProps) => css`
     text-decoration: ${props.isCurrentPlayer ? 'underline' : 'none'};
-    font-weight: bold;
   `,
 );
+
+export const Role = styled.span`
+  font-size: small;
+  font-family: Oswald;
+  font-weight: normal;
+`;

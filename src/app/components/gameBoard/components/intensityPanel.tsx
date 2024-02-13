@@ -4,29 +4,20 @@ import React from 'react';
 import GameState, { BoardData } from '../../../../types/gameData';
 import CityColour from '../../../../types/enums/cityColour';
 import RadialBarChart from '../../radialBarChart/radialBarChart';
+import { NewsModal } from '../../newsModal/newsModal';
 
 const IntensityPanelContainer = styled.div`
-  width: 25.2vw;
-  height: 5.25vw;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 0.84vw;
   position: absolute;
-  display: flex;
-  justify-content: space-around;
-  bottom: 2.52vw;
+  bottom: 2.5%;
   left: 60%;
 `;
 
-const Heading = styled.h1`
-  font-size: 1.5vw;
-  color: white;
-  position: absolute;
-  margin: auto;
-  top: -40%;
-`;
-
-const VirusChart = styled(RadialBarChart)`
-  height: 100%;
+const ChartContainer = styled.div`
+  width: 25.2vw;
+  height: 5vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 type IntensityPanelProps = {
@@ -51,16 +42,19 @@ export const IntensityPanel = (props: IntensityPanelProps) => {
 
   return (
     <IntensityPanelContainer>
-      <Heading>Global Intensity</Heading>
-      {[0, 1, 2, 3].map(n => (
-        <VirusChart
-          key={`virusChart-${n}`}
-          progress={findTotal(n)}
-          maxValue={24}
-          dimension={120}
-          color={n}
-        />
-      ))}
+      <NewsModal title="Global Intensity">
+        <ChartContainer>
+          {[0, 1, 2, 3].map(n => (
+            <RadialBarChart
+              key={`virusChart-${n}`}
+              progress={findTotal(n)}
+              maxValue={24}
+              dimension={120}
+              color={n}
+            />
+          ))}
+        </ChartContainer>
+      </NewsModal>
     </IntensityPanelContainer>
   );
 };

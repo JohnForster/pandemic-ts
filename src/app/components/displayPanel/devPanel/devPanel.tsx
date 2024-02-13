@@ -5,6 +5,8 @@ import GameStateContext from '../../../contexts/gameStateContext';
 import { ActionType } from '../../../../types/actions';
 import keys from '../../../utils/keys';
 
+import * as Styled from './styled';
+
 interface DevPanelProps {
   board: BoardData;
 }
@@ -42,35 +44,40 @@ const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
   };
 
   const numberOfPlayers = Object.keys(gameState.players).length;
+  const disableDevMode = () => dispatch({ type: ActionType.DEV_MODE_OFF });
 
   return (
-    <>
+    <Styled.Container>
+      Selected City: {gameState.selectedCityId ?? 'none'} <br />
+      <form>
+        {keys(gameState.devToggles).map((devToggle, i) => (
+          <label key={`radio-element-${i}`}>
+            <input
+              type="radio"
+              checked={gameState.devToggles[devToggle]}
+              onChange={handleChange}
+              value={devToggle}
+            />
+            {devToggle
+              .replace(/([A-Z])/g, ' $1')
+              .replace(/^./, str => str.toUpperCase())}
+            <br />
+          </label>
+        ))}
+      </form>
       <div>
-        Selected City: {gameState.selectedCityId ?? 'none'} <br />
-        <form>
-          {keys(gameState.devToggles).map((devToggle, i) => (
-            <label key={`radio-element-${i}`}>
-              <input
-                type="radio"
-                checked={gameState.devToggles[devToggle]}
-                onChange={handleChange}
-                value={devToggle}
-              />
-              {devToggle
-                .replace(/([A-Z])/g, ' $1')
-                .replace(/^./, str => str.toUpperCase())}
-              <br />
-            </label>
-          ))}
-        </form>
         <button>-</button>
         <span>{`${numberOfPlayers} players`}</span>
         <button>+</button>
-        <br />
+      </div>
+      <div>
         <button onClick={save}>Copy Board to Clipboard</button>
         <button onClick={reset}>Reset</button>
       </div>
-    </>
+      <button style={{ marginTop: 'auto' }} onClick={disableDevMode}>
+        Disable Dev Options
+      </button>
+    </Styled.Container>
   );
 };
 

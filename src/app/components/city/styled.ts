@@ -2,10 +2,12 @@ import styled, { css } from 'styled-components';
 import { lighten, darken } from 'polished';
 import CityColour from '../../../types/enums/cityColour';
 
-const $yellow = '#F5D547';
+const $yellow = '#F9DB6D';
+// const $yellow = '#F5D547';
 const $black = '#3C3C3B';
 const $blue = '#5867e9';
-const $red = '#DB3069';
+// const $red = '#DB3069';
+const $red = '#AA0E13';
 
 const circleSize = 1.5;
 
@@ -42,6 +44,8 @@ export const Name = styled.div`
   white-space: nowrap;
   pointer-events: none;
   font-size: 1vw;
+  font-weight: bold;
+  font-family: Oswald;
 
   z-index: 20;
   transition: color 0.5s ease;
@@ -109,7 +113,7 @@ const getBoxShadow = (
   cityColour: CityColour,
   isSelected: boolean,
 ) => {
-  const shadowColour = isSelected ? 'white' : darken(0.3, getRgb(cityColour));
+  const shadowColour = isSelected ? 'white' : darken(0.1, getRgb(cityColour));
   const sizes: { [key: number]: string } = {
     0: isSelected ? '0.4rem' : '0',
     1: '0.5rem',

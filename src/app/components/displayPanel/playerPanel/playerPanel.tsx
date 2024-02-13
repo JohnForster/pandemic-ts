@@ -58,6 +58,8 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
     dispatch({ type: ActionType.SELECT_PAWN, payload: { id } });
   };
 
+  const enableDevMode = () => dispatch({ type: ActionType.DEV_MODE_ON });
+
   return (
     <Styled.Container>
       {Object.values(gameState.players).map(player => (
@@ -91,9 +93,7 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
                 >
                   {player.name}
                 </Styled.PlayerName>
-                <span style={{ fontSize: 'small' }}>
-                  {ROLES[player.colour].role}
-                </span>
+                <Styled.Role>{ROLES[player.colour].role}</Styled.Role>
               </div>
               <Styled.PlayerLocation
                 colour={getLocation(player.locationId).colour}
@@ -105,6 +105,7 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
         </Styled.PlayerBox>
       ))}
       <button onClick={advanceToNextPlayer}>Next Turn</button>
+      <button onClick={enableDevMode}>Dev Options</button>
     </Styled.Container>
   );
 };

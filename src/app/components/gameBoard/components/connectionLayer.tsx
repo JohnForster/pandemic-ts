@@ -15,7 +15,7 @@ const ConnectionLayerSVG = styled.svg`
 
 const Connection = styled.line<{ dotted: boolean }>(
   ({ dotted }) => css`
-    stroke: gold;
+    stroke: #f0c987;
     border: 0.042vw solid black;
     z-index: 0.5;
     stroke-width: 0.13vw;

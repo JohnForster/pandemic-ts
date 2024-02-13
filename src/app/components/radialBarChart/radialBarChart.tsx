@@ -4,7 +4,6 @@ import * as Styled from './styled';
 import CityColour from '../../../types/enums/cityColour';
 
 interface RadialBarChartProps {
-  className?: string;
   radius?: number;
   progress?: number;
   strokeWidth?: number;
@@ -18,11 +17,11 @@ const RadialBarChart: React.FC<RadialBarChartProps> = props => {
   const circumference = 2 * 3.14 * circleRadius;
   const strokeLength = (circumference / props.maxValue) * props.progress;
   return (
-    <div className={props.className}>
+    <Styled.Container>
       <Styled.Number>
         {Math.round((100 * props.progress) / props.maxValue)}%
       </Styled.Number>
-      <svg viewBox="0 0 180 180" style={{ height: '100%' }}>
+      <svg viewBox="0 0 180 180" height="100%">
         <Styled.Circle
           fillColour={props.color}
           strokeWidth={props.strokeWidth}
@@ -41,7 +40,7 @@ const RadialBarChart: React.FC<RadialBarChartProps> = props => {
           r={circleRadius}
         />
       </svg>
-    </div>
+    </Styled.Container>
   );
 };
 

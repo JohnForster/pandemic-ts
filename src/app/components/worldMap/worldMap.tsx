@@ -27,8 +27,8 @@ export const WorldMap = (props: WorldMapProps) => {
       >
         <defs>
           <linearGradient id="continents" gradientTransform="rotate(45)">
-            <stop offset="5%" stop-color={CONTINENTS_GRADIENT_START} />
-            <stop offset="95%" stop-color={CONTINENTS_GRADIENT_END} />
+            <stop offset="5%" stopColor={CONTINENTS_GRADIENT_START} />
+            <stop offset="95%" stopColor={CONTINENTS_GRADIENT_END} />
           </linearGradient>
         </defs>
         <Paths />

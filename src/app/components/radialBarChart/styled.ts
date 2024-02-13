@@ -15,6 +15,7 @@ export const Chart = styled.div``;
 interface CircleProps {
   fillColour: CityColour;
 }
+
 export const Circle = styled.circle`
   stroke: ${({ fillColour }: CircleProps): string =>
     lighten(0.2, colours[fillColour])};
@@ -30,9 +31,14 @@ export const Progress = styled.circle`
 `;
 
 export const Number = styled.div`
-  position: relative;
-  height: 0;
+  position: absolute;
   font-size: 1.68vw;
-  top: 25%;
   text-align: center;
+`;
+
+export const Container = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
