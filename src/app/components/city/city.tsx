@@ -4,6 +4,7 @@ import { CityState, CityData, Player } from '../../../types/gameData';
 import { ActionType } from '../../../types/actions';
 import GameStateContext from '../../contexts/gameStateContext';
 import { incrementCity, decrementCity } from '../../state/cities';
+import { DiseaseCubes } from '../diseaseCube/diseaseCubes';
 
 interface CityProps {
   state: CityState;
@@ -60,9 +61,10 @@ const City: React.FC<CityProps> = (props: CityProps) => {
       <Styled.Name colour={props.data.colour} x={props.state.infection}>
         {props.data.name}
       </Styled.Name>
-      <Styled.Infection x={props.state.infection}>
+      {/* <Styled.Infection x={props.state.infection}>
         {props.state.infection || 1}
-      </Styled.Infection>
+      </Styled.Infection> */}
+      <DiseaseCubes number={props.state.infection} colour={props.data.colour} />
       <Styled.CounterContainer>
         {props.isSelected && (
           <Styled.CounterButton onClick={handle(decrement)}>

@@ -25,7 +25,7 @@ export const Container = styled.div`
   font-size: 0.84vw;
   width: 100%;
   height: 100%;
-  font-family: impact;
+  font-family: oswald;
   color: white;
 `;
 

@@ -13,10 +13,6 @@ export interface CityData {
   hidden?: boolean;
 }
 
-export interface CityState {
-  infection: number;
-}
-
 export interface Connection {
   id: string;
   fromId: string;

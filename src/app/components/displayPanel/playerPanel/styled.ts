@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import CityColour from '../../../../types/enums/cityColour';
+import { getRgb } from '../../../colours';
 
 export const Container = styled.div`
   width: 100%;
@@ -29,24 +30,6 @@ export const NameInput = styled.input`
   margin-right: 0.42vw;
   font-size: 0.84vw;
 `;
-
-const $yellow = '#F5D547';
-const $black = '#3C3C3B';
-const $blue = '#5867e9';
-const $red = '#DB3069';
-
-const getRgb = (colour: CityColour): string => {
-  switch (colour) {
-    case CityColour.Yellow:
-      return $yellow;
-    case CityColour.Black:
-      return $black;
-    case CityColour.Blue:
-      return $blue;
-    case CityColour.Red:
-      return $red;
-  }
-};
 
 export const PlayerLocation = styled.span<{ colour: CityColour }>(
   (props: { colour: CityColour }) => css`

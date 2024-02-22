@@ -1,13 +1,7 @@
 import styled, { css } from 'styled-components';
 import { lighten, darken } from 'polished';
 import CityColour from '../../../types/enums/cityColour';
-
-const $yellow = '#F9DB6D';
-// const $yellow = '#F5D547';
-const $black = '#3C3C3B';
-const $blue = '#5867e9';
-// const $red = '#DB3069';
-const $red = '#AA0E13';
+import { COLOURS, getRgb } from '../../colours';
 
 const circleSize = 1.5;
 
@@ -53,13 +47,13 @@ export const Name = styled.div`
     x === 1 ? 'gold' : x === 2 ? 'orange' : x === 3 ? 'red' : ''};
   /* color: ${({ colour }: NameProps): string =>
     colour === CityColour.Yellow
-      ? lighten(0.3, $yellow)
+      ? lighten(0.3, COLOURS.yellow)
       : colour === CityColour.Black
-      ? lighten(0.65, $black)
+      ? lighten(0.65, COLOURS.black)
       : colour === CityColour.Blue
-      ? lighten(0.3, $blue)
+      ? lighten(0.3, COLOURS.blue)
       : colour === CityColour.Red
-      ? lighten(0.4, $red)
+      ? lighten(0.4, COLOURS.red)
       : ''}; */
 `;
 
@@ -94,19 +88,6 @@ interface CircleProps {
   isSelected: boolean;
   infection: number;
 }
-
-const getRgb = (colour: CityColour): string => {
-  switch (colour) {
-    case CityColour.Yellow:
-      return $yellow;
-    case CityColour.Black:
-      return $black;
-    case CityColour.Blue:
-      return $blue;
-    case CityColour.Red:
-      return $red;
-  }
-};
 
 const getBoxShadow = (
   infection: number,
