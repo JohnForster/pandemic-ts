@@ -1,5 +1,6 @@
 import clone from 'just-clone';
 import { BoardData, Connection } from '../../types/gameData';
+import CityColour from '../../types/enums/cityColour';
 
 const toPercentage = (n: number, decimalPlaces = 1): number => {
   const multiplier = Math.pow(10, decimalPlaces);
@@ -24,7 +25,10 @@ export const changeColour = (id: string, boardData: BoardData): BoardData => {
   const cities = clone(boardData.cities);
   const city = cities[id];
   if (!city) throw new Error(`No city found with id, ${id}`);
-  city.colour = (city.colour + 1) % 4;
+  const cityColours: CityColour[] = ['blue', 'yellow', 'black', 'red'];
+  const index = cityColours.indexOf(city.colour);
+  const newIndex = (index + 1) % 4;
+  city.colour = cityColours[newIndex];
   const newGameData = { ...boardData, cities };
   return newGameData;
 };

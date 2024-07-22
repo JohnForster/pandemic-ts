@@ -1,8 +1,3 @@
-enum CityColour {
-  Red,
-  Blue,
-  Black,
-  Yellow,
-}
+type CityColour = 'red' | 'blue' | 'black' | 'yellow';
 
 export default CityColour;

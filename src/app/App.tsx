@@ -62,8 +62,8 @@ const App: React.FC = () => {
       return dispatch({ type: ActionType.SELECT_CITY, payload: { id: null } });
     }
 
-    dispatch({ type: ActionType.SELECT_CITY, payload: { id } });
-    console.log('selectedId:', gameState.selectedCityId);
+    // dispatch({ type: ActionType.SELECT_CITY, payload: { id } });
+    // console.log('selectedId:', gameState.selectedCityId);
   };
 
   const handleRouteClick = (id: string): void => {

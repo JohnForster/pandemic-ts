@@ -27,30 +27,27 @@ type IntensityPanelProps = {
 
 export const IntensityPanel = (props: IntensityPanelProps) => {
   const findTotal = (colour: CityColour): number => {
-    const cityIds = Object.values(props.boardData.cities)
-      .filter(c => c.colour === colour)
-      .map(c => c.id);
-    const cities = Object.values(props.gameState.cities).filter(c =>
-      cityIds.includes(c.id),
-    );
+    const cities = Object.values(props.gameState.cities);
     let count = 0;
     cities.forEach(city => {
-      count += city.infection;
+      count += city.infection[colour];
     });
     return count;
   };
+
+  const cityColours: CityColour[] = ['blue', 'yellow', 'black', 'red'];
 
   return (
     <IntensityPanelContainer>
       <NewsModal title="Global Intensity">
         <ChartContainer>
-          {[0, 1, 2, 3].map(n => (
+          {cityColours.map(c => (
             <RadialBarChart
-              key={`virusChart-${n}`}
-              progress={findTotal(n)}
+              key={`virusChart-${c}`}
+              progress={findTotal(c)}
               maxValue={24}
               dimension={120}
-              color={n}
+              color={c}
             />
           ))}
         </ChartContainer>

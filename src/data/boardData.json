@@ -8,7 +8,7 @@
         "y": 32.2
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "1": {
       "name": "Paris",
@@ -18,7 +18,7 @@
         "y": 37
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "2": {
       "name": "Madrid",
@@ -28,7 +28,7 @@
         "y": 39.6
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "3": {
       "name": "Milan",
@@ -38,7 +38,7 @@
         "y": 38.9
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "4": {
       "name": "Essen",
@@ -48,7 +48,7 @@
         "y": 25.8
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "5": {
       "name": "St Petersburg",
@@ -58,7 +58,7 @@
         "y": 24
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "6": {
       "name": "New York",
@@ -68,7 +68,7 @@
         "y": 35.1
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "7": {
       "name": "Washington",
@@ -78,7 +78,7 @@
         "y": 41.5
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "8": {
       "name": "Chicago",
@@ -88,7 +88,7 @@
         "y": 36.4
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "9": {
       "name": "Montreal",
@@ -98,7 +98,7 @@
         "y": 32.5
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "10": {
       "name": "Atlanta",
@@ -108,7 +108,7 @@
         "y": 41.1
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "11": {
       "name": "San Francisco",
@@ -118,7 +118,7 @@
         "y": 38.9
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "12": {
       "name": "Lagos",
@@ -128,7 +128,7 @@
         "y": 60.8
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "13": {
       "name": "Kinshasa",
@@ -138,7 +138,7 @@
         "y": 60
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "14": {
       "name": "Johannesburg",
@@ -148,7 +148,7 @@
         "y": 79.2
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "15": {
       "name": "Sao Paolo",
@@ -158,7 +158,7 @@
         "y": 81.6
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "16": {
       "name": "Buenos Aires",
@@ -168,7 +168,7 @@
         "y": 90.3
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "17": {
       "name": "Lima",
@@ -178,7 +178,7 @@
         "y": 75.7
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "18": {
       "name": "Santiago",
@@ -188,7 +188,7 @@
         "y": 93.5
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "19": {
       "name": "Bogota",
@@ -198,7 +198,7 @@
         "y": 68
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "20": {
       "name": "Mexico City",
@@ -208,7 +208,7 @@
         "y": 55
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "21": {
       "name": "Los Angeles",
@@ -218,7 +218,7 @@
         "y": 45.5
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "22": {
       "name": "Istanbul",
@@ -228,7 +228,7 @@
         "y": 39.5
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "23": {
       "name": "Riyadh",
@@ -238,7 +238,7 @@
         "y": 47.8
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "24": {
       "name": "Cairo",
@@ -248,7 +248,7 @@
         "y": 47.1
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "25": {
       "name": "Baghdad",
@@ -258,7 +258,7 @@
         "y": 42.5
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "26": {
       "name": "Tehran",
@@ -268,7 +268,7 @@
         "y": 37.6
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "27": {
       "name": "Moscow",
@@ -278,7 +278,7 @@
         "y": 31.4
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "28": {
       "name": "Mumbai",
@@ -288,7 +288,7 @@
         "y": 53.7
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "29": {
       "name": "Delhi",
@@ -298,7 +298,7 @@
         "y": 50
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "30": {
       "name": "Kolkata",
@@ -308,7 +308,7 @@
         "y": 54.3
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "31": {
       "name": "Jakarta",
@@ -318,7 +318,7 @@
         "y": 68.2
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "32": {
       "name": "Chennai",
@@ -328,7 +328,7 @@
         "y": 59
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "33": {
       "name": "Karachi",
@@ -338,7 +338,7 @@
         "y": 49.4
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "34": {
       "name": "Hong Kong",
@@ -348,7 +348,7 @@
         "y": 46.4
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "35": {
       "name": "Seoul",
@@ -358,7 +358,7 @@
         "y": 38.6
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "36": {
       "name": "Tokyo",
@@ -368,7 +368,7 @@
         "y": 39.1
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "37": {
       "name": "Osaka",
@@ -378,7 +378,7 @@
         "y": 45.6
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "38": {
       "name": "Beijing",
@@ -388,7 +388,7 @@
         "y": 34.1
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "39": {
       "name": "Shanghai",
@@ -398,7 +398,7 @@
         "y": 41
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "40": {
       "name": "Bangkok",
@@ -408,7 +408,7 @@
         "y": 56
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "41": {
       "name": "Sydney",
@@ -418,7 +418,7 @@
         "y": 79.5
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "42": {
       "name": "Taipei",
@@ -428,7 +428,7 @@
         "y": 53
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "43": {
       "name": "Ho Chi Minh",
@@ -438,7 +438,7 @@
         "y": 52.1
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "44": {
       "name": "Manila",
@@ -448,7 +448,7 @@
         "y": 65.3
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "45": {
       "name": "Dar es Salaam",
@@ -458,7 +458,7 @@
         "y": 69
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "46": {
       "name": "Caracas",
@@ -468,7 +468,7 @@
         "y": 62.6
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "47": {
       "name": "Guayaquil",
@@ -478,7 +478,7 @@
         "y": 61.5
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "48": {
       "name": "Brasilia",
@@ -488,7 +488,7 @@
         "y": 73.8
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "49": {
       "name": "Rio de Janeiro",
@@ -498,7 +498,7 @@
         "y": 75.9
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "50": {
       "name": "Accra",
@@ -508,7 +508,7 @@
         "y": 62.1
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "51": {
       "name": "Cape Town",
@@ -518,7 +518,7 @@
         "y": 81.5
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "52": {
       "name": "Medellin",
@@ -528,7 +528,7 @@
         "y": 57.5
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "53": {
       "name": "Luanda",
@@ -538,7 +538,7 @@
         "y": 73.2
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "54": {
       "name": "Houston",
@@ -548,7 +548,7 @@
         "y": 43.9
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "55": {
       "name": "Phoenix",
@@ -558,7 +558,7 @@
         "y": 43.1
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "56": {
       "name": "Toronto",
@@ -568,7 +568,7 @@
         "y": 34.4
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "57": {
       "name": "Berlin",
@@ -578,17 +578,17 @@
         "y": 31.5
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "58": {
-      "name": "Kiev",
+      "name": "Kyiv",
       "id": "58",
       "location": {
         "x": 54.7,
         "y": 24.1
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "59": {
       "name": "Philadelphia",
@@ -598,7 +598,7 @@
         "y": 36.9
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "60": {
       "name": "Warsaw",
@@ -608,7 +608,7 @@
         "y": 29.2
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "61": {
       "name": "Boston",
@@ -618,7 +618,7 @@
         "y": 45
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "62": {
       "name": "Kuala Lumpur",
@@ -628,7 +628,7 @@
         "y": 65.5
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "63": {
       "name": "Singapore",
@@ -638,7 +638,7 @@
         "y": 60.2
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "64": {
       "name": "Hanoi",
@@ -648,7 +648,7 @@
         "y": 55.2
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "65": {
       "name": "Busan",
@@ -658,7 +658,7 @@
         "y": 43.4
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "66": {
       "name": "Dhaka",
@@ -668,7 +668,7 @@
         "y": 49.8
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "67": {
       "name": "Shenzhen",
@@ -678,7 +678,7 @@
         "y": 45.6
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "68": {
       "name": "Chongqing",
@@ -688,7 +688,7 @@
         "y": 37.2
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "69": {
       "name": "Salvador",
@@ -698,7 +698,7 @@
         "y": 68.7
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "70": {
       "name": "Tianjin",
@@ -708,7 +708,7 @@
         "y": 39.1
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "71": {
       "name": "Perth",
@@ -718,7 +718,7 @@
         "y": 77.3
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "72": {
       "name": "Bandung",
@@ -728,7 +728,7 @@
         "y": 62.2
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "73": {
       "name": "Kabul",
@@ -738,7 +738,7 @@
         "y": 42.3
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "74": {
       "name": "Lahore",
@@ -748,7 +748,7 @@
         "y": 47.2
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "75": {
       "name": "Jeddah",
@@ -758,7 +758,7 @@
         "y": 50.6
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "76": {
       "name": "Ankara",
@@ -768,7 +768,7 @@
         "y": 38.5
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "77": {
       "name": "Alexandria",
@@ -778,7 +778,7 @@
         "y": 44.7
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "78": {
       "name": "Beirut",
@@ -788,7 +788,7 @@
         "y": 43.7
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "79": {
       "name": "Tashkent",
@@ -798,7 +798,7 @@
         "y": 32.6
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "80": {
       "name": "Antananarivo",
@@ -808,7 +808,7 @@
         "y": 73.9
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "81": {
       "name": "Miami",
@@ -818,7 +818,7 @@
         "y": 47.7
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "82": {
       "name": "Addis Ababa",
@@ -828,7 +828,7 @@
         "y": 53.3
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "83": {
       "name": "Mogadishu",
@@ -838,7 +838,7 @@
         "y": 60.2
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "84": {
       "name": "Novosibirsk",
@@ -848,7 +848,7 @@
         "y": 27.8
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "85": {
       "name": "Kathmandu",
@@ -858,7 +858,7 @@
         "y": 43
       },
       "connections": [],
-      "colour": 0
+      "colour": "red"
     },
     "86": {
       "name": "Ouagadougou",
@@ -868,7 +868,7 @@
         "y": 54
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "87": {
       "name": "Tripoli",
@@ -878,7 +878,7 @@
         "y": 49.2
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "88": {
       "name": "Abidjan",
@@ -888,7 +888,7 @@
         "y": 59.5
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "89": {
       "name": "Douala",
@@ -898,7 +898,7 @@
         "y": 67.3
       },
       "connections": [],
-      "colour": 3
+      "colour": "yellow"
     },
     "90": {
       "name": "Khartoum",
@@ -908,7 +908,7 @@
         "y": 54.1
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "91": {
       "name": "Casablanca",
@@ -918,7 +918,7 @@
         "y": 45.9
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "92": {
       "name": "Havana",
@@ -928,7 +928,7 @@
         "y": 52.4
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "93": {
       "name": "Algiers",
@@ -938,7 +938,7 @@
         "y": 43.3
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "94": {
       "name": "Bucharest",
@@ -948,7 +948,7 @@
         "y": 34.1
       },
       "connections": [],
-      "colour": 1
+      "colour": "blue"
     },
     "95": {
       "name": "Nairobi",
@@ -958,7 +958,7 @@
         "y": 63.6
       },
       "connections": [],
-      "colour": 2
+      "colour": "black"
     },
     "200": {
       "name": "top_pacific_left",

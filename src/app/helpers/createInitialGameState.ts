@@ -40,7 +40,7 @@ const createInitialGameState = (
     'Jamie',
     'Twix',
     'Sam',
-    'Hakim',
+    'Hakm',
     'Peter',
     'Paddy',
     'Tara',
@@ -65,21 +65,24 @@ const createInitialGameState = (
   };
 
   Object.values(boardData.cities).forEach(c => {
-    initialGameState.cities[c.id] = { id: c.id, infection: 0 };
+    initialGameState.cities[c.id] = {
+      id: c.id,
+      infection: { blue: 0, yellow: 0, black: 0, red: 0 },
+    };
   });
 
-  Array(numberOfPlayers)
-    .fill('')
-    .map((x, i) => ({
-      id: i.toString(),
-      colour: colours.pop(),
-      locationId: '10',
-      // locationId: Math.floor(Math.random() * 96).toString(),
-      name: names.pop(),
-    }))
-    .forEach(p => {
-      initialGameState.players[p.id] = p;
-    });
+  // Array(numberOfPlayers)
+  //   .fill('')
+  //   .map((x, i) => ({
+  //     id: i.toString(),
+  //     colour: colours.pop(),
+  //     locationId: '10',
+  //     // locationId: Math.floor(Math.random() * 96).toString(),
+  //     name: names.pop(),
+  //   }))
+  //   .forEach(p => {
+  //     initialGameState.players[p.id] = p;
+  //   });
 
   return initialGameState;
 };

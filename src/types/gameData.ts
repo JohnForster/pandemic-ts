@@ -28,7 +28,12 @@ export interface BoardData {
 
 export interface CityState {
   id: string;
-  infection: number;
+  infection: {
+    blue: number;
+    yellow: number;
+    black: number;
+    red: number;
+  };
 }
 
 export interface Player {

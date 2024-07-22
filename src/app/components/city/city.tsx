@@ -3,8 +3,10 @@ import * as Styled from './styled';
 import { CityState, CityData, Player } from '../../../types/gameData';
 import { ActionType } from '../../../types/actions';
 import GameStateContext from '../../contexts/gameStateContext';
-import { incrementCity, decrementCity } from '../../state/cities';
+import { infectCity, treatCity } from '../../state/cities';
 import { DiseaseCubes } from '../diseaseCube/diseaseCubes';
+import CityColour from '../../../types/enums/cityColour';
+import { Pawns } from './components/pawns';
 
 interface CityProps {
   state: CityState;
@@ -17,8 +19,10 @@ interface CityProps {
 const City: React.FC<CityProps> = (props: CityProps) => {
   const [gameState, dispatch] = useContext(GameStateContext);
 
-  const handle = (fn: (id: string) => void) => (e: React.MouseEvent): void => {
-    fn(props.data.id);
+  const handle = (fn: (id: string, colour: CityColour) => void) => (
+    e: React.MouseEvent,
+  ): void => {
+    fn(props.data.id, props.data.colour);
     e.stopPropagation();
   };
 
@@ -29,9 +33,18 @@ const City: React.FC<CityProps> = (props: CityProps) => {
     dispatch({ type: ActionType.SELECT_PAWN, payload: { id } });
   };
 
-  const increment = (id: string): void => dispatch(incrementCity(id));
+  const handleCircleClick = (evt: React.MouseEvent) => {
+    if (evt.altKey) {
+      treat(props.data.id, props.data.colour);
+      evt.stopPropagation();
+    }
+  };
 
-  const decrement = (id: string): void => dispatch(decrementCity(id));
+  const infect = (id: string, colour: CityColour): void =>
+    dispatch(infectCity(id, colour));
+
+  const treat = (id: string, colour: CityColour): void =>
+    dispatch(treatCity(id, colour));
 
   return (
     <Styled.Container
@@ -40,39 +53,39 @@ const City: React.FC<CityProps> = (props: CityProps) => {
       onClick={handle(props.onSelect)}
       id={props.data.name}
     >
-      <Styled.PawnContainer>
-        {props.players.map((p, i, { length }) => (
-          <Styled.Pawn
-            key={`pawn-${i}`}
-            i={i}
-            isCurrentTurn={p.id === gameState.currentPlayerId}
-            isSelected={gameState.selectedPawnId === p.id}
-            src={`assets/pawns/pawn_${p.colour}.png`}
-            n={length}
-            onClick={handlePawnClick(p.id)}
-          />
-        ))}
-      </Styled.PawnContainer>
       <Styled.Circle
-        infection={props.state.infection}
+        infection={props.state.infection[props.data.colour]}
         colour={props.data.colour}
         isSelected={props.isSelected}
+        onDoubleClick={handle(infect)}
+        onClick={handleCircleClick}
       />
-      <Styled.Name colour={props.data.colour} x={props.state.infection}>
+      <Pawns
+        gameState={gameState}
+        players={props.players}
+        handlePawnClick={handlePawnClick}
+      />
+      <Styled.Name
+        colour={props.data.colour}
+        x={props.state.infection[props.data.colour]}
+      >
         {props.data.name}
       </Styled.Name>
       {/* <Styled.Infection x={props.state.infection}>
         {props.state.infection || 1}
       </Styled.Infection> */}
-      <DiseaseCubes number={props.state.infection} colour={props.data.colour} />
+      {/* <DiseaseCubes
+        number={props.state.infection[props.data.colour]}
+        colour={props.data.colour}
+      /> */}
       <Styled.CounterContainer>
         {props.isSelected && (
-          <Styled.CounterButton onClick={handle(decrement)}>
+          <Styled.CounterButton onClick={handle(treat)}>
             <span>−</span>
           </Styled.CounterButton>
         )}
         {props.isSelected && (
-          <Styled.CounterButton onClick={handle(increment)}>
+          <Styled.CounterButton onClick={handle(infect)}>
             <span>+</span>
           </Styled.CounterButton>
         )}

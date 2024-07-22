@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { useContext } from 'react';
 
 import { BoardData } from '../../../../types/gameData';
 import ClickHandlers from '../../../contexts/clickHandler.context';

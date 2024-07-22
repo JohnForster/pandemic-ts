@@ -9,13 +9,13 @@ export const COLOURS = {
 
 export const getRgb = (colour: CityColour): string => {
   switch (colour) {
-    case CityColour.Yellow:
+    case 'yellow':
       return COLOURS.yellow;
-    case CityColour.Black:
+    case 'black':
       return COLOURS.black;
-    case CityColour.Blue:
+    case 'blue':
       return COLOURS.blue;
-    case CityColour.Red:
+    case 'red':
       return COLOURS.red;
   }
 };

@@ -46,7 +46,7 @@ export const SingleCube = (props: SingleCubeProps) => {
         viewBox="0 0 58 58"
         fill="#000000"
       >
-        <g stroke={props.colour === CityColour.Yellow ? 'black' : 'white'}>
+        <g stroke={props.colour === 'yellow' ? 'black' : 'white'}>
           <Left
             colour={getRgb(props.colour)}
             points="29,58 3,45 3,13 29,26 "

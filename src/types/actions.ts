@@ -1,3 +1,4 @@
+import CityColour from './enums/cityColour';
 import GameState from './gameData';
 
 export enum ActionType {
@@ -37,12 +38,12 @@ export interface GenericAction {
 
 export interface IncrementAction extends GenericAction {
   type: ActionType.INCREMENT_CITY;
-  payload: { id: string };
+  payload: { id: string; colour: CityColour };
 }
 
 export interface DecrementAction extends GenericAction {
   type: ActionType.DECREMENT_CITY;
-  payload: { id: string };
+  payload: { id: string; colour: CityColour };
 }
 
 export interface MovePlayerAction extends GenericAction {

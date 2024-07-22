@@ -50,7 +50,7 @@ RadialBarChart.defaultProps = {
   strokeWidth: 20,
   dimension: 180,
   maxValue: 100,
-  color: CityColour.Black,
+  color: 'black',
 };
 
 export default RadialBarChart;
