@@ -44,6 +44,7 @@ type PlayerNameProps = { isCurrentPlayer: boolean };
 export const PlayerName = styled.span<PlayerNameProps>(
   (props: PlayerNameProps) => css`
     text-decoration: ${props.isCurrentPlayer ? 'underline' : 'none'};
+    line-height: 0.8rem;
   `,
 );
 

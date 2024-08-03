@@ -7,9 +7,10 @@ import { infectCity, treatCity } from '../../state/cities';
 import { DiseaseCubes } from '../diseaseCube/diseaseCubes';
 import CityColour from '../../../types/enums/cityColour';
 import { Pawns } from './components/pawns';
+import { NewDiseaseCubes } from '../diseaseCube/newDiseaseCubes';
 
 interface CityProps {
-  state: CityState;
+  cityState: CityState;
   data: CityData;
   isSelected: boolean;
   onSelect: (id: string) => unknown;
@@ -33,18 +34,24 @@ const City: React.FC<CityProps> = (props: CityProps) => {
     dispatch({ type: ActionType.SELECT_PAWN, payload: { id } });
   };
 
-  const handleCircleClick = (evt: React.MouseEvent) => {
-    if (evt.altKey) {
-      treat(props.data.id, props.data.colour);
-      evt.stopPropagation();
-    }
-  };
-
   const infect = (id: string, colour: CityColour): void =>
     dispatch(infectCity(id, colour));
 
   const treat = (id: string, colour: CityColour): void =>
     dispatch(treatCity(id, colour));
+
+  const handleDoubleClick = (evt: React.MouseEvent) => {
+    const colour = evt.altKey
+      ? gameState.selectedInfectionColour
+      : props.data.colour;
+    dispatch(infectCity(props.data.id, colour));
+  };
+
+  const createCubeDoubleClickHandler = (colour: CityColour, id: string) => (
+    evt: React.MouseEvent,
+  ) => {
+    dispatch(treatCity(id, colour));
+  };
 
   return (
     <Styled.Container
@@ -54,11 +61,10 @@ const City: React.FC<CityProps> = (props: CityProps) => {
       id={props.data.name}
     >
       <Styled.Circle
-        infection={props.state.infection[props.data.colour]}
+        infection={props.cityState.infection[props.data.colour]}
         colour={props.data.colour}
         isSelected={props.isSelected}
-        onDoubleClick={handle(infect)}
-        onClick={handleCircleClick}
+        onDoubleClick={handleDoubleClick}
       />
       <Pawns
         gameState={gameState}
@@ -67,16 +73,21 @@ const City: React.FC<CityProps> = (props: CityProps) => {
       />
       <Styled.Name
         colour={props.data.colour}
-        x={props.state.infection[props.data.colour]}
+        x={props.cityState.infection[props.data.colour]}
       >
         {props.data.name}
       </Styled.Name>
       {/* <Styled.Infection x={props.state.infection}>
         {props.state.infection || 1}
       </Styled.Infection> */}
-      <DiseaseCubes
-        number={props.state.infection[props.data.colour]}
+      {/* <DiseaseCubes
+        number={props.cityState.infection[props.data.colour]}
         colour={props.data.colour}
+      /> */}
+      <NewDiseaseCubes
+        id={props.data.id}
+        infection={props.cityState.infection}
+        createDoubleClickHandler={createCubeDoubleClickHandler}
       />
       <Styled.CounterContainer>
         {props.isSelected && (

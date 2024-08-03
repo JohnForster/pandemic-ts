@@ -23,7 +23,11 @@ export const DiseaseCubes = (props: DiseaseCubesProps) => {
   return (
     <CubesContainer>
       {cubes.map((_, i) => (
-        <SingleCube key={`cube-${i}`} colour={props.colour} />
+        <SingleCube
+          key={`cube-${i}`}
+          colour={props.colour}
+          handleDoubleClick={() => {}}
+        />
       ))}
     </CubesContainer>
   );

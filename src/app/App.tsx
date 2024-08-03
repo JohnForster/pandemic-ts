@@ -19,6 +19,7 @@ import ClickHandlers from './contexts/clickHandler.context';
 import createInitialGameState from './helpers/createInitialGameState';
 import { gameStateReducer } from './state/gameStateReducer';
 import { ActionType } from '../types/actions';
+import CityColour from '../types/enums/cityColour';
 
 const NUMBER_OF_PLAYERS = 12;
 
@@ -71,10 +72,14 @@ const App: React.FC = () => {
       return setBoard(removeRoute(id, board));
   };
 
+  const handleSelectedColourChange = (colour: CityColour) =>
+    dispatch({ type: ActionType.SELECT_COLOUR, payload: { colour } });
+
   const clickHandlers = {
     handleMapClick,
     handleCityClick,
     handleRouteClick,
+    handleSelectedColourChange,
   };
   // * **************************************************************************
 

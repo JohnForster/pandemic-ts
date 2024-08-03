@@ -18,7 +18,7 @@ export const CitiesLayer = (props: CitiesLayerProps) => {
         <City
           key={`city-${city.id}`}
           data={city}
-          state={props.gameState.cities[city.id]}
+          cityState={props.gameState.cities[city.id]}
           isSelected={city.id === props.gameState.selectedCityId}
           onSelect={clickHandlers.handleCityClick}
           players={Object.values(props.gameState.players).filter(

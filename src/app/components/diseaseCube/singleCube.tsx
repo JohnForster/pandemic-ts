@@ -6,6 +6,8 @@ import { getRgb } from '../../colours';
 
 type SingleCubeProps = {
   colour: CityColour;
+  number?: number;
+  handleDoubleClick: React.MouseEventHandler;
 };
 
 type SideProps = {
@@ -32,15 +34,14 @@ const Top = styled.polygon<SideProps>(
 );
 
 const CubeContainer = styled.div`
-  margin-top: -20px;
-  z-index: 10000;
+  position: relative;
 `;
 
 export const SingleCube = (props: SingleCubeProps) => {
   return (
-    <CubeContainer>
+    <CubeContainer onDoubleClick={props.handleDoubleClick}>
       <svg
-        height="35px"
+        height="1.6rem"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 58 58"
@@ -61,6 +62,17 @@ export const SingleCube = (props: SingleCubeProps) => {
           ></Top>
         </g>
       </svg>
+      <StyledCubeNumber>{props.number}</StyledCubeNumber>
     </CubeContainer>
   );
 };
+
+const StyledCubeNumber = styled.div`
+  colour: white;
+  font-weight: bold;
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  text-align: center;
+  user-select: none;
+`;

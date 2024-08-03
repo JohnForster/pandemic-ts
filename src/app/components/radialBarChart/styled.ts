@@ -23,10 +23,17 @@ export const Progress = styled.circle`
   transition-delay: 0.3s;
 `;
 
+interface NumberProps {
+  selected: boolean;
+}
+
 export const Number = styled.div`
   position: absolute;
   font-size: 1.68vw;
   text-align: center;
+  text-decoration: ${({ selected }: NumberProps) =>
+    selected ? 'underline' : ' none'};
+  user-select: none;
 `;
 
 export const Container = styled.div`

@@ -106,8 +106,16 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
           )}
         </Styled.PlayerBox>
       ))}
-      <button onClick={advanceToNextPlayer}>Next Turn</button>
-      <button onClick={enableDevMode}>Dev Options</button>
+      <div
+        style={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
+        <button onClick={advanceToNextPlayer}>Next Turn</button>
+        <button onClick={enableDevMode}>Dev Options</button>
+      </div>
     </Styled.Container>
   );
 };

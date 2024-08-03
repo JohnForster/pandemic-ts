@@ -56,6 +56,7 @@ export default interface GameState {
   };
   selectedCityId: string;
   selectedPawnId: string;
+  selectedInfectionColour: CityColour;
   cities: { [id: string]: CityState }; // add id to CityState?
   players: { [id: string]: Player };
   devMode: boolean;

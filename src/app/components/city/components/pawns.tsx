@@ -21,7 +21,7 @@ export const Pawn = styled.img<PawnProps>(
   (props: PawnProps) => css`
     z-index: ${10 - props.i};
     height: ${MAX_SIZE - ((props.n - 1) * SIZE_DIFF) / 11}vw;
-    transform: translate(0, ${props.isSelected ? '-105%' : '-85%'});
+    transform: translateY(${props.isSelected ? '-20%' : '0'});
     margin-right: ${MAX_MARGIN - ((props.n - 1) * MARGIN_DIFF) / 11}vw;
 
     filter: drop-shadow(0px 0px 5px);
@@ -41,11 +41,11 @@ export const Pawn = styled.img<PawnProps>(
       80% {
         filter: drop-shadow(0 0 0.1vw) drop-shadow(0 0 0.1vw)
           drop-shadow(0 0 0.1vw) brightness(1.8);
-        transform: translate(0, -90%) scale(1.2);
+        transform: translateY(-10%) scale(1.2);
       }
       100% {
         filter: drop-shadow(0 0 2.1vw) drop-shadow(0 0 1vw) drop-shadow(0 0 5vw);
-        transform: translate(0, -85%);
+        transform: translateY(0);
       }
     }
 
@@ -63,6 +63,7 @@ export const PawnContainer = styled.div`
   z-index: 101;
   position: absolute;
   display: flex;
+  transform: translateY(-85%);
 `;
 
 type PawnsProps = {

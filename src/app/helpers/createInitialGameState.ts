@@ -1,6 +1,7 @@
 import GameState from '../../types/gameData';
 import { boardData } from '../../data/boardData';
 import shuffle from 'just-shuffle';
+import { ROLES } from '../../data/roles';
 
 const isGameState = (obj: unknown): obj is GameState => {
   return true;
@@ -29,25 +30,38 @@ const createInitialGameState = (
   }
 
   const colours = shuffle(
-    Array(12)
-      .fill('')
-      .map((x, i) => i),
+    ROLES.filter(role => role.inUse).map((role, i) => role.pawnId),
   );
 
-  const names = shuffle([
-    'John',
-    'Jemil',
-    'Jamie',
-    'Twix',
-    'Sam',
-    'Hakm',
-    'Peter',
-    'Paddy',
-    'Tara',
-    'Joe',
-    'Emily',
-    'Samir',
-  ]);
+  // const names = shuffle([
+  //   'John',
+  //   'Jemil',
+  //   'Jamie',
+  //   'Thomas',
+  //   'Sam',
+  //   'Hakim',
+  //   'Peter',
+  //   'Paddy',
+  //   'Tara',
+  //   'Joe',
+  //   'Emily',
+  //   'Samir',
+  // ]);
+
+  const names = [
+    'Player 1',
+    'Player 2',
+    'Player 3',
+    'Player 4',
+    'Player 5',
+    'Player 6',
+    'Player 7',
+    'Player 8',
+    'Player 9',
+    'Player 10',
+    'Player 11',
+    'Player 12',
+  ].reverse();
 
   const initialGameState: GameState = {
     currentPlayerId: '0',
@@ -62,6 +76,7 @@ const createInitialGameState = (
     selectedPawnId: '',
     selectedCityId: '',
     devMode: false,
+    selectedInfectionColour: 'blue',
   };
 
   Object.values(boardData.cities).forEach(c => {

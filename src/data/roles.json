@@ -1,12 +1,12 @@
 [
   { "pawnId": 0, "role": "Scientist", "inUse": true },
   { "pawnId": 1, "role": "Quarantine Expert", "inUse": false },
-  { "pawnId": 2, "role": "Researcher", "inUse": true },
+  { "pawnId": 2, "role": "Researcher", "inUse": false },
   { "pawnId": 3, "role": "Contingency Planner", "inUse": true },
   { "pawnId": 4, "role": "Generalist", "inUse": true },
-  { "pawnId": 5, "role": "Troubleshooter", "inUse": true },
+  { "pawnId": 5, "role": "Researcher", "inUse": true },
   { "pawnId": 6, "role": "Medic", "inUse": true },
-  { "pawnId": 7, "role": "Field Operative", "inUse": true },
+  { "pawnId": 7, "role": "Pilot", "inUse": true },
   { "pawnId": 8, "role": "Epidemiologist", "inUse": true },
   { "pawnId": 9, "role": "Archivist", "inUse": true },
   { "pawnId": 10, "role": "Containment Specialist", "inUse": true },
@@ -16,5 +16,5 @@
   { "pawnId": 14, "role": "N/A", "inUse": false },
   { "pawnId": 15, "role": "N/A", "inUse": false },
   { "pawnId": 16, "role": "Operations Expert", "inUse": true },
-  { "pawnId": 17, "role": "Quarantine Expert", "inUse": true }
+  { "pawnId": 17, "role": "Quarantine Specialist", "inUse": true }
 ]
