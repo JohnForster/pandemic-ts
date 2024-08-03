@@ -3,7 +3,7 @@ import CityColour from '../../types/enums/cityColour';
 
 interface ClickHandlersList {
   handleMapClick({ x, y }: { x: number; y: number }): void;
-  handleCityClick(id: string): void;
+  handleCityClick(id: string, meta: boolean): void;
   handleRouteClick(id: string): void;
   handleSelectedColourChange(colour: CityColour): void;
 }

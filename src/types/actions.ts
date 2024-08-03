@@ -15,6 +15,7 @@ export enum ActionType {
   NEXT_PLAYER = 'NEXT_PLAYER',
   RESET = 'RESET',
   SELECT_COLOUR = 'SELECT_COLOUR',
+  TOGGLE_RESEARCH_STATION = 'TOGGLE_RESEARCH_STATION',
 }
 export type Action =
   | IncrementAction
@@ -29,7 +30,8 @@ export type Action =
   | ChangeNameAction
   | NextPlayerAction
   | ResetAction
-  | SelectColourAction;
+  | SelectColourAction
+  | ToggleResearchStationAction;
 
 export interface GenericAction {
   type: ActionType;
@@ -95,4 +97,9 @@ export interface DisableDevModeAction extends GenericAction {
 export interface SelectColourAction extends GenericAction {
   type: ActionType.SELECT_COLOUR;
   payload: { colour: CityColour };
+}
+
+export interface ToggleResearchStationAction extends GenericAction {
+  type: ActionType.TOGGLE_RESEARCH_STATION;
+  payload: { id: string };
 }

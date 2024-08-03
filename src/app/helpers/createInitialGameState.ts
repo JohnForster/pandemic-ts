@@ -79,10 +79,12 @@ const createInitialGameState = (
     selectedInfectionColour: 'blue',
   };
 
+  const ATLANTA_ID = '10';
   Object.values(boardData.cities).forEach(c => {
     initialGameState.cities[c.id] = {
       id: c.id,
       infection: { blue: 0, yellow: 0, black: 0, red: 0 },
+      researchStation: c.id === ATLANTA_ID,
     };
   });
 

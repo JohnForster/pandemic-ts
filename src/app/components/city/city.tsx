@@ -13,7 +13,7 @@ interface CityProps {
   cityState: CityState;
   data: CityData;
   isSelected: boolean;
-  onSelect: (id: string) => unknown;
+  onSelect: (id: string, meta: boolean) => unknown;
   players: Player[];
 }
 // TODO Extract Pawn into its own class
@@ -25,6 +25,11 @@ const City: React.FC<CityProps> = (props: CityProps) => {
   ): void => {
     fn(props.data.id, props.data.colour);
     e.stopPropagation();
+  };
+
+  const handleClick = (id: string) => (evt: React.MouseEvent) => {
+    props.onSelect(id, evt.metaKey);
+    evt.stopPropagation();
   };
 
   const handlePawnClick = (id: string) => (e: React.MouseEvent): void => {
@@ -57,7 +62,7 @@ const City: React.FC<CityProps> = (props: CityProps) => {
     <Styled.Container
       x={props.data.location.x}
       y={props.data.location.y}
-      onClick={handle(props.onSelect)}
+      onClick={handleClick(props.cityState.id)}
       id={props.data.name}
     >
       <Styled.Circle
@@ -65,6 +70,7 @@ const City: React.FC<CityProps> = (props: CityProps) => {
         colour={props.data.colour}
         isSelected={props.isSelected}
         onDoubleClick={handleDoubleClick}
+        isResearchStation={props.cityState.researchStation}
       />
       <Pawns
         gameState={gameState}
