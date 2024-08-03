@@ -21,6 +21,20 @@ export const treatCity = (id: string, colour: CityColour): DecrementAction => ({
   payload: { id, colour },
 });
 
+const toggleResearchStation = (
+  citiesState: GameState['cities'],
+  id: string,
+) => {
+  const city = citiesState[id];
+  return {
+    ...citiesState,
+    [id]: {
+      ...city,
+      researchStation: !city.researchStation,
+    },
+  };
+};
+
 type CitiesReducer = React.Reducer<GameState['cities'], Action>;
 export const citiesReducer: CitiesReducer = (citiesState, action) => {
   switch (action.type) {
@@ -28,6 +42,8 @@ export const citiesReducer: CitiesReducer = (citiesState, action) => {
       return infect(citiesState, action.payload.colour, action.payload.id);
     case ActionType.DECREMENT_CITY:
       return treat(citiesState, action.payload.colour, action.payload.id);
+    case ActionType.TOGGLE_RESEARCH_STATION:
+      return toggleResearchStation(citiesState, action.payload.id);
     default:
       return citiesState;
   }

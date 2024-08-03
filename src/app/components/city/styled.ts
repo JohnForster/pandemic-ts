@@ -3,7 +3,7 @@ import { lighten, darken } from 'polished';
 import CityColour from '../../../types/enums/cityColour';
 import { COLOURS, getRgb } from '../../colours';
 
-const circleSize = 1.5;
+const CIRCLE_SIZE = 1.5;
 
 interface ContainerProps {
   x: number;
@@ -17,7 +17,7 @@ export const Container = styled.div`
   top: ${({ y }: ContainerProps): number => y}%;
   left: ${({ x }: ContainerProps): number => x}%;
   color: white;
-  transform: translateY(-${circleSize / 2}vw);
+  transform: translateY(-${CIRCLE_SIZE / 2}vw);
   text-shadow: 0px 0px 1px black, 1px 1px 1px black;
 
   display: flex;
@@ -86,6 +86,7 @@ interface CircleProps {
   colour: CityColour;
   isSelected: boolean;
   infection: number;
+  isResearchStation: boolean;
 }
 
 const getBoxShadow = (
@@ -106,9 +107,9 @@ const getBoxShadow = (
 };
 
 export const Circle = styled.div<CircleProps>(
-  ({ colour, isSelected, infection }: CircleProps) => css`
-    width: ${circleSize}vw;
-    height: ${circleSize}vw;
+  ({ colour, isSelected, infection, isResearchStation }: CircleProps) => css`
+    width: ${isResearchStation ? CIRCLE_SIZE * 2 : CIRCLE_SIZE}vw;
+    height: ${CIRCLE_SIZE}vw;
 
     position: absolute;
     z-index: -1;
@@ -122,12 +123,15 @@ export const Circle = styled.div<CircleProps>(
     box-shadow: ${getBoxShadow(infection, colour, isSelected)};
     
 
-    border-radius: 50%;
-    transition: border 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    border-radius: ${isResearchStation ? '0' : '50%'};
+    transition: border 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, width 0.2s ease, border-radius 0.2s ease;
     border: 0.1vw solid ${darken(0.3, getRgb(colour))};
-    background-color: ${getRgb(colour)};
+    background-color: ${
+      isResearchStation ? lighten(0.2, getRgb(colour)) : getRgb(colour)
+    };
   `,
 );
+
 interface PawnProps {
   isSelected: boolean;
   isCurrentTurn: boolean;

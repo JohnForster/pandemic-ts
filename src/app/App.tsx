@@ -44,7 +44,14 @@ const App: React.FC = () => {
     }
   };
 
-  const handleCityClick = (id: string): void => {
+  const handleCityClick = (id: string, metaKeyPressed: boolean): void => {
+    if (metaKeyPressed) {
+      return dispatch({
+        type: ActionType.TOGGLE_RESEARCH_STATION,
+        payload: { id: id },
+      });
+    }
+
     if (gameState.selectedPawnId) {
       dispatch({
         type: ActionType.MOVE_PLAYER,

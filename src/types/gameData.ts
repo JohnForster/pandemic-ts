@@ -34,6 +34,7 @@ export interface CityState {
     black: number;
     red: number;
   };
+  researchStation: boolean;
 }
 
 export interface Player {
