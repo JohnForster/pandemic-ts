@@ -93,7 +93,9 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
                 >
                   {player.name}
                 </Styled.PlayerName>
-                <Styled.Role>{ROLES[player.colour].role}</Styled.Role>
+                <Styled.Role>
+                  {ROLES[player.colour]?.role ?? 'NO ROLE FOUND'}
+                </Styled.Role>
               </div>
               <Styled.PlayerLocation
                 colour={getLocation(player.locationId).colour}
@@ -104,8 +106,16 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
           )}
         </Styled.PlayerBox>
       ))}
-      <button onClick={advanceToNextPlayer}>Next Turn</button>
-      <button onClick={enableDevMode}>Dev Options</button>
+      <div
+        style={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
+        <button onClick={advanceToNextPlayer}>Next Turn</button>
+        <button onClick={enableDevMode}>Dev Options</button>
+      </div>
     </Styled.Container>
   );
 };

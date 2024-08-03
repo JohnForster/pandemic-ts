@@ -1,3 +1,4 @@
+import CityColour from './enums/cityColour';
 import GameState from './gameData';
 
 export enum ActionType {
@@ -13,6 +14,7 @@ export enum ActionType {
   CHANGE_NAME = 'CHANGE_NAME',
   NEXT_PLAYER = 'NEXT_PLAYER',
   RESET = 'RESET',
+  SELECT_COLOUR = 'SELECT_COLOUR',
 }
 export type Action =
   | IncrementAction
@@ -26,7 +28,8 @@ export type Action =
   | LoadAction
   | ChangeNameAction
   | NextPlayerAction
-  | ResetAction;
+  | ResetAction
+  | SelectColourAction;
 
 export interface GenericAction {
   type: ActionType;
@@ -37,12 +40,12 @@ export interface GenericAction {
 
 export interface IncrementAction extends GenericAction {
   type: ActionType.INCREMENT_CITY;
-  payload: { id: string };
+  payload: { id: string; colour: CityColour };
 }
 
 export interface DecrementAction extends GenericAction {
   type: ActionType.DECREMENT_CITY;
-  payload: { id: string };
+  payload: { id: string; colour: CityColour };
 }
 
 export interface MovePlayerAction extends GenericAction {
@@ -87,4 +90,9 @@ export interface EnableDevModeAction extends GenericAction {
 
 export interface DisableDevModeAction extends GenericAction {
   type: ActionType.DEV_MODE_OFF;
+}
+
+export interface SelectColourAction extends GenericAction {
+  type: ActionType.SELECT_COLOUR;
+  payload: { colour: CityColour };
 }

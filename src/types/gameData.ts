@@ -13,10 +13,6 @@ export interface CityData {
   hidden?: boolean;
 }
 
-export interface CityState {
-  infection: number;
-}
-
 export interface Connection {
   id: string;
   fromId: string;
@@ -32,7 +28,12 @@ export interface BoardData {
 
 export interface CityState {
   id: string;
-  infection: number;
+  infection: {
+    blue: number;
+    yellow: number;
+    black: number;
+    red: number;
+  };
 }
 
 export interface Player {
@@ -55,6 +56,7 @@ export default interface GameState {
   };
   selectedCityId: string;
   selectedPawnId: string;
+  selectedInfectionColour: CityColour;
   cities: { [id: string]: CityState }; // add id to CityState?
   players: { [id: string]: Player };
   devMode: boolean;

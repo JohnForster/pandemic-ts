@@ -10,6 +10,7 @@ interface RadialBarChartProps {
   dimension?: number;
   color?: CityColour;
   maxValue?: number;
+  selected: boolean;
 }
 
 const RadialBarChart: React.FC<RadialBarChartProps> = props => {
@@ -18,7 +19,7 @@ const RadialBarChart: React.FC<RadialBarChartProps> = props => {
   const strokeLength = (circumference / props.maxValue) * props.progress;
   return (
     <Styled.Container>
-      <Styled.Number>
+      <Styled.Number selected={props.selected}>
         {Math.round((100 * props.progress) / props.maxValue)}%
       </Styled.Number>
       <svg viewBox="0 0 180 180" height="100%">
@@ -50,7 +51,7 @@ RadialBarChart.defaultProps = {
   strokeWidth: 20,
   dimension: 180,
   maxValue: 100,
-  color: CityColour.Black,
+  color: 'black',
 };
 
 export default RadialBarChart;

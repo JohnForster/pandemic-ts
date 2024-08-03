@@ -46,6 +46,8 @@ const miscReducer: React.Reducer<GameState, Action> = (state, action) => {
       return JSON.parse(localStorage.getItem('game'));
     case ActionType.RESET:
       return createInitialGameState({ loadExisting: false });
+    case ActionType.SELECT_COLOUR:
+      return { ...state, selectedInfectionColour: action.payload.colour };
     default:
       return { ...state };
   }
