@@ -71,18 +71,18 @@ const createInitialGameState = (
     };
   });
 
-  // Array(numberOfPlayers)
-  //   .fill('')
-  //   .map((x, i) => ({
-  //     id: i.toString(),
-  //     colour: colours.pop(),
-  //     locationId: '10',
-  //     // locationId: Math.floor(Math.random() * 96).toString(),
-  //     name: names.pop(),
-  //   }))
-  //   .forEach(p => {
-  //     initialGameState.players[p.id] = p;
-  //   });
+  Array(numberOfPlayers)
+    .fill('')
+    .map((x, i) => ({
+      id: i.toString(),
+      colour: colours.pop(),
+      locationId: '10',
+      // locationId: Math.floor(Math.random() * 96).toString(),
+      name: names.pop(),
+    }))
+    .forEach(p => {
+      initialGameState.players[p.id] = p;
+    });
 
   return initialGameState;
 };

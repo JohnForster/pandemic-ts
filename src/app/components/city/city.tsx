@@ -74,10 +74,10 @@ const City: React.FC<CityProps> = (props: CityProps) => {
       {/* <Styled.Infection x={props.state.infection}>
         {props.state.infection || 1}
       </Styled.Infection> */}
-      {/* <DiseaseCubes
+      <DiseaseCubes
         number={props.state.infection[props.data.colour]}
         colour={props.data.colour}
-      /> */}
+      />
       <Styled.CounterContainer>
         {props.isSelected && (
           <Styled.CounterButton onClick={handle(treat)}>

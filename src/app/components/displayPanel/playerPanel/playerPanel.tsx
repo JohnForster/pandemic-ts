@@ -93,7 +93,9 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
                 >
                   {player.name}
                 </Styled.PlayerName>
-                <Styled.Role>{ROLES[player.colour].role}</Styled.Role>
+                <Styled.Role>
+                  {ROLES[player.colour]?.role ?? 'NO ROLE FOUND'}
+                </Styled.Role>
               </div>
               <Styled.PlayerLocation
                 colour={getLocation(player.locationId).colour}
