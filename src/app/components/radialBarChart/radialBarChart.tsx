@@ -17,10 +17,12 @@ const RadialBarChart: React.FC<RadialBarChartProps> = props => {
   const circleRadius = Math.min(props.radius, 85);
   const circumference = 2 * 3.14 * circleRadius;
   const strokeLength = (circumference / props.maxValue) * props.progress;
+  const progress = props.progress / props.maxValue;
   return (
     <Styled.Container>
-      <Styled.Number selected={props.selected}>
-        {Math.round((100 * props.progress) / props.maxValue)}%
+      <Styled.Number selected={props.selected} warning={progress >= 0.75}>
+        {/* {Math.round((100 * props.progress) / props.maxValue)}% */}
+        {props.maxValue - props.progress}
       </Styled.Number>
       <svg viewBox="0 0 180 180" height="100%">
         <Styled.Circle
