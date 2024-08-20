@@ -35,6 +35,7 @@ interface NameProps {
 
 export const Name = styled.div`
   white-space: nowrap;
+  user-select: none;
   pointer-events: none;
   font-size: 1vw;
   font-weight: bold;
@@ -43,7 +44,7 @@ export const Name = styled.div`
   z-index: 20;
   transition: color 0.5s ease;
   color: ${({ x }: NameProps): string =>
-    x === 1 ? 'gold' : x === 2 ? 'orange' : x === 3 ? 'red' : ''};
+    x === 2 ? 'gold' : x === 3 ? 'orange' : x === 4 ? 'red' : ''};
   /* color: ${({ colour }: NameProps): string =>
     colour === 'yellow'
       ? lighten(0.3, COLOURS.yellow)
@@ -74,13 +75,13 @@ export const Infection = styled.div`
       ? '16px'
       : x === 2
       ? '20px'
-      : x === 3
+      : x === 3 || x === 4
       ? '24px'
       : ''};
 
   transition: color 0.5s ease, font-size 0.5s ease;
   color: ${({ x }: InfectionProps): string =>
-    x === 1 ? 'gold' : x === 2 ? 'orange' : x === 3 ? 'red' : ''};
+    x === 1 ? 'gold' : x === 2 ? 'orange' : x === 3 || x === 4 ? 'red' : ''};
 `;
 interface CircleProps {
   colour: CityColour;
@@ -100,6 +101,7 @@ const getBoxShadow = (
     1: '0.5rem',
     2: '0.7rem',
     3: '1rem',
+    4: '1rem',
   };
 
   const size = sizes[infection];

@@ -10,7 +10,7 @@ export const infect = (
 ): GameState['cities'] => {
   const newCitiesState = clone(citiesState);
   const city = newCitiesState[cityId];
-  const newInfection = clamp(0, city.infection[colour] + 1, 3);
+  const newInfection = clamp(0, city.infection[colour] + 1, 4);
   city.infection[colour] = newInfection;
   return newCitiesState;
 };
@@ -22,7 +22,7 @@ export const treat = (
 ): GameState['cities'] => {
   const newCitiesState = clone(citiesState);
   const city = newCitiesState[cityId];
-  const newInfection = clamp(0, city.infection[colour] - 1, 3);
+  const newInfection = clamp(0, city.infection[colour] - 1, 4);
   city.infection[colour] = newInfection;
   return newCitiesState;
 };

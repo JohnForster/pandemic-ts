@@ -45,7 +45,7 @@ export const IntensityPanel = (props: IntensityPanelProps) => {
 
   return (
     <IntensityPanelContainer>
-      <NewsModal title="Global Intensity">
+      <NewsModal title="Global Resilience">
         <ChartContainer>
           {cityColours.map(c => (
             <div style={{ height: '100%' }} onClick={createHandler(c)}>

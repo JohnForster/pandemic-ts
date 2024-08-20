@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { lighten, darken } from 'polished';
 import CityColour from '../../../types/enums/cityColour';
 import { COLOURS } from '../../colours';
@@ -25,15 +25,39 @@ export const Progress = styled.circle`
 
 interface NumberProps {
   selected: boolean;
+  warning: boolean;
 }
 
 export const Number = styled.div`
   position: absolute;
-  font-size: 1.68vw;
   text-align: center;
   text-decoration: ${({ selected }: NumberProps) =>
     selected ? 'underline' : ' none'};
   user-select: none;
+  font-size: ${({ warning }: NumberProps) => (warning ? '2.2vw' : '1.68vw')};
+  transition: font-size 0.5s ease;
+
+  animation: ${({ warning }: NumberProps) => (warning ? '1.5s' : '0s')} blink
+    infinite;
+
+  @keyframes circlepulse {
+    0% {
+    }
+    50% {
+      filter: drop-shadow(0px 0px 10px white);
+    }
+  }
+
+  @keyframes blink {
+    0%,
+    49% {
+      color: white;
+    }
+    50%,
+    100% {
+      color: red;
+    }
+  }
 `;
 
 export const Container = styled.div`
