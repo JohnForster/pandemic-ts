@@ -9,12 +9,22 @@ export const Container = styled.div`
   align-items: baseline;
 `;
 
-export const PlayerBox = styled.div`
+export const PlayerBox = styled.div<PlayerNameProps>`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 2px;
+  padding: 4px;
   // font-weight: 300;
+  box-sizing: border-box;
+
+  border-style: solid;
+  border-radius: 2px;
+  ${({ isCurrentPlayer }) =>
+    isCurrentPlayer
+      ? `border-width: 2px; border-color: white;`
+      : 'border-width: 0px; border-color: black;'}
+
+  transition: border-width 0.2s linear, border-color 0.2s linear;
 `;
 
 const PAWN_HEIGHT = 1.5;

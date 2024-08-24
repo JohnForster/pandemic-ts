@@ -1,6 +1,7 @@
 import React from 'react';
 import { playersReducer } from './playersReducer';
 import { citiesReducer } from './cities';
+import clamp from 'just-clamp';
 
 import { Action, ActionType } from '../../types/actions';
 import GameState from '../../types/gameData';
@@ -48,6 +49,10 @@ const miscReducer: React.Reducer<GameState, Action> = (state, action) => {
       return createInitialGameState({ loadExisting: false });
     case ActionType.SELECT_COLOUR:
       return { ...state, selectedInfectionColour: action.payload.colour };
+    case ActionType.INCREMENT_OUTBREAKS:
+      return { ...state, outbreaks: clamp(0, state.outbreaks + 1, 8) };
+    case ActionType.DECREMENT_OUTBREAKS:
+      return { ...state, outbreaks: clamp(0, state.outbreaks - 1, 8) };
     default:
       return { ...state };
   }

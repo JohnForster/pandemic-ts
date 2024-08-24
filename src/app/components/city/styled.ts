@@ -88,14 +88,20 @@ interface CircleProps {
   isSelected: boolean;
   infection: number;
   isResearchStation: boolean;
+  isProtected: boolean;
 }
 
 const getBoxShadow = (
   infection: number,
   cityColour: CityColour,
   isSelected: boolean,
+  isProtected: boolean,
 ) => {
-  const shadowColour = isSelected ? 'white' : darken(0.1, getRgb(cityColour));
+  const shadowColour = isProtected
+    ? 'green'
+    : isSelected
+    ? 'white'
+    : darken(0.1, getRgb(cityColour));
   const sizes: { [key: number]: string } = {
     0: isSelected ? '0.4rem' : '0',
     1: '0.5rem',
@@ -104,12 +110,18 @@ const getBoxShadow = (
     4: '1rem',
   };
 
-  const size = sizes[infection];
+  const size = isProtected && infection > 0 ? '0.4rem' : sizes[infection];
   return `0px 0px ${size} ${size} ${shadowColour}`;
 };
 
 export const Circle = styled.div<CircleProps>(
-  ({ colour, isSelected, infection, isResearchStation }: CircleProps) => css`
+  ({
+    colour,
+    isSelected,
+    infection,
+    isResearchStation,
+    isProtected,
+  }: CircleProps) => css`
     width: ${isResearchStation ? CIRCLE_SIZE * 2 : CIRCLE_SIZE}vw;
     height: ${CIRCLE_SIZE}vw;
 
@@ -122,12 +134,14 @@ export const Circle = styled.div<CircleProps>(
     justify-content: center;
     align-items: center; */
     /* box-shadow: ${isSelected ? '0px 0px 10px white' : ''}; */
-    box-shadow: ${getBoxShadow(infection, colour, isSelected)};
+    box-shadow: ${getBoxShadow(infection, colour, isSelected, isProtected)};
     
 
     border-radius: ${isResearchStation ? '0' : '50%'};
     transition: border 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, width 0.2s ease, border-radius 0.2s ease;
-    border: 0.1vw solid ${darken(0.3, getRgb(colour))};
+    border: ${isProtected ? '0.2vw' : '0.1vw'} solid ${
+    isProtected ? 'green' : darken(0.3, getRgb(colour))
+  };
     background-color: ${
       isResearchStation ? lighten(0.2, getRgb(colour)) : getRgb(colour)
     };

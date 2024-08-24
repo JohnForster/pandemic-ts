@@ -11,6 +11,7 @@ import { IntensityPanel } from './components/intensityPanel';
 import { NewDisplayPanel } from '../displayPanel/displayPanel';
 
 import * as Styled from './styled';
+import { OutbreakPanel } from './components/outbreakPanel';
 
 interface GameBoardProps {
   boardData: BoardData;
@@ -35,9 +36,10 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
         <ConnectionLayer boardData={props.boardData} />
         <CitiesLayer boardData={props.boardData} gameState={gameState} />
       </WorldMap>
-      <InfectionRatePanel />
+      {/* <InfectionRatePanel /> */}
       <NewDisplayPanel boardData={props.boardData} gameState={gameState} />
       <IntensityPanel boardData={props.boardData} gameState={gameState} />
+      <OutbreakPanel boardData={props.boardData} gameState={gameState} />
     </Styled.GameBoard>
   );
 };

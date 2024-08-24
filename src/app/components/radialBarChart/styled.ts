@@ -33,6 +33,9 @@ export const Number = styled.div`
   text-align: center;
   text-decoration: ${({ selected }: NumberProps) =>
     selected ? 'underline' : ' none'};
+  text-decoration-thickness: 1px;
+  text-decoration-color: gray;
+  text-decoration-style: dotted;
   user-select: none;
   font-size: ${({ warning }: NumberProps) => (warning ? '2.2vw' : '1.68vw')};
   transition: font-size 0.5s ease;

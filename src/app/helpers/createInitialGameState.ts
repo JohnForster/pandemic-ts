@@ -77,6 +77,7 @@ const createInitialGameState = (
     selectedCityId: '',
     devMode: false,
     selectedInfectionColour: 'blue',
+    outbreaks: 0,
   };
 
   const ATLANTA_ID = '10';

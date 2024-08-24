@@ -39,7 +39,7 @@ export interface CityState {
 
 export interface Player {
   id: string;
-  colour: PawnColour;
+  colour: number;
   // role: Role;
   locationId: string;
   name: string;
@@ -61,4 +61,5 @@ export default interface GameState {
   cities: { [id: string]: CityState }; // add id to CityState?
   players: { [id: string]: Player };
   devMode: boolean;
+  outbreaks: number;
 }

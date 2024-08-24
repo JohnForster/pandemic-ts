@@ -1,6 +1,11 @@
 import React, { useContext } from 'react';
 import * as Styled from './styled';
-import { CityState, CityData, Player } from '../../../types/gameData';
+import GameState, {
+  CityState,
+  CityData,
+  Player,
+  BoardData,
+} from '../../../types/gameData';
 import { ActionType } from '../../../types/actions';
 import GameStateContext from '../../contexts/gameStateContext';
 import { infectCity, treatCity } from '../../state/cities';
@@ -8,6 +13,7 @@ import { DiseaseCubes } from '../diseaseCube/diseaseCubes';
 import CityColour from '../../../types/enums/cityColour';
 import { Pawns } from './components/pawns';
 import { NewDiseaseCubes } from '../diseaseCube/newDiseaseCubes';
+import { boardData } from '../../../data/boardData';
 
 interface CityProps {
   cityState: CityState;
@@ -58,6 +64,9 @@ const City: React.FC<CityProps> = (props: CityProps) => {
     dispatch(treatCity(id, colour));
   };
 
+  const isProtected = cityIsProtected(gameState, props.data.id);
+  console.log('props.data.id, isProtected:', props.data.id, isProtected);
+
   return (
     <Styled.Container
       x={props.data.location.x}
@@ -71,6 +80,7 @@ const City: React.FC<CityProps> = (props: CityProps) => {
         isSelected={props.isSelected}
         onDoubleClick={handleDoubleClick}
         isResearchStation={props.cityState.researchStation}
+        isProtected={isProtected}
       />
       <Pawns
         gameState={gameState}
@@ -112,3 +122,24 @@ const City: React.FC<CityProps> = (props: CityProps) => {
 };
 
 export default City;
+
+const cityIsProtected = (gameState: GameState, cityId: string) => {
+  const QUARANTINE_SPECIALIST_ID = 17;
+  const quarantinePlayer = Object.values(gameState.players).find(
+    p => p.colour === QUARANTINE_SPECIALIST_ID,
+  );
+  const quarantineCityId = quarantinePlayer.locationId;
+
+  const protectedCityIds = [quarantineCityId];
+  for (const connection of Object.values(boardData.connections)) {
+    if (connection.fromId === quarantineCityId) {
+      protectedCityIds.push(connection.toId);
+    }
+    if (connection.toId === quarantineCityId) {
+      protectedCityIds.push(connection.fromId);
+    }
+  }
+  // TODO HANDLE OFF-BOARD CONNECTIONS
+  const connectedCities = protectedCityIds.map(id => boardData.cities[id]);
+  return connectedCities.some(c => c.id === cityId);
+};

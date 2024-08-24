@@ -63,7 +63,10 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
   return (
     <Styled.Container>
       {Object.values(gameState.players).map(player => (
-        <Styled.PlayerBox key={`player-${player.id}`}>
+        <Styled.PlayerBox
+          key={`player-${player.id}`}
+          isCurrentPlayer={gameState.currentPlayerId === player.id}
+        >
           <Styled.PawnImage
             src={`assets/pawns/pawn_${player.colour}.png`}
             alt={`${player.name}'s Pawn`}
