@@ -3,8 +3,16 @@ import { boardData } from '../../data/boardData';
 import shuffle from 'just-shuffle';
 import { ROLES } from '../../data/roles';
 
-const isGameState = (_obj: unknown): _obj is GameState => {
-  return true;
+const isGameState = (obj: unknown): obj is GameState => {
+  if (typeof obj !== 'object' || obj === null) return false;
+  const candidate = obj as Partial<GameState>;
+  return (
+    typeof candidate.currentPlayerId === 'string' &&
+    typeof candidate.cities === 'object' &&
+    candidate.cities !== null &&
+    typeof candidate.players === 'object' &&
+    candidate.players !== null
+  );
 };
 
 const defaultArgs = {

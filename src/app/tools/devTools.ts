@@ -38,7 +38,6 @@ export const createRoute = (
   id2: string,
   boardData: BoardData,
 ): BoardData => {
-  console.log(`Attempting to create route..`);
   if (id1 === id2) return boardData;
   const [a, b] = [id1, id2].sort();
 
@@ -63,7 +62,6 @@ export const createRoute = (
 };
 
 export const removeRoute = (id: string, board: BoardData): BoardData => {
-  console.log('Removing route', id);
   const newBoard = clone(board);
   const connections = Object.values(newBoard.connections);
   const newConnections: { [key: string]: Connection } = {};

@@ -72,11 +72,11 @@ const PlusIcon = (props: ButtonProps) => (
     onClick={props.onClick}
     style={{ cursor: 'pointer' }}
   >
-    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
     <g
       id="SVGRepo_tracerCarrier"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     ></g>
     <g id="SVGRepo_iconCarrier">
       <title>plus-circle</title> <desc>Created with Sketch Beta.</desc>
@@ -84,9 +84,9 @@ const PlusIcon = (props: ButtonProps) => (
       <g
         id="Page-1"
         stroke="none"
-        stroke-width="1"
+        strokeWidth="1"
         fill="none"
-        fill-rule="evenodd"
+        fillRule="evenodd"
       >
         <g
           id="Icon-Set"
@@ -113,20 +113,20 @@ const MinusIcon = (props: ButtonProps) => (
     onClick={props.onClick}
     style={{ cursor: 'pointer' }}
   >
-    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
     <g
       id="SVGRepo_tracerCarrier"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     ></g>
     <g id="SVGRepo_iconCarrier">
       <title>minus-circle</title> <desc>Created with Sketch Beta.</desc>{' '}
       <g
         id="Page-1"
         stroke="none"
-        stroke-width="1"
+        strokeWidth="1"
         fill="none"
-        fill-rule="evenodd"
+        fillRule="evenodd"
       >
         <g
           id="Icon-Set"

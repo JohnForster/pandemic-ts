@@ -24,6 +24,7 @@ export const NewDiseaseCubes = (props: NewDiseaseCubesProps) => {
       {CITY_COLOURS.map(colour =>
         props.infection[colour] ? (
           <SingleCube
+            key={colour}
             colour={colour}
             number={props.infection[colour]}
             handleDoubleClick={props.createDoubleClickHandler(colour, props.id)}

@@ -68,7 +68,7 @@ export const SingleCube = (props: SingleCubeProps) => {
 };
 
 const StyledCubeNumber = styled.div`
-  colour: white;
+  color: white;
   font-weight: bold;
   position: absolute;
   top: 10%;

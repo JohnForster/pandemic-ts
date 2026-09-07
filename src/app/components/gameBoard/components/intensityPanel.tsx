@@ -48,9 +48,12 @@ export const IntensityPanel = (props: IntensityPanelProps) => {
       <NewsModal title="Global Resilience">
         <ChartContainer>
           {cityColours.map(c => (
-            <div style={{ height: '100%' }} onClick={createHandler(c)}>
+            <div
+              key={`virusChart-${c}`}
+              style={{ height: '100%' }}
+              onClick={createHandler(c)}
+            >
               <RadialBarChart
-                key={`virusChart-${c}`}
                 progress={findTotal(c)}
                 maxValue={24}
                 dimension={120}

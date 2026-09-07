@@ -66,9 +66,7 @@ const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
         ))}
       </form>
       <div>
-        <button>-</button>
         <span>{`${numberOfPlayers} players`}</span>
-        <button>+</button>
       </div>
       <div>
         <button onClick={save}>Copy Board to Clipboard</button>

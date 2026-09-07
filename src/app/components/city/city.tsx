@@ -124,6 +124,7 @@ const cityIsProtected = (gameState: GameState, cityId: string) => {
   const quarantinePlayer = Object.values(gameState.players).find(
     p => p.colour === QUARANTINE_SPECIALIST_ID,
   );
+  if (!quarantinePlayer) return false;
   const quarantineCityId = quarantinePlayer.locationId;
 
   const protectedCityIds = [quarantineCityId];

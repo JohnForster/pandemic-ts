@@ -33,7 +33,7 @@ const HeadingContainer = styled.div`
   transform: translateY(-100%);
   position: absolute;
   width: 100%;
-  margin -0.5rem -0.7rem;
+  margin: -0.5rem -0.7rem;
   padding: 0.2rem;
 `;
 
