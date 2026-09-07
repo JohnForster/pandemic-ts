@@ -20,6 +20,12 @@ const advanceCurrentPlayer = (gameState: GameState): GameState => {
   const nextPlayerId = (currentPlayerIdAsNumber + 1) % numberOfPlayers;
   return { ...gameState, currentPlayerId: nextPlayerId.toString() };
 };
+const reverseCurrentPlayer = (gameState: GameState): GameState => {
+  const currentPlayerIdAsNumber = parseInt(gameState.currentPlayerId);
+  const numberOfPlayers = Object.keys(gameState.players).length;
+  const nextPlayerId = (currentPlayerIdAsNumber - 1) % numberOfPlayers;
+  return { ...gameState, currentPlayerId: nextPlayerId.toString() };
+};
 
 const miscReducer: React.Reducer<GameState, Action> = (state, action) => {
   switch (action.type) {
@@ -43,6 +49,8 @@ const miscReducer: React.Reducer<GameState, Action> = (state, action) => {
       };
     case ActionType.NEXT_PLAYER:
       return advanceCurrentPlayer(state);
+    case ActionType.PREVIOUS_PLAYER:
+      return reverseCurrentPlayer(state);
     case ActionType.LOAD:
       return JSON.parse(localStorage.getItem('game'));
     case ActionType.RESET:

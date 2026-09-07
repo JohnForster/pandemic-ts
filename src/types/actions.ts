@@ -13,6 +13,7 @@ export enum ActionType {
   LOAD = 'LOAD',
   CHANGE_NAME = 'CHANGE_NAME',
   NEXT_PLAYER = 'NEXT_PLAYER',
+  PREVIOUS_PLAYER = 'PREVIOUS_PLAYER',
   RESET = 'RESET',
   SELECT_COLOUR = 'SELECT_COLOUR',
   TOGGLE_RESEARCH_STATION = 'TOGGLE_RESEARCH_STATION',
@@ -31,6 +32,7 @@ export type Action =
   | LoadAction
   | ChangeNameAction
   | NextPlayerAction
+  | PreviousPlayerAction
   | ResetAction
   | SelectColourAction
   | ToggleResearchStationAction
@@ -84,6 +86,9 @@ export interface ChangeNameAction extends GenericAction {
 }
 export interface NextPlayerAction extends GenericAction {
   type: ActionType.NEXT_PLAYER;
+}
+export interface PreviousPlayerAction extends GenericAction {
+  type: ActionType.PREVIOUS_PLAYER;
 }
 
 export interface ResetAction extends GenericAction {

@@ -1,9 +1,9 @@
-import React, { ReactNode, ReactNodeArray } from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 type NewsModalProps = {
   title: string;
-  children: ReactNode | ReactNodeArray;
+  children: ReactNode | ReactNode[];
 };
 
 export const NewsModal = (props: NewsModalProps) => {

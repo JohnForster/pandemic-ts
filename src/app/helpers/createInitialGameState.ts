@@ -3,7 +3,7 @@ import { boardData } from '../../data/boardData';
 import shuffle from 'just-shuffle';
 import { ROLES } from '../../data/roles';
 
-const isGameState = (obj: unknown): obj is GameState => {
+const isGameState = (_obj: unknown): _obj is GameState => {
   return true;
 };
 
@@ -24,13 +24,13 @@ const createInitialGameState = (
       if (isGameState(prevState)) {
         return prevState;
       }
-    } catch (_) {
+    } catch (_error) {
       console.error('Unable to validate previous game state');
     }
   }
 
   const colours = shuffle(
-    ROLES.filter(role => role.inUse).map((role, i) => role.pawnId),
+    ROLES.filter(role => role.inUse).map(role => role.pawnId),
   );
 
   // const names = shuffle([

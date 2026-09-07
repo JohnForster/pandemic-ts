@@ -44,19 +44,19 @@ export const Connection = (props: ConnectionProps) => {
         y1={`${props.from.y}%`}
         x2={`${props.to.x}%`}
         y2={`${props.to.y}%`}
-        dotted={props.dotted}
+        $dotted={props.dotted}
       />
     </>
   );
 };
 
-const ConnectionLine = styled.line<{ dotted: boolean }>(
-  ({ dotted }) => css`
+const ConnectionLine = styled.line<{ $dotted: boolean }>(
+  ({ $dotted }) => css`
     stroke: white;
     border: 0.042vw solid black;
     z-index: 0.5;
     stroke-width: 1px;
-    stroke-dasharray: ${dotted ? '5,5' : ''};
+    stroke-dasharray: ${$dotted ? '5,5' : ''};
   `,
 );
 

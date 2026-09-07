@@ -6,16 +6,16 @@ import { COLOURS, getRgb } from '../../colours';
 const CIRCLE_SIZE = 1.5;
 
 interface ContainerProps {
-  x: number;
-  y: number;
+  $x: number;
+  $y: number;
 }
 
-export const Container = styled.div`
-  z-index: ${({ y }: ContainerProps): number => 1_000 + Math.round(y * 10)};
+export const Container = styled.div<ContainerProps>`
+  z-index: ${({ $y }) => 1_000 + Math.round($y * 10)};
   position: absolute;
-  transform: translate(${({ x, y }: ContainerProps) => `${x}%, ${y}%`});
-  top: ${({ y }: ContainerProps): number => y}%;
-  left: ${({ x }: ContainerProps): number => x}%;
+  transform: translate(${({ $x, $y }) => `${$x}%, ${$y}%`});
+  top: ${({ $y }) => $y}%;
+  left: ${({ $x }) => $x}%;
   color: white;
   transform: translateY(-${CIRCLE_SIZE / 2}vw);
   text-shadow: 0px 0px 1px black, 1px 1px 1px black;
@@ -29,11 +29,11 @@ export const Container = styled.div`
   width: 0;
 `;
 interface NameProps {
-  colour: CityColour;
-  x: number;
+  $colour: CityColour;
+  $x: number;
 }
 
-export const Name = styled.div`
+export const Name = styled.div<NameProps>`
   white-space: nowrap;
   user-select: none;
   pointer-events: none;
@@ -43,52 +43,51 @@ export const Name = styled.div`
 
   z-index: 20;
   transition: color 0.5s ease;
-  color: ${({ x }: NameProps): string =>
-    x === 2 ? 'gold' : x === 3 ? 'orange' : x === 4 ? 'red' : ''};
-  /* color: ${({ colour }: NameProps): string =>
-    colour === 'yellow'
+  color: ${({ $x }) => ($x === 2 ? 'gold' : $x === 3 ? 'orange' : $x === 4 ? 'red' : '')};
+  /* color: ${({ $colour }: NameProps): string =>
+    $colour === 'yellow'
       ? lighten(0.3, COLOURS.yellow)
-      : colour === 'black'
+      : $colour === 'black'
       ? lighten(0.65, COLOURS.black)
-      : colour === 'blue'
+      : $colour === 'blue'
       ? lighten(0.3, COLOURS.blue)
-      : colour === 'red'
+      : $colour === 'red'
       ? lighten(0.4, COLOURS.red)
       : ''}; */
 `;
 
 interface InfectionProps {
-  x: number;
+  $x: number;
 }
 
-export const Infection = styled.div`
+export const Infection = styled.div<InfectionProps>`
   font-family: 'Oswald', sans-serif;
   font-weight: none;
 
   line-height: 1vw;
   pointer-events: none;
   z-index: 2;
-  font-size: ${({ x }: InfectionProps): string =>
-    x === 0
+  font-size: ${({ $x }) =>
+    $x === 0
       ? '0'
-      : x === 1
+      : $x === 1
       ? '16px'
-      : x === 2
+      : $x === 2
       ? '20px'
-      : x === 3 || x === 4
+      : $x === 3 || $x === 4
       ? '24px'
       : ''};
 
   transition: color 0.5s ease, font-size 0.5s ease;
-  color: ${({ x }: InfectionProps): string =>
-    x === 1 ? 'gold' : x === 2 ? 'orange' : x === 3 || x === 4 ? 'red' : ''};
+  color: ${({ $x }) =>
+    $x === 1 ? 'gold' : $x === 2 ? 'orange' : $x === 3 || $x === 4 ? 'red' : ''};
 `;
 interface CircleProps {
-  colour: CityColour;
-  isSelected: boolean;
-  infection: number;
-  isResearchStation: boolean;
-  isProtected: boolean;
+  $colour: CityColour;
+  $isSelected: boolean;
+  $infection: number;
+  $isResearchStation: boolean;
+  $isProtected: boolean;
 }
 
 const getBoxShadow = (
@@ -116,13 +115,13 @@ const getBoxShadow = (
 
 export const Circle = styled.div<CircleProps>(
   ({
-    colour,
-    isSelected,
-    infection,
-    isResearchStation,
-    isProtected,
-  }: CircleProps) => css`
-    width: ${isResearchStation ? CIRCLE_SIZE * 2 : CIRCLE_SIZE}vw;
+    $colour,
+    $isSelected,
+    $infection,
+    $isResearchStation,
+    $isProtected,
+  }) => css`
+    width: ${$isResearchStation ? CIRCLE_SIZE * 2 : CIRCLE_SIZE}vw;
     height: ${CIRCLE_SIZE}vw;
 
     position: absolute;
@@ -133,27 +132,20 @@ export const Circle = styled.div<CircleProps>(
     flex-direction: column;
     justify-content: center;
     align-items: center; */
-    /* box-shadow: ${isSelected ? '0px 0px 10px white' : ''}; */
-    box-shadow: ${getBoxShadow(infection, colour, isSelected, isProtected)};
-    
+    /* box-shadow: ${$isSelected ? '0px 0px 10px white' : ''}; */
+    box-shadow: ${getBoxShadow($infection, $colour, $isSelected, $isProtected)};
 
-    border-radius: ${isResearchStation ? '0' : '50%'};
+
+    border-radius: ${$isResearchStation ? '0' : '50%'};
     transition: border 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, width 0.2s ease, border-radius 0.2s ease;
-    border: ${isProtected ? '0.2vw' : '0.1vw'} solid ${
-    isProtected ? 'green' : darken(0.3, getRgb(colour))
+    border: ${$isProtected ? '0.2vw' : '0.1vw'} solid ${
+    $isProtected ? 'green' : darken(0.3, getRgb($colour))
   };
     background-color: ${
-      isResearchStation ? lighten(0.2, getRgb(colour)) : getRgb(colour)
+      $isResearchStation ? lighten(0.2, getRgb($colour)) : getRgb($colour)
     };
   `,
 );
-
-interface PawnProps {
-  isSelected: boolean;
-  isCurrentTurn: boolean;
-  n: number;
-  i: number;
-}
 
 // const MAX_SIZE = 2.1;
 // const MIN_SIZE = 1.6;

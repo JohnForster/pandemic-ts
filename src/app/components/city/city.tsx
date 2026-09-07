@@ -4,12 +4,10 @@ import GameState, {
   CityState,
   CityData,
   Player,
-  BoardData,
 } from '../../../types/gameData';
 import { ActionType } from '../../../types/actions';
 import GameStateContext from '../../contexts/gameStateContext';
 import { infectCity, treatCity } from '../../state/cities';
-import { DiseaseCubes } from '../diseaseCube/diseaseCubes';
 import CityColour from '../../../types/enums/cityColour';
 import { Pawns } from './components/pawns';
 import { NewDiseaseCubes } from '../diseaseCube/newDiseaseCubes';
@@ -51,36 +49,34 @@ const City: React.FC<CityProps> = (props: CityProps) => {
   const treat = (id: string, colour: CityColour): void =>
     dispatch(treatCity(id, colour));
 
+  const isProtected = cityIsProtected(gameState, props.data.id);
+
   const handleDoubleClick = (evt: React.MouseEvent) => {
+    if (isProtected) return;
     const colour = evt.altKey
       ? gameState.selectedInfectionColour
       : props.data.colour;
     dispatch(infectCity(props.data.id, colour));
   };
 
-  const createCubeDoubleClickHandler = (colour: CityColour, id: string) => (
-    evt: React.MouseEvent,
-  ) => {
+  const createCubeDoubleClickHandler = (colour: CityColour, id: string) => () => {
     dispatch(treatCity(id, colour));
   };
 
-  const isProtected = cityIsProtected(gameState, props.data.id);
-  console.log('props.data.id, isProtected:', props.data.id, isProtected);
-
   return (
     <Styled.Container
-      x={props.data.location.x}
-      y={props.data.location.y}
+      $x={props.data.location.x}
+      $y={props.data.location.y}
       onClick={handleClick(props.cityState.id)}
       id={props.data.name}
     >
       <Styled.Circle
-        infection={props.cityState.infection[props.data.colour]}
-        colour={props.data.colour}
-        isSelected={props.isSelected}
+        $infection={props.cityState.infection[props.data.colour]}
+        $colour={props.data.colour}
+        $isSelected={props.isSelected}
         onDoubleClick={handleDoubleClick}
-        isResearchStation={props.cityState.researchStation}
-        isProtected={isProtected}
+        $isResearchStation={props.cityState.researchStation}
+        $isProtected={isProtected}
       />
       <Pawns
         gameState={gameState}
@@ -88,8 +84,8 @@ const City: React.FC<CityProps> = (props: CityProps) => {
         handlePawnClick={handlePawnClick}
       />
       <Styled.Name
-        colour={props.data.colour}
-        x={props.cityState.infection[props.data.colour]}
+        $colour={props.data.colour}
+        $x={props.cityState.infection[props.data.colour]}
       >
         {props.data.name}
       </Styled.Name>

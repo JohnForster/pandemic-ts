@@ -1,14 +1,8 @@
 import React, { useContext } from 'react';
-import GameState, { BoardData } from '../../../../types/gameData';
 import styled from 'styled-components';
 import { NewsModal } from '../../newsModal/newsModal';
 import GameStateContext from '../../../contexts/gameStateContext';
 import { ActionType } from '../../../../types/actions';
-
-type OutbreakPanelProps = {
-  boardData: BoardData;
-  gameState: GameState;
-};
 
 const OutbreakPanelContainer = styled.div`
   position: absolute;
@@ -26,7 +20,7 @@ const Number = styled.div`
   align-items: center;
 `;
 
-export const OutbreakPanel = (props: OutbreakPanelProps) => {
+export const OutbreakPanel = () => {
   const [gameState, dispatch] = useContext(GameStateContext);
 
   const increaseOutbreaks = () => {

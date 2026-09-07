@@ -15,19 +15,19 @@ type SideProps = {
 };
 
 const Left = styled.polygon<SideProps>(
-  ({ colour }) => css`
+  ({ colour }: SideProps) => css`
     opacity: 0.85;
     fill: ${colour};
   `,
 );
 const Right = styled.polygon<SideProps>(
-  ({ colour }) => css`
+  ({ colour }: SideProps) => css`
     opacity: 0.8;
     fill: ${darken(0.3, colour)};
   `,
 );
 const Top = styled.polygon<SideProps>(
-  ({ colour }) => css`
+  ({ colour }: SideProps) => css`
     opacity: 0.95;
     fill: ${lighten(0.2, colour)};
   `,

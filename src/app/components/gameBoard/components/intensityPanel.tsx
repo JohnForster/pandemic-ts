@@ -39,7 +39,7 @@ export const IntensityPanel = (props: IntensityPanelProps) => {
 
   const cityColours: CityColour[] = ['blue', 'yellow', 'black', 'red'];
 
-  const createHandler = (colour: CityColour) => (evt: React.MouseEvent) => {
+  const createHandler = (colour: CityColour) => () => {
     handleSelectedColourChange(colour);
   };
 

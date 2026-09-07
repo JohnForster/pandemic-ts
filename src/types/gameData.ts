@@ -1,5 +1,4 @@
 import CityColour from './enums/cityColour';
-import PawnColour from './enums/pawnColour';
 
 export interface CityData {
   id: string;

@@ -50,6 +50,9 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
   const advanceToNextPlayer = (): void => {
     dispatch({ type: ActionType.NEXT_PLAYER });
   };
+  const returnToPreviousPlayer = (): void => {
+    dispatch({ type: ActionType.PREVIOUS_PLAYER });
+  };
 
   const handlePawnClick = (id: string) => (e: React.MouseEvent): void => {
     e.stopPropagation();
@@ -65,7 +68,7 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
       {Object.values(gameState.players).map(player => (
         <Styled.PlayerBox
           key={`player-${player.id}`}
-          isCurrentPlayer={gameState.currentPlayerId === player.id}
+          $isCurrentPlayer={gameState.currentPlayerId === player.id}
         >
           <Styled.PawnImage
             src={`assets/pawns/pawn_${player.colour}.png`}
@@ -77,7 +80,7 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
               type="text"
               value={name}
               onChange={onFormChange}
-              onKeyDown={(e): void =>
+              onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>): void =>
                 e.key === 'Enter' ? changeCurrentlyEditingName(null) : null
               }
               onBlur={(): void => changeCurrentlyEditingName(null)}
@@ -89,7 +92,7 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
             <>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <Styled.PlayerName
-                  isCurrentPlayer={gameState.currentPlayerId === player.id}
+                  $isCurrentPlayer={gameState.currentPlayerId === player.id}
                   onDoubleClick={(): void =>
                     changeCurrentlyEditingName(player.id)
                   }
@@ -101,7 +104,7 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
                 </Styled.Role>
               </div>
               <Styled.PlayerLocation
-                colour={getLocation(player.locationId).colour}
+                $colour={getLocation(player.locationId).colour}
               >
                 {getLocation(player.locationId).name}
               </Styled.PlayerLocation>
@@ -117,6 +120,12 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
         }}
       >
         <button onClick={advanceToNextPlayer}>Next Turn</button>
+        <button
+          onClick={returnToPreviousPlayer}
+          style={{ marginRight: 'auto' }}
+        >
+          {'<'}
+        </button>
         <button onClick={enableDevMode}>Dev Options</button>
       </div>
     </Styled.Container>

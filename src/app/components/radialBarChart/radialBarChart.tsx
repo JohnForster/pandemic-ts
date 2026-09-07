@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import * as Styled from './styled';
 import CityColour from '../../../types/enums/cityColour';
@@ -13,29 +12,35 @@ interface RadialBarChartProps {
   selected: boolean;
 }
 
-const RadialBarChart: React.FC<RadialBarChartProps> = props => {
-  const circleRadius = Math.min(props.radius, 85);
-  const circumference = 2 * 3.14 * circleRadius;
-  const strokeLength = (circumference / props.maxValue) * props.progress;
-  const progress = props.progress / props.maxValue;
+const RadialBarChart: React.FC<RadialBarChartProps> = ({
+  radius = 80,
+  progress = 100,
+  strokeWidth = 20,
+  color = 'black',
+  maxValue = 100,
+  selected,
+}) => {
+  const circleRadius = Math.min(radius, 85);
+  const circumference = 2 * Math.PI * circleRadius;
+  const strokeLength = (circumference / maxValue) * progress;
+  const progressRatio = progress / maxValue;
   return (
     <Styled.Container>
-      <Styled.Number selected={props.selected} warning={progress >= 0.75}>
-        {/* {Math.round((100 * props.progress) / props.maxValue)}% */}
-        {props.maxValue - props.progress}
+      <Styled.Number $selected={selected} $warning={progressRatio >= 0.75}>
+        {maxValue - progress}
       </Styled.Number>
       <svg viewBox="0 0 180 180" height="100%">
         <Styled.Circle
-          fillColour={props.color}
-          strokeWidth={props.strokeWidth}
+          $fillColour={color}
+          strokeWidth={strokeWidth}
           fill="none"
           cx="90"
           cy="90"
           r={circleRadius}
         />
         <Styled.Progress
-          fillColour={props.color}
-          strokeWidth={props.strokeWidth}
+          $fillColour={color}
+          strokeWidth={strokeWidth}
           strokeDasharray={`${strokeLength},${circumference}`}
           fill="none"
           cx="90"
@@ -45,15 +50,6 @@ const RadialBarChart: React.FC<RadialBarChartProps> = props => {
       </svg>
     </Styled.Container>
   );
-};
-
-RadialBarChart.defaultProps = {
-  radius: 80,
-  progress: 100,
-  strokeWidth: 20,
-  dimension: 180,
-  maxValue: 100,
-  color: 'black',
 };
 
 export default RadialBarChart;

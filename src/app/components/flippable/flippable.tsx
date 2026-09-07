@@ -1,8 +1,8 @@
-import React, { ReactNodeArray } from 'react';
+import React, { ReactNode } from 'react';
 import * as Styled from './styled';
 
 type FlippableProps = {
-  children: ReactNodeArray;
+  children: ReactNode[];
   sideIndex: number;
 };
 

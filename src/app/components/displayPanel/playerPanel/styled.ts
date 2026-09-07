@@ -9,20 +9,20 @@ export const Container = styled.div`
   align-items: baseline;
 `;
 
-export const PlayerBox = styled.div<PlayerNameProps>`
+export const PlayerBox = styled.div<PlayerBoxProps>`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 4px;
+  padding: 1px 4px;
   // font-weight: 300;
   box-sizing: border-box;
 
   border-style: solid;
   border-radius: 2px;
-  ${({ isCurrentPlayer }) =>
-    isCurrentPlayer
+  ${({ $isCurrentPlayer }) =>
+    $isCurrentPlayer
       ? `border-width: 2px; border-color: white;`
-      : 'border-width: 0px; border-color: black;'}
+      : 'border-width: 2px; border-color: black;'}
 
   transition: border-width 0.2s linear, border-color 0.2s linear;
 `;
@@ -41,19 +41,21 @@ export const NameInput = styled.input`
   font-size: 0.84vw;
 `;
 
-export const PlayerLocation = styled.span<{ colour: CityColour }>(
-  (props: { colour: CityColour }) => css`
-    text-decoration: underline ${getRgb(props.colour)};
+type PlayerBoxProps = { $isCurrentPlayer: boolean };
+
+export const PlayerLocation = styled.span<{ $colour: CityColour }>(
+  (props: { $colour: CityColour }) => css`
+    text-decoration: underline ${getRgb(props.$colour)};
     margin-left: auto;
-    text-shadow: 0px 0px 10px ${getRgb(props.colour)};
+    text-shadow: 0px 0px 10px ${getRgb(props.$colour)};
     text-align: right;
   `,
 );
 
-type PlayerNameProps = { isCurrentPlayer: boolean };
+type PlayerNameProps = { $isCurrentPlayer: boolean };
 export const PlayerName = styled.span<PlayerNameProps>(
   (props: PlayerNameProps) => css`
-    text-decoration: ${props.isCurrentPlayer ? 'underline' : 'none'};
+    text-decoration: ${props.$isCurrentPlayer ? 'underline' : 'none'};
     line-height: 0.8rem;
   `,
 );
