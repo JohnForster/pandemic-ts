@@ -2,18 +2,18 @@ import React from 'react';
 
 import GameState, { BoardData } from '../../../types/gameData';
 import { Flippable } from '../flippable/flippable';
-import DevPanel from './devPanel/devPanel';
-import PlayerPanel from './playerPanel/playerPanel';
+import { DevPanel } from './devPanel/devPanel';
+import { PlayerPanel } from './playerPanel/playerPanel';
 import { NewsModal } from '../newsModal/newsModal';
 
 import * as Styled from './styled';
 
-type NewDisplayPanelProps = {
+type DisplayPanelProps = {
   gameState: GameState;
   boardData: BoardData;
 };
 
-export const NewDisplayPanel = (props: NewDisplayPanelProps) => {
+export const DisplayPanel = (props: DisplayPanelProps) => {
   const side = props.gameState.devMode ? 1 : 0;
 
   return (

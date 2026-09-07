@@ -4,19 +4,19 @@ import GameStateContext from '../../contexts/gameStateContext';
 import { BoardData } from '../../../types/gameData';
 import ClickHandlers from '../../contexts/clickHandler.context';
 import { WorldMap } from '../worldMap/worldMap';
-import ConnectionLayer from './components/connectionLayer';
+import { ConnectionLayer } from './components/connectionLayer';
 import { CitiesLayer } from './components/citiesLayer';
-import { InfectionRatePanel } from './components/infectionRatePanel';
 import { IntensityPanel } from './components/intensityPanel';
-import { NewDisplayPanel } from '../displayPanel/displayPanel';
+import { DisplayPanel } from '../displayPanel/displayPanel';
 
 import * as Styled from './styled';
+import { OutbreakPanel } from './components/outbreakPanel';
 
 interface GameBoardProps {
   boardData: BoardData;
 }
 
-const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
+export const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
   const [gameState] = useContext(GameStateContext);
   const clickHandlers = useContext(ClickHandlers);
 
@@ -35,11 +35,9 @@ const GameBoard: React.FC<GameBoardProps> = (props: GameBoardProps) => {
         <ConnectionLayer boardData={props.boardData} />
         <CitiesLayer boardData={props.boardData} gameState={gameState} />
       </WorldMap>
-      <InfectionRatePanel />
-      <NewDisplayPanel boardData={props.boardData} gameState={gameState} />
+      <DisplayPanel boardData={props.boardData} gameState={gameState} />
       <IntensityPanel boardData={props.boardData} gameState={gameState} />
+      <OutbreakPanel />
     </Styled.GameBoard>
   );
 };
-
-export default GameBoard;

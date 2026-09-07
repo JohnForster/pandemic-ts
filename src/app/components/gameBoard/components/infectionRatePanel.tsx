@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { NewsModal } from '../../newsModal/newsModal';
 
-type InfectionRatePanelProps = {};
-
 const InfectionRateContainer = styled.div`
   position: absolute;
   bottom: 2.5%;
@@ -12,7 +10,7 @@ const InfectionRateContainer = styled.div`
 
 const InfectionRateInput = styled.input``;
 
-export const InfectionRatePanel = (props: InfectionRatePanelProps) => {
+export const InfectionRatePanel = () => {
   return (
     <InfectionRateContainer>
       <NewsModal title="Infection Rate">

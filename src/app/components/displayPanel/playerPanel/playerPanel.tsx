@@ -4,6 +4,7 @@ import * as Styled from './styled';
 import { ActionType } from '../../../../types/actions';
 import { boardData } from '../../../../data/boardData';
 import { ROLES } from '../../../../data/roles';
+import { usePawnClick } from '../../../hooks/usePawnClick';
 
 interface PlayerPanelProps {}
 
@@ -12,19 +13,7 @@ const getLocation = (id: string) => {
   return { name: city.name, colour: city.colour! };
 };
 
-// ? Location grid?
-// const getLocationGrid = (id: string) => {
-//   const DIVISIONS_Y = 4;
-//   const DIVISIONS_X = 6;
-//   const city = boardData.cities[id];
-//   const letter = String.fromCharCode(
-//     Math.floor(city.location.x / (100 / DIVISIONS_X)) + 65,
-//   );
-//   const number = Math.ceil(city.location.y / (100 / DIVISIONS_Y));
-//   return letter + number.toString();
-// };
-
-const PlayerPanel: React.FC<PlayerPanelProps> = () => {
+export const PlayerPanel: React.FC<PlayerPanelProps> = () => {
   const [gameState, dispatch] = useContext(GameStateContext);
   const [nameChangeId, setNameChangeId] = useState<string>(null);
   const [name, setName] = useState<string>(null);
@@ -50,20 +39,21 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
   const advanceToNextPlayer = (): void => {
     dispatch({ type: ActionType.NEXT_PLAYER });
   };
-
-  const handlePawnClick = (id: string) => (e: React.MouseEvent): void => {
-    e.stopPropagation();
-    if (id === gameState.selectedPawnId)
-      return dispatch({ type: ActionType.SELECT_PAWN, payload: { id: null } });
-    dispatch({ type: ActionType.SELECT_PAWN, payload: { id } });
+  const returnToPreviousPlayer = (): void => {
+    dispatch({ type: ActionType.PREVIOUS_PLAYER });
   };
+
+  const handlePawnClick = usePawnClick();
 
   const enableDevMode = () => dispatch({ type: ActionType.DEV_MODE_ON });
 
   return (
     <Styled.Container>
       {Object.values(gameState.players).map(player => (
-        <Styled.PlayerBox key={`player-${player.id}`}>
+        <Styled.PlayerBox
+          key={`player-${player.id}`}
+          $isCurrentPlayer={gameState.currentPlayerId === player.id}
+        >
           <Styled.PawnImage
             src={`assets/pawns/pawn_${player.colour}.png`}
             alt={`${player.name}'s Pawn`}
@@ -74,7 +64,7 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
               type="text"
               value={name}
               onChange={onFormChange}
-              onKeyDown={(e): void =>
+              onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>): void =>
                 e.key === 'Enter' ? changeCurrentlyEditingName(null) : null
               }
               onBlur={(): void => changeCurrentlyEditingName(null)}
@@ -84,9 +74,9 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
           )}
           {nameChangeId !== player.id && (
             <>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <Styled.NameColumn>
                 <Styled.PlayerName
-                  isCurrentPlayer={gameState.currentPlayerId === player.id}
+                  $isCurrentPlayer={gameState.currentPlayerId === player.id}
                   onDoubleClick={(): void =>
                     changeCurrentlyEditingName(player.id)
                   }
@@ -96,9 +86,9 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
                 <Styled.Role>
                   {ROLES[player.colour]?.role ?? 'NO ROLE FOUND'}
                 </Styled.Role>
-              </div>
+              </Styled.NameColumn>
               <Styled.PlayerLocation
-                colour={getLocation(player.locationId).colour}
+                $colour={getLocation(player.locationId).colour}
               >
                 {getLocation(player.locationId).name}
               </Styled.PlayerLocation>
@@ -106,18 +96,13 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
           )}
         </Styled.PlayerBox>
       ))}
-      <div
-        style={{
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'space-between',
-        }}
-      >
+      <Styled.Footer>
         <button onClick={advanceToNextPlayer}>Next Turn</button>
+        <Styled.PreviousButton onClick={returnToPreviousPlayer}>
+          {'<'}
+        </Styled.PreviousButton>
         <button onClick={enableDevMode}>Dev Options</button>
-      </div>
+      </Styled.Footer>
     </Styled.Container>
   );
 };
-
-export default PlayerPanel;

@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 
 import GameState, { BoardData } from '../../../../types/gameData';
 import CityColour from '../../../../types/enums/cityColour';
-import RadialBarChart from '../../radialBarChart/radialBarChart';
+import { RadialBarChart } from '../../radialBarChart/radialBarChart';
 import { NewsModal } from '../../newsModal/newsModal';
 import ClickHandlers from '../../../contexts/clickHandler.context';
 
@@ -19,6 +19,10 @@ const ChartContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+`;
+
+const ChartWrapper = styled.div`
+  height: 100%;
 `;
 
 type IntensityPanelProps = {
@@ -39,7 +43,7 @@ export const IntensityPanel = (props: IntensityPanelProps) => {
 
   const cityColours: CityColour[] = ['blue', 'yellow', 'black', 'red'];
 
-  const createHandler = (colour: CityColour) => (evt: React.MouseEvent) => {
+  const createHandler = (colour: CityColour) => () => {
     handleSelectedColourChange(colour);
   };
 
@@ -48,16 +52,15 @@ export const IntensityPanel = (props: IntensityPanelProps) => {
       <NewsModal title="Global Resilience">
         <ChartContainer>
           {cityColours.map(c => (
-            <div style={{ height: '100%' }} onClick={createHandler(c)}>
+            <ChartWrapper key={`virusChart-${c}`} onClick={createHandler(c)}>
               <RadialBarChart
-                key={`virusChart-${c}`}
                 progress={findTotal(c)}
                 maxValue={24}
                 dimension={120}
                 color={c}
                 selected={props.gameState.selectedInfectionColour === c}
               />
-            </div>
+            </ChartWrapper>
           ))}
         </ChartContainer>
       </NewsModal>

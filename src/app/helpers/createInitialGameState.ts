@@ -1,10 +1,21 @@
 import GameState from '../../types/gameData';
 import { boardData } from '../../data/boardData';
 import shuffle from 'just-shuffle';
+import clone from 'just-clone';
 import { ROLES } from '../../data/roles';
 
 const isGameState = (obj: unknown): obj is GameState => {
-  return true;
+  if (typeof obj !== 'object' || obj === null) return false;
+  const candidate = obj as Partial<GameState>;
+  return (
+    typeof candidate.currentPlayerId === 'string' &&
+    typeof candidate.cities === 'object' &&
+    candidate.cities !== null &&
+    typeof candidate.players === 'object' &&
+    candidate.players !== null &&
+    typeof candidate.board === 'object' &&
+    candidate.board !== null
+  );
 };
 
 const defaultArgs = {
@@ -24,29 +35,14 @@ const createInitialGameState = (
       if (isGameState(prevState)) {
         return prevState;
       }
-    } catch (_) {
+    } catch (_error) {
       console.error('Unable to validate previous game state');
     }
   }
 
   const colours = shuffle(
-    ROLES.filter(role => role.inUse).map((role, i) => role.pawnId),
+    ROLES.filter(role => role.inUse).map(role => role.pawnId),
   );
-
-  // const names = shuffle([
-  //   'John',
-  //   'Jemil',
-  //   'Jamie',
-  //   'Thomas',
-  //   'Sam',
-  //   'Hakim',
-  //   'Peter',
-  //   'Paddy',
-  //   'Tara',
-  //   'Joe',
-  //   'Emily',
-  //   'Samir',
-  // ]);
 
   const names = [
     'Player 1',
@@ -73,10 +69,12 @@ const createInitialGameState = (
     },
     cities: {},
     players: {},
+    board: clone(boardData),
     selectedPawnId: '',
     selectedCityId: '',
     devMode: false,
     selectedInfectionColour: 'blue',
+    outbreaks: 0,
   };
 
   const ATLANTA_ID = '10';
@@ -90,7 +88,7 @@ const createInitialGameState = (
 
   Array(numberOfPlayers)
     .fill('')
-    .map((x, i) => ({
+    .map((_, i) => ({
       id: i.toString(),
       colour: colours.pop(),
       locationId: '10',

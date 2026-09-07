@@ -1,22 +1,19 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { lighten, darken } from 'polished';
 import CityColour from '../../../types/enums/cityColour';
-import { COLOURS } from '../../colours';
 
 export const Chart = styled.div``;
 
 interface CircleProps {
-  fillColour: CityColour;
+  $fillColour: CityColour;
 }
 
-export const Circle = styled.circle`
-  stroke: ${({ fillColour }: CircleProps): string =>
-    lighten(0.2, COLOURS[fillColour])};
+export const Circle = styled.circle<CircleProps>`
+  stroke: ${({ $fillColour, theme }) => lighten(0.2, theme.colours[$fillColour])};
 `;
 
-export const Progress = styled.circle`
-  stroke: ${({ fillColour }: CircleProps): string =>
-    darken(0.1, COLOURS[fillColour])};
+export const Progress = styled.circle<CircleProps>`
+  stroke: ${({ $fillColour, theme }) => darken(0.1, theme.colours[$fillColour])};
   transform: rotate(-90deg);
   transform-origin: center;
   transition: all 0.2s cubic-bezier(0.58, 0.16, 0.5, 1.14);
@@ -24,21 +21,22 @@ export const Progress = styled.circle`
 `;
 
 interface NumberProps {
-  selected: boolean;
-  warning: boolean;
+  $selected: boolean;
+  $warning: boolean;
 }
 
-export const Number = styled.div`
+export const Number = styled.div<NumberProps>`
   position: absolute;
   text-align: center;
-  text-decoration: ${({ selected }: NumberProps) =>
-    selected ? 'underline' : ' none'};
+  text-decoration: ${({ $selected }) => ($selected ? 'underline' : ' none')};
+  text-decoration-thickness: 1px;
+  text-decoration-color: gray;
+  text-decoration-style: dotted;
   user-select: none;
-  font-size: ${({ warning }: NumberProps) => (warning ? '2.2vw' : '1.68vw')};
+  font-size: ${({ $warning }) => ($warning ? '2.2vw' : '1.68vw')};
   transition: font-size 0.5s ease;
 
-  animation: ${({ warning }: NumberProps) => (warning ? '1.5s' : '0s')} blink
-    infinite;
+  animation: ${({ $warning }) => ($warning ? '1.5s' : '0s')} blink infinite;
 
   @keyframes circlepulse {
     0% {

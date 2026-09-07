@@ -9,12 +9,22 @@ export const Container = styled.div`
   align-items: baseline;
 `;
 
-export const PlayerBox = styled.div`
+export const PlayerBox = styled.div<PlayerBoxProps>`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 2px;
+  padding: 1px 4px;
   // font-weight: 300;
+  box-sizing: border-box;
+
+  border-style: solid;
+  border-radius: 2px;
+  ${({ $isCurrentPlayer }) =>
+    $isCurrentPlayer
+      ? `border-width: 2px; border-color: white;`
+      : 'border-width: 2px; border-color: black;'}
+
+  transition: border-width 0.2s linear, border-color 0.2s linear;
 `;
 
 const PAWN_HEIGHT = 1.5;
@@ -31,19 +41,21 @@ export const NameInput = styled.input`
   font-size: 0.84vw;
 `;
 
-export const PlayerLocation = styled.span<{ colour: CityColour }>(
-  (props: { colour: CityColour }) => css`
-    text-decoration: underline ${getRgb(props.colour)};
+type PlayerBoxProps = { $isCurrentPlayer: boolean };
+
+export const PlayerLocation = styled.span<{ $colour: CityColour }>(
+  (props: { $colour: CityColour }) => css`
+    text-decoration: underline ${getRgb(props.$colour)};
     margin-left: auto;
-    text-shadow: 0px 0px 10px ${getRgb(props.colour)};
+    text-shadow: 0px 0px 10px ${getRgb(props.$colour)};
     text-align: right;
   `,
 );
 
-type PlayerNameProps = { isCurrentPlayer: boolean };
+type PlayerNameProps = { $isCurrentPlayer: boolean };
 export const PlayerName = styled.span<PlayerNameProps>(
   (props: PlayerNameProps) => css`
-    text-decoration: ${props.isCurrentPlayer ? 'underline' : 'none'};
+    text-decoration: ${props.$isCurrentPlayer ? 'underline' : 'none'};
     line-height: 0.8rem;
   `,
 );
@@ -52,4 +64,19 @@ export const Role = styled.span`
   font-size: small;
   font-family: Oswald;
   font-weight: normal;
+`;
+
+export const NameColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Footer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const PreviousButton = styled.button`
+  margin-right: auto;
 `;

@@ -13,9 +13,16 @@ export enum ActionType {
   LOAD = 'LOAD',
   CHANGE_NAME = 'CHANGE_NAME',
   NEXT_PLAYER = 'NEXT_PLAYER',
+  PREVIOUS_PLAYER = 'PREVIOUS_PLAYER',
   RESET = 'RESET',
   SELECT_COLOUR = 'SELECT_COLOUR',
   TOGGLE_RESEARCH_STATION = 'TOGGLE_RESEARCH_STATION',
+  INCREMENT_OUTBREAKS = 'INCREMENT_OUTBREAKS',
+  DECREMENT_OUTBREAKS = 'DECREMENT_OUTBREAKS',
+  CHANGE_CITY_LOCATION = 'CHANGE_CITY_LOCATION',
+  CHANGE_CITY_COLOUR = 'CHANGE_CITY_COLOUR',
+  CREATE_ROUTE = 'CREATE_ROUTE',
+  REMOVE_ROUTE = 'REMOVE_ROUTE',
 }
 export type Action =
   | IncrementAction
@@ -29,9 +36,16 @@ export type Action =
   | LoadAction
   | ChangeNameAction
   | NextPlayerAction
+  | PreviousPlayerAction
   | ResetAction
   | SelectColourAction
-  | ToggleResearchStationAction;
+  | ToggleResearchStationAction
+  | IncrementOutbreaksAction
+  | DecrementOutbreaksAction
+  | ChangeCityLocationAction
+  | ChangeCityColourAction
+  | CreateRouteAction
+  | RemoveRouteAction;
 
 export interface GenericAction {
   type: ActionType;
@@ -81,6 +95,9 @@ export interface ChangeNameAction extends GenericAction {
 export interface NextPlayerAction extends GenericAction {
   type: ActionType.NEXT_PLAYER;
 }
+export interface PreviousPlayerAction extends GenericAction {
+  type: ActionType.PREVIOUS_PLAYER;
+}
 
 export interface ResetAction extends GenericAction {
   type: ActionType.RESET;
@@ -101,5 +118,33 @@ export interface SelectColourAction extends GenericAction {
 
 export interface ToggleResearchStationAction extends GenericAction {
   type: ActionType.TOGGLE_RESEARCH_STATION;
+  payload: { id: string };
+}
+
+export interface IncrementOutbreaksAction extends GenericAction {
+  type: ActionType.INCREMENT_OUTBREAKS;
+}
+
+export interface DecrementOutbreaksAction extends GenericAction {
+  type: ActionType.DECREMENT_OUTBREAKS;
+}
+
+export interface ChangeCityLocationAction extends GenericAction {
+  type: ActionType.CHANGE_CITY_LOCATION;
+  payload: { id: string; x: number; y: number };
+}
+
+export interface ChangeCityColourAction extends GenericAction {
+  type: ActionType.CHANGE_CITY_COLOUR;
+  payload: { id: string };
+}
+
+export interface CreateRouteAction extends GenericAction {
+  type: ActionType.CREATE_ROUTE;
+  payload: { id1: string; id2: string };
+}
+
+export interface RemoveRouteAction extends GenericAction {
+  type: ActionType.REMOVE_ROUTE;
   payload: { id: string };
 }

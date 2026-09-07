@@ -1,9 +1,9 @@
-import React, { ReactNode, ReactNodeArray } from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 type NewsModalProps = {
   title: string;
-  children: ReactNode | ReactNodeArray;
+  children: ReactNode | ReactNode[];
 };
 
 export const NewsModal = (props: NewsModalProps) => {
@@ -33,7 +33,7 @@ const HeadingContainer = styled.div`
   transform: translateY(-100%);
   position: absolute;
   width: 100%;
-  margin -0.5rem -0.7rem;
+  margin: -0.5rem -0.7rem;
   padding: 0.2rem;
 `;
 

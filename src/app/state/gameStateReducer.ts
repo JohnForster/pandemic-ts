@@ -1,6 +1,8 @@
 import React from 'react';
 import { playersReducer } from './playersReducer';
 import { citiesReducer } from './cities';
+import { boardReducer } from './board';
+import clamp from 'just-clamp';
 
 import { Action, ActionType } from '../../types/actions';
 import GameState from '../../types/gameData';
@@ -17,6 +19,13 @@ const advanceCurrentPlayer = (gameState: GameState): GameState => {
   const currentPlayerIdAsNumber = parseInt(gameState.currentPlayerId);
   const numberOfPlayers = Object.keys(gameState.players).length;
   const nextPlayerId = (currentPlayerIdAsNumber + 1) % numberOfPlayers;
+  return { ...gameState, currentPlayerId: nextPlayerId.toString() };
+};
+const reverseCurrentPlayer = (gameState: GameState): GameState => {
+  const currentPlayerIdAsNumber = parseInt(gameState.currentPlayerId);
+  const numberOfPlayers = Object.keys(gameState.players).length;
+  const nextPlayerId =
+    (currentPlayerIdAsNumber - 1 + numberOfPlayers) % numberOfPlayers;
   return { ...gameState, currentPlayerId: nextPlayerId.toString() };
 };
 
@@ -42,12 +51,20 @@ const miscReducer: React.Reducer<GameState, Action> = (state, action) => {
       };
     case ActionType.NEXT_PLAYER:
       return advanceCurrentPlayer(state);
-    case ActionType.LOAD:
-      return JSON.parse(localStorage.getItem('game'));
+    case ActionType.PREVIOUS_PLAYER:
+      return reverseCurrentPlayer(state);
+    case ActionType.LOAD: {
+      const savedGame = localStorage.getItem('game');
+      return savedGame ? JSON.parse(savedGame) : state;
+    }
     case ActionType.RESET:
       return createInitialGameState({ loadExisting: false });
     case ActionType.SELECT_COLOUR:
       return { ...state, selectedInfectionColour: action.payload.colour };
+    case ActionType.INCREMENT_OUTBREAKS:
+      return { ...state, outbreaks: clamp(0, state.outbreaks + 1, 8) };
+    case ActionType.DECREMENT_OUTBREAKS:
+      return { ...state, outbreaks: clamp(0, state.outbreaks - 1, 8) };
     default:
       return { ...state };
   }
@@ -62,6 +79,7 @@ export const gameStateReducer: React.Reducer<GameState, Action> = (
     ...miscState,
     cities: citiesReducer(miscState.cities, action),
     players: playersReducer(miscState.players, action),
+    board: boardReducer(miscState.board, action),
   };
   localStorage.setItem('game', JSON.stringify(newState));
   return newState;

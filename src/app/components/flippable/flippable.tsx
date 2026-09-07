@@ -1,8 +1,8 @@
-import React, { ReactNodeArray } from 'react';
+import React, { ReactNode } from 'react';
 import * as Styled from './styled';
 
 type FlippableProps = {
-  children: ReactNodeArray;
+  children: ReactNode[];
   sideIndex: number;
 };
 
@@ -10,7 +10,7 @@ export const Flippable = (props: FlippableProps) => {
   return (
     <Styled.Container>
       {props.children.map((node, i) => (
-        <Styled.Side key={`flipside-${i}`} isShowing={i === props.sideIndex}>
+        <Styled.Side key={`flipside-${i}`} $isShowing={i === props.sideIndex}>
           {node}
         </Styled.Side>
       ))}

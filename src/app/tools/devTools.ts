@@ -38,7 +38,6 @@ export const createRoute = (
   id2: string,
   boardData: BoardData,
 ): BoardData => {
-  console.log(`Attempting to create route..`);
   if (id1 === id2) return boardData;
   const [a, b] = [id1, id2].sort();
 
@@ -63,7 +62,6 @@ export const createRoute = (
 };
 
 export const removeRoute = (id: string, board: BoardData): BoardData => {
-  console.log('Removing route', id);
   const newBoard = clone(board);
   const connections = Object.values(newBoard.connections);
   const newConnections: { [key: string]: Connection } = {};
@@ -79,21 +77,3 @@ export const removeRoute = (id: string, board: BoardData): BoardData => {
   newBoard.connections = newConnections;
   return newBoard;
 };
-
-// TODO Call this at runtime, do not save the connections within each city's data.
-// const generateLinks = (board: BoardData) => {
-//   const newBoard = clone(board);
-//   newBoard.connections.forEach(connection => {
-//     const city1 = board.cities.find(c => c.id === connection.fromId);
-//     const city2 = board.cities.find(c => c.id === connection.toId);
-//     if (
-//       city1.connections.includes(city2.id) ||
-//       city2.connections.includes(city1.id)
-//     )
-//       throw new Error('Duplicate connection!');
-//     city1.connections.push(city2.id);
-//     city2.connections.push(city1.id);
-//   });
-
-//   return newBoard;
-// };

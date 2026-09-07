@@ -11,7 +11,7 @@ interface DevPanelProps {
   board: BoardData;
 }
 
-const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
+export const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
   const [gameState, dispatch] = useContext(GameStateContext);
   const save = (): void => {
     const newBoard: BoardData = { cities: props.board.cities, connections: {} };
@@ -66,19 +66,15 @@ const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
         ))}
       </form>
       <div>
-        <button>-</button>
         <span>{`${numberOfPlayers} players`}</span>
-        <button>+</button>
       </div>
       <div>
         <button onClick={save}>Copy Board to Clipboard</button>
         <button onClick={reset}>Reset</button>
       </div>
-      <button style={{ marginTop: 'auto' }} onClick={disableDevMode}>
+      <Styled.DisableDevModeButton onClick={disableDevMode}>
         Disable Dev Options
-      </button>
+      </Styled.DisableDevModeButton>
     </Styled.Container>
   );
 };
-
-export default DevPanel;

@@ -1,23 +1,23 @@
 import React, { useContext } from 'react';
 import * as Styled from './styled';
 import { CityState, CityData, Player } from '../../../types/gameData';
-import { ActionType } from '../../../types/actions';
 import GameStateContext from '../../contexts/gameStateContext';
 import { infectCity, treatCity } from '../../state/cities';
-import { DiseaseCubes } from '../diseaseCube/diseaseCubes';
 import CityColour from '../../../types/enums/cityColour';
 import { Pawns } from './components/pawns';
-import { NewDiseaseCubes } from '../diseaseCube/newDiseaseCubes';
+import { DiseaseCubes } from '../diseaseCube/diseaseCubes';
+import { usePawnClick } from '../../hooks/usePawnClick';
 
 interface CityProps {
   cityState: CityState;
   data: CityData;
   isSelected: boolean;
+  isProtected: boolean;
   onSelect: (id: string, meta: boolean) => unknown;
   players: Player[];
 }
 // TODO Extract Pawn into its own class
-const City: React.FC<CityProps> = (props: CityProps) => {
+export const City: React.FC<CityProps> = (props: CityProps) => {
   const [gameState, dispatch] = useContext(GameStateContext);
 
   const handle = (fn: (id: string, colour: CityColour) => void) => (
@@ -32,12 +32,7 @@ const City: React.FC<CityProps> = (props: CityProps) => {
     evt.stopPropagation();
   };
 
-  const handlePawnClick = (id: string) => (e: React.MouseEvent): void => {
-    e.stopPropagation();
-    if (id === gameState.selectedPawnId)
-      return dispatch({ type: ActionType.SELECT_PAWN, payload: { id: null } });
-    dispatch({ type: ActionType.SELECT_PAWN, payload: { id } });
-  };
+  const handlePawnClick = usePawnClick();
 
   const infect = (id: string, colour: CityColour): void =>
     dispatch(infectCity(id, colour));
@@ -46,31 +41,33 @@ const City: React.FC<CityProps> = (props: CityProps) => {
     dispatch(treatCity(id, colour));
 
   const handleDoubleClick = (evt: React.MouseEvent) => {
+    if (props.isProtected) return;
     const colour = evt.altKey
       ? gameState.selectedInfectionColour
       : props.data.colour;
     dispatch(infectCity(props.data.id, colour));
   };
 
-  const createCubeDoubleClickHandler = (colour: CityColour, id: string) => (
-    evt: React.MouseEvent,
-  ) => {
+  const createCubeDoubleClickHandler = (colour: CityColour, id: string) => () => {
     dispatch(treatCity(id, colour));
   };
 
   return (
     <Styled.Container
-      x={props.data.location.x}
-      y={props.data.location.y}
+      data-testid={`city-container-${props.data.id}`}
+      $x={props.data.location.x}
+      $y={props.data.location.y}
       onClick={handleClick(props.cityState.id)}
       id={props.data.name}
     >
       <Styled.Circle
-        infection={props.cityState.infection[props.data.colour]}
-        colour={props.data.colour}
-        isSelected={props.isSelected}
+        data-testid={`city-circle-${props.data.id}`}
+        $infection={props.cityState.infection[props.data.colour]}
+        $colour={props.data.colour}
+        $isSelected={props.isSelected}
         onDoubleClick={handleDoubleClick}
-        isResearchStation={props.cityState.researchStation}
+        $isResearchStation={props.cityState.researchStation}
+        $isProtected={props.isProtected}
       />
       <Pawns
         gameState={gameState}
@@ -78,19 +75,12 @@ const City: React.FC<CityProps> = (props: CityProps) => {
         handlePawnClick={handlePawnClick}
       />
       <Styled.Name
-        colour={props.data.colour}
-        x={props.cityState.infection[props.data.colour]}
+        $colour={props.data.colour}
+        $x={props.cityState.infection[props.data.colour]}
       >
         {props.data.name}
       </Styled.Name>
-      {/* <Styled.Infection x={props.state.infection}>
-        {props.state.infection || 1}
-      </Styled.Infection> */}
-      {/* <DiseaseCubes
-        number={props.cityState.infection[props.data.colour]}
-        colour={props.data.colour}
-      /> */}
-      <NewDiseaseCubes
+      <DiseaseCubes
         id={props.data.id}
         infection={props.cityState.infection}
         createDoubleClickHandler={createCubeDoubleClickHandler}
@@ -110,5 +100,3 @@ const City: React.FC<CityProps> = (props: CityProps) => {
     </Styled.Container>
   );
 };
-
-export default City;

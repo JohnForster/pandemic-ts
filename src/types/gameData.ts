@@ -1,5 +1,4 @@
 import CityColour from './enums/cityColour';
-import PawnColour from './enums/pawnColour';
 
 export interface CityData {
   id: string;
@@ -39,7 +38,7 @@ export interface CityState {
 
 export interface Player {
   id: string;
-  colour: PawnColour;
+  colour: number;
   // role: Role;
   locationId: string;
   name: string;
@@ -60,5 +59,7 @@ export default interface GameState {
   selectedInfectionColour: CityColour;
   cities: { [id: string]: CityState }; // add id to CityState?
   players: { [id: string]: Player };
+  board: BoardData;
   devMode: boolean;
+  outbreaks: number;
 }

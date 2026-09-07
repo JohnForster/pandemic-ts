@@ -44,19 +44,19 @@ export const Connection = (props: ConnectionProps) => {
         y1={`${props.from.y}%`}
         x2={`${props.to.x}%`}
         y2={`${props.to.y}%`}
-        dotted={props.dotted}
+        $dotted={props.dotted}
       />
     </>
   );
 };
 
-const ConnectionLine = styled.line<{ dotted: boolean }>(
-  ({ dotted }) => css`
+const ConnectionLine = styled.line<{ $dotted: boolean }>(
+  ({ $dotted }) => css`
     stroke: white;
     border: 0.042vw solid black;
     z-index: 0.5;
     stroke-width: 1px;
-    stroke-dasharray: ${dotted ? '5,5' : ''};
+    stroke-dasharray: ${$dotted ? '5,5' : ''};
   `,
 );
 
@@ -71,7 +71,7 @@ type ConnectionLayerProps = {
   boardData: BoardData;
 };
 
-const ConnectionLayer = (props: ConnectionLayerProps) => {
+export const ConnectionLayer = (props: ConnectionLayerProps) => {
   const clickHandlers = useContext(ClickHandlers);
 
   const connections = Object.values(props.boardData.connections);
@@ -95,20 +95,8 @@ const ConnectionLayer = (props: ConnectionLayerProps) => {
             handleClick={() => clickHandlers.handleRouteClick(c.id)}
             dotted={c.dotted}
           />
-          // <Connection
-          //   key={`connection-${c.id}`}
-          //   x1={`${from.x}%`}
-          //   y1={`${from.y}%`}
-          //   x2={`${to.x}%`}
-          //   y2={`${to.y}%`}
-          //   dotted={c.dotted}
-          //   onClick={(): void => clickHandlers.handleRouteClick(c.id)}
-          //   filter={`url(#${filterId})`}
-          // />
         );
       })}
     </ConnectionLayerSVG>
   );
 };
-
-export default ConnectionLayer;
