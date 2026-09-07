@@ -1,34 +1,35 @@
 import React from 'react';
+import { CityState } from '../../../types/gameData';
 import { SingleCube } from './singleCube';
-import CityColour from '../../../types/enums/cityColour';
+import CityColour, { CITY_COLOURS } from '../../../types/enums/cityColour';
 import styled from 'styled-components';
 
 type DiseaseCubesProps = {
-  colour: CityColour;
-  number: number;
+  infection: CityState['infection'];
+  id: string;
+  createDoubleClickHandler: (
+    c: CityColour,
+    id: string,
+  ) => React.MouseEventHandler;
 };
 
 const CubesContainer = styled.div`
   display: flex;
-  margin-top: 0.4vw;
-  width: 85px;
-  flex-wrap: wrap;
-  justify-content: center;
 `;
 
 export const DiseaseCubes = (props: DiseaseCubesProps) => {
-  const cubes = Array(props.number)
-    .fill('')
-    .map((_, i) => i);
   return (
     <CubesContainer>
-      {cubes.map((_, i) => (
-        <SingleCube
-          key={`cube-${i}`}
-          colour={props.colour}
-          handleDoubleClick={() => {}}
-        />
-      ))}
+      {CITY_COLOURS.map(colour =>
+        props.infection[colour] ? (
+          <SingleCube
+            key={colour}
+            colour={colour}
+            number={props.infection[colour]}
+            handleDoubleClick={props.createDoubleClickHandler(colour, props.id)}
+          />
+        ) : null,
+      )}
     </CubesContainer>
   );
 };

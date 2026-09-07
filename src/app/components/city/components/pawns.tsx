@@ -3,10 +3,10 @@ import styled, { css } from 'styled-components';
 import GameState, { Player } from '../../../../types/gameData';
 
 interface PawnProps {
-  isSelected: boolean;
-  isCurrentTurn: boolean;
-  n: number;
-  i: number;
+  $isSelected: boolean;
+  $isCurrentTurn: boolean;
+  $n: number;
+  $i: number;
 }
 
 const MAX_SIZE = 2.1;
@@ -19,17 +19,17 @@ const MARGIN_DIFF = MAX_MARGIN - MIN_MARGIN;
 
 export const Pawn = styled.img<PawnProps>(
   (props: PawnProps) => css`
-    z-index: ${10 - props.i};
-    height: ${MAX_SIZE - ((props.n - 1) * SIZE_DIFF) / 11}vw;
-    transform: translateY(${props.isSelected ? '-20%' : '0'});
-    margin-right: ${MAX_MARGIN - ((props.n - 1) * MARGIN_DIFF) / 11}vw;
+    z-index: ${10 - props.$i};
+    height: ${MAX_SIZE - ((props.$n - 1) * SIZE_DIFF) / 11}vw;
+    transform: translateY(${props.$isSelected ? '-20%' : '0'});
+    margin-right: ${MAX_MARGIN - ((props.$n - 1) * MARGIN_DIFF) / 11}vw;
 
     filter: drop-shadow(0px 0px 5px);
 
     animation-duration: 2s;
-    animation-name: ${props.isCurrentTurn
+    animation-name: ${props.$isCurrentTurn
       ? 'glowpulse'
-      : props.isSelected
+      : props.$isSelected
       ? ''
       : 'pulse'};
     animation-iteration-count: infinite;
@@ -78,11 +78,11 @@ export const Pawns = (props: PawnsProps) => {
       {props.players.map((p, i, { length }) => (
         <Pawn
           key={`pawn-${i}`}
-          i={i}
-          isCurrentTurn={p.id === props.gameState.currentPlayerId}
-          isSelected={props.gameState.selectedPawnId === p.id}
+          $i={i}
+          $isCurrentTurn={p.id === props.gameState.currentPlayerId}
+          $isSelected={props.gameState.selectedPawnId === p.id}
           src={`assets/pawns/pawn_${p.colour}.png`}
-          n={length}
+          $n={length}
           onClick={props.handlePawnClick(p.id)}
         />
       ))}

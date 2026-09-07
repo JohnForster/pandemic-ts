@@ -11,25 +11,25 @@ type SingleCubeProps = {
 };
 
 type SideProps = {
-  colour: string;
+  $colour: string;
 };
 
 const Left = styled.polygon<SideProps>(
-  ({ colour }: SideProps) => css`
+  ({ $colour }: SideProps) => css`
     opacity: 0.85;
-    fill: ${colour};
+    fill: ${$colour};
   `,
 );
 const Right = styled.polygon<SideProps>(
-  ({ colour }: SideProps) => css`
+  ({ $colour }: SideProps) => css`
     opacity: 0.8;
-    fill: ${darken(0.3, colour)};
+    fill: ${darken(0.3, $colour)};
   `,
 );
 const Top = styled.polygon<SideProps>(
-  ({ colour }: SideProps) => css`
+  ({ $colour }: SideProps) => css`
     opacity: 0.95;
-    fill: ${lighten(0.2, colour)};
+    fill: ${lighten(0.2, $colour)};
   `,
 );
 
@@ -49,15 +49,15 @@ export const SingleCube = (props: SingleCubeProps) => {
       >
         <g stroke={props.colour === 'yellow' ? 'black' : 'white'}>
           <Left
-            colour={getRgb(props.colour)}
+            $colour={getRgb(props.colour)}
             points="29,58 3,45 3,13 29,26 "
           ></Left>
           <Right
-            colour={getRgb(props.colour)}
+            $colour={getRgb(props.colour)}
             points="29,58 55,45 55,13 29,26 "
           ></Right>
           <Top
-            colour={getRgb(props.colour)}
+            $colour={getRgb(props.colour)}
             points="3,13 28,0 55,13 29,26 "
           ></Top>
         </g>

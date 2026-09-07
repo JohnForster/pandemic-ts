@@ -59,6 +59,7 @@ export default interface GameState {
   selectedInfectionColour: CityColour;
   cities: { [id: string]: CityState }; // add id to CityState?
   players: { [id: string]: Player };
+  board: BoardData;
   devMode: boolean;
   outbreaks: number;
 }

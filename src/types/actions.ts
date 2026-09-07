@@ -19,6 +19,10 @@ export enum ActionType {
   TOGGLE_RESEARCH_STATION = 'TOGGLE_RESEARCH_STATION',
   INCREMENT_OUTBREAKS = 'INCREMENT_OUTBREAKS',
   DECREMENT_OUTBREAKS = 'DECREMENT_OUTBREAKS',
+  CHANGE_CITY_LOCATION = 'CHANGE_CITY_LOCATION',
+  CHANGE_CITY_COLOUR = 'CHANGE_CITY_COLOUR',
+  CREATE_ROUTE = 'CREATE_ROUTE',
+  REMOVE_ROUTE = 'REMOVE_ROUTE',
 }
 export type Action =
   | IncrementAction
@@ -37,7 +41,11 @@ export type Action =
   | SelectColourAction
   | ToggleResearchStationAction
   | IncrementOutbreaksAction
-  | DecrementOutbreaksAction;
+  | DecrementOutbreaksAction
+  | ChangeCityLocationAction
+  | ChangeCityColourAction
+  | CreateRouteAction
+  | RemoveRouteAction;
 
 export interface GenericAction {
   type: ActionType;
@@ -119,4 +127,24 @@ export interface IncrementOutbreaksAction extends GenericAction {
 
 export interface DecrementOutbreaksAction extends GenericAction {
   type: ActionType.DECREMENT_OUTBREAKS;
+}
+
+export interface ChangeCityLocationAction extends GenericAction {
+  type: ActionType.CHANGE_CITY_LOCATION;
+  payload: { id: string; x: number; y: number };
+}
+
+export interface ChangeCityColourAction extends GenericAction {
+  type: ActionType.CHANGE_CITY_COLOUR;
+  payload: { id: string };
+}
+
+export interface CreateRouteAction extends GenericAction {
+  type: ActionType.CREATE_ROUTE;
+  payload: { id1: string; id2: string };
+}
+
+export interface RemoveRouteAction extends GenericAction {
+  type: ActionType.REMOVE_ROUTE;
+  payload: { id: string };
 }

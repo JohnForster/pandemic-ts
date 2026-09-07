@@ -1,6 +1,7 @@
 import GameState from '../../types/gameData';
 import { boardData } from '../../data/boardData';
 import shuffle from 'just-shuffle';
+import clone from 'just-clone';
 import { ROLES } from '../../data/roles';
 
 const isGameState = (obj: unknown): obj is GameState => {
@@ -11,7 +12,9 @@ const isGameState = (obj: unknown): obj is GameState => {
     typeof candidate.cities === 'object' &&
     candidate.cities !== null &&
     typeof candidate.players === 'object' &&
-    candidate.players !== null
+    candidate.players !== null &&
+    typeof candidate.board === 'object' &&
+    candidate.board !== null
   );
 };
 
@@ -41,21 +44,6 @@ const createInitialGameState = (
     ROLES.filter(role => role.inUse).map(role => role.pawnId),
   );
 
-  // const names = shuffle([
-  //   'John',
-  //   'Jemil',
-  //   'Jamie',
-  //   'Thomas',
-  //   'Sam',
-  //   'Hakim',
-  //   'Peter',
-  //   'Paddy',
-  //   'Tara',
-  //   'Joe',
-  //   'Emily',
-  //   'Samir',
-  // ]);
-
   const names = [
     'Player 1',
     'Player 2',
@@ -81,6 +69,7 @@ const createInitialGameState = (
     },
     cities: {},
     players: {},
+    board: clone(boardData),
     selectedPawnId: '',
     selectedCityId: '',
     devMode: false,
@@ -99,7 +88,7 @@ const createInitialGameState = (
 
   Array(numberOfPlayers)
     .fill('')
-    .map((x, i) => ({
+    .map((_, i) => ({
       id: i.toString(),
       colour: colours.pop(),
       locationId: '10',

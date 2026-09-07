@@ -1,19 +1,9 @@
-import React, { useState, useReducer } from 'react';
+import React, { useReducer } from 'react';
 
-import GameBoard from './components/gameBoard/gameBoard';
-
-import { boardData } from '../data/boardData';
+import { GameBoard } from './components/gameBoard/gameBoard';
 
 import * as Styled from './styled';
 
-import {
-  changeLocation,
-  changeColour,
-  createRoute,
-  removeRoute,
-} from './tools/devTools';
-
-import { BoardData } from '../types/gameData';
 import GameStateContext from './contexts/gameStateContext';
 import ClickHandlers from './contexts/clickHandler.context';
 import createInitialGameState from './helpers/createInitialGameState';
@@ -23,7 +13,6 @@ import CityColour from '../types/enums/cityColour';
 
 const NUMBER_OF_PLAYERS = 12;
 
-// ! USE REACT CONTEXT FOR DEV STUFF
 const initialGameState = createInitialGameState({
   numberOfPlayers: NUMBER_OF_PLAYERS,
 });
@@ -31,16 +20,12 @@ const initialGameState = createInitialGameState({
 const App: React.FC = () => {
   const [gameState, dispatch] = useReducer(gameStateReducer, initialGameState);
 
-  // TODO incorporate this into gameState?
-  const [board, setBoard] = useState<BoardData>(boardData);
-
-  // * *************** These should all be handled with dispatch ****************
   const handleMapClick = ({ x, y }: { x: number; y: number }): void => {
-    if (gameState.devToggles.changeLocation) {
-      if (gameState.selectedCityId)
-        return setBoard(
-          changeLocation(gameState.selectedCityId, { x, y }, board),
-        );
+    if (gameState.devToggles.changeLocation && gameState.selectedCityId) {
+      dispatch({
+        type: ActionType.CHANGE_CITY_LOCATION,
+        payload: { id: gameState.selectedCityId, x, y },
+      });
     }
   };
 
@@ -48,7 +33,7 @@ const App: React.FC = () => {
     if (metaKeyPressed) {
       return dispatch({
         type: ActionType.TOGGLE_RESEARCH_STATION,
-        payload: { id: id },
+        payload: { id },
       });
     }
 
@@ -62,21 +47,26 @@ const App: React.FC = () => {
     if (id === gameState.selectedCityId)
       return dispatch({ type: ActionType.SELECT_CITY, payload: { id: null } });
 
-    if (gameState.devToggles.changeColour)
-      return setBoard(changeColour(id, board));
-
-    if (gameState.devToggles.createRoutes && gameState.selectedCityId) {
-      setBoard(createRoute(id, gameState.selectedCityId, board));
-      return dispatch({ type: ActionType.SELECT_CITY, payload: { id: null } });
+    if (gameState.devToggles.changeColour) {
+      return dispatch({
+        type: ActionType.CHANGE_CITY_COLOUR,
+        payload: { id },
+      });
     }
 
-    // dispatch({ type: ActionType.SELECT_CITY, payload: { id } });
-    // console.log('selectedId:', gameState.selectedCityId);
+    if (gameState.devToggles.createRoutes && gameState.selectedCityId) {
+      dispatch({
+        type: ActionType.CREATE_ROUTE,
+        payload: { id1: id, id2: gameState.selectedCityId },
+      });
+      return dispatch({ type: ActionType.SELECT_CITY, payload: { id: null } });
+    }
   };
 
   const handleRouteClick = (id: string): void => {
-    if (gameState.devToggles.removeRoutes)
-      return setBoard(removeRoute(id, board));
+    if (gameState.devToggles.removeRoutes) {
+      dispatch({ type: ActionType.REMOVE_ROUTE, payload: { id } });
+    }
   };
 
   const handleSelectedColourChange = (colour: CityColour) =>
@@ -88,16 +78,15 @@ const App: React.FC = () => {
     handleRouteClick,
     handleSelectedColourChange,
   };
-  // * **************************************************************************
 
-  const logRoutes = (): void => console.log(board.connections);
+  const logRoutes = (): void => console.log(gameState.board.connections);
   const loadGame = (): void => dispatch({ type: ActionType.LOAD });
 
   return (
     <Styled.App>
       <GameStateContext.Provider value={[gameState, dispatch]}>
         <ClickHandlers.Provider value={clickHandlers}>
-          <GameBoard boardData={board} />
+          <GameBoard boardData={gameState.board} />
         </ClickHandlers.Provider>
       </GameStateContext.Provider>
       <button onClick={loadGame}>Load game</button>

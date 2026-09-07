@@ -71,7 +71,7 @@ type ConnectionLayerProps = {
   boardData: BoardData;
 };
 
-const ConnectionLayer = (props: ConnectionLayerProps) => {
+export const ConnectionLayer = (props: ConnectionLayerProps) => {
   const clickHandlers = useContext(ClickHandlers);
 
   const connections = Object.values(props.boardData.connections);
@@ -95,20 +95,8 @@ const ConnectionLayer = (props: ConnectionLayerProps) => {
             handleClick={() => clickHandlers.handleRouteClick(c.id)}
             dotted={c.dotted}
           />
-          // <Connection
-          //   key={`connection-${c.id}`}
-          //   x1={`${from.x}%`}
-          //   y1={`${from.y}%`}
-          //   x2={`${to.x}%`}
-          //   y2={`${to.y}%`}
-          //   dotted={c.dotted}
-          //   onClick={(): void => clickHandlers.handleRouteClick(c.id)}
-          //   filter={`url(#${filterId})`}
-          // />
         );
       })}
     </ConnectionLayerSVG>
   );
 };
-
-export default ConnectionLayer;

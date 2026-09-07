@@ -12,7 +12,7 @@ interface RadialBarChartProps {
   selected: boolean;
 }
 
-const RadialBarChart: React.FC<RadialBarChartProps> = ({
+export const RadialBarChart: React.FC<RadialBarChartProps> = ({
   radius = 80,
   progress = 100,
   strokeWidth = 20,
@@ -51,5 +51,3 @@ const RadialBarChart: React.FC<RadialBarChartProps> = ({
     </Styled.Container>
   );
 };
-
-export default RadialBarChart;

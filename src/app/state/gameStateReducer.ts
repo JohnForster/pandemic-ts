@@ -1,6 +1,7 @@
 import React from 'react';
 import { playersReducer } from './playersReducer';
 import { citiesReducer } from './cities';
+import { boardReducer } from './board';
 import clamp from 'just-clamp';
 
 import { Action, ActionType } from '../../types/actions';
@@ -78,6 +79,7 @@ export const gameStateReducer: React.Reducer<GameState, Action> = (
     ...miscState,
     cities: citiesReducer(miscState.cities, action),
     players: playersReducer(miscState.players, action),
+    board: boardReducer(miscState.board, action),
   };
   localStorage.setItem('game', JSON.stringify(newState));
   return newState;

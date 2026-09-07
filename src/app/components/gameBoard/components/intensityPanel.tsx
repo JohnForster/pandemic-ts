@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 
 import GameState, { BoardData } from '../../../../types/gameData';
 import CityColour from '../../../../types/enums/cityColour';
-import RadialBarChart from '../../radialBarChart/radialBarChart';
+import { RadialBarChart } from '../../radialBarChart/radialBarChart';
 import { NewsModal } from '../../newsModal/newsModal';
 import ClickHandlers from '../../../contexts/clickHandler.context';
 

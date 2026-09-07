@@ -4,6 +4,7 @@ import * as Styled from './styled';
 import { ActionType } from '../../../../types/actions';
 import { boardData } from '../../../../data/boardData';
 import { ROLES } from '../../../../data/roles';
+import { usePawnClick } from '../../../hooks/usePawnClick';
 
 interface PlayerPanelProps {}
 
@@ -12,19 +13,7 @@ const getLocation = (id: string) => {
   return { name: city.name, colour: city.colour! };
 };
 
-// ? Location grid?
-// const getLocationGrid = (id: string) => {
-//   const DIVISIONS_Y = 4;
-//   const DIVISIONS_X = 6;
-//   const city = boardData.cities[id];
-//   const letter = String.fromCharCode(
-//     Math.floor(city.location.x / (100 / DIVISIONS_X)) + 65,
-//   );
-//   const number = Math.ceil(city.location.y / (100 / DIVISIONS_Y));
-//   return letter + number.toString();
-// };
-
-const PlayerPanel: React.FC<PlayerPanelProps> = () => {
+export const PlayerPanel: React.FC<PlayerPanelProps> = () => {
   const [gameState, dispatch] = useContext(GameStateContext);
   const [nameChangeId, setNameChangeId] = useState<string>(null);
   const [name, setName] = useState<string>(null);
@@ -54,12 +43,7 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
     dispatch({ type: ActionType.PREVIOUS_PLAYER });
   };
 
-  const handlePawnClick = (id: string) => (e: React.MouseEvent): void => {
-    e.stopPropagation();
-    if (id === gameState.selectedPawnId)
-      return dispatch({ type: ActionType.SELECT_PAWN, payload: { id: null } });
-    dispatch({ type: ActionType.SELECT_PAWN, payload: { id } });
-  };
+  const handlePawnClick = usePawnClick();
 
   const enableDevMode = () => dispatch({ type: ActionType.DEV_MODE_ON });
 
@@ -131,5 +115,3 @@ const PlayerPanel: React.FC<PlayerPanelProps> = () => {
     </Styled.Container>
   );
 };
-
-export default PlayerPanel;

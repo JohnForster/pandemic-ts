@@ -11,7 +11,7 @@ interface DevPanelProps {
   board: BoardData;
 }
 
-const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
+export const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
   const [gameState, dispatch] = useContext(GameStateContext);
   const save = (): void => {
     const newBoard: BoardData = { cities: props.board.cities, connections: {} };
@@ -78,5 +78,3 @@ const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
     </Styled.Container>
   );
 };
-
-export default DevPanel;
