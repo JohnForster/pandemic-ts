@@ -54,12 +54,14 @@ export const City: React.FC<CityProps> = (props: CityProps) => {
 
   return (
     <Styled.Container
+      data-testid={`city-container-${props.data.id}`}
       $x={props.data.location.x}
       $y={props.data.location.y}
       onClick={handleClick(props.cityState.id)}
       id={props.data.name}
     >
       <Styled.Circle
+        data-testid={`city-circle-${props.data.id}`}
         $infection={props.cityState.infection[props.data.colour]}
         $colour={props.data.colour}
         $isSelected={props.isSelected}
