@@ -21,6 +21,10 @@ const ChartContainer = styled.div`
   align-items: center;
 `;
 
+const ChartWrapper = styled.div`
+  height: 100%;
+`;
+
 type IntensityPanelProps = {
   boardData: BoardData;
   gameState: GameState;
@@ -48,11 +52,7 @@ export const IntensityPanel = (props: IntensityPanelProps) => {
       <NewsModal title="Global Resilience">
         <ChartContainer>
           {cityColours.map(c => (
-            <div
-              key={`virusChart-${c}`}
-              style={{ height: '100%' }}
-              onClick={createHandler(c)}
-            >
+            <ChartWrapper key={`virusChart-${c}`} onClick={createHandler(c)}>
               <RadialBarChart
                 progress={findTotal(c)}
                 maxValue={24}
@@ -60,7 +60,7 @@ export const IntensityPanel = (props: IntensityPanelProps) => {
                 color={c}
                 selected={props.gameState.selectedInfectionColour === c}
               />
-            </div>
+            </ChartWrapper>
           ))}
         </ChartContainer>
       </NewsModal>

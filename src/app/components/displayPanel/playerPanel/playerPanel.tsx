@@ -74,7 +74,7 @@ export const PlayerPanel: React.FC<PlayerPanelProps> = () => {
           )}
           {nameChangeId !== player.id && (
             <>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <Styled.NameColumn>
                 <Styled.PlayerName
                   $isCurrentPlayer={gameState.currentPlayerId === player.id}
                   onDoubleClick={(): void =>
@@ -86,7 +86,7 @@ export const PlayerPanel: React.FC<PlayerPanelProps> = () => {
                 <Styled.Role>
                   {ROLES[player.colour]?.role ?? 'NO ROLE FOUND'}
                 </Styled.Role>
-              </div>
+              </Styled.NameColumn>
               <Styled.PlayerLocation
                 $colour={getLocation(player.locationId).colour}
               >
@@ -96,22 +96,13 @@ export const PlayerPanel: React.FC<PlayerPanelProps> = () => {
           )}
         </Styled.PlayerBox>
       ))}
-      <div
-        style={{
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'space-between',
-        }}
-      >
+      <Styled.Footer>
         <button onClick={advanceToNextPlayer}>Next Turn</button>
-        <button
-          onClick={returnToPreviousPlayer}
-          style={{ marginRight: 'auto' }}
-        >
+        <Styled.PreviousButton onClick={returnToPreviousPlayer}>
           {'<'}
-        </button>
+        </Styled.PreviousButton>
         <button onClick={enableDevMode}>Dev Options</button>
-      </div>
+      </Styled.Footer>
     </Styled.Container>
   );
 };

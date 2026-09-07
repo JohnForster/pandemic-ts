@@ -65,3 +65,18 @@ export const Role = styled.span`
   font-family: Oswald;
   font-weight: normal;
 `;
+
+export const NameColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Footer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const PreviousButton = styled.button`
+  margin-right: auto;
+`;

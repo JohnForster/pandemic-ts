@@ -7,6 +7,13 @@ export const COLOURS = {
   red: '#AA0E13',
 };
 
+// Exposed via styled-components' ThemeProvider (see app/theme.ts) so new
+// components can pull colours from `props.theme` instead of importing this
+// module directly.
+export const theme = {
+  colours: COLOURS,
+};
+
 export const getRgb = (colour: CityColour): string => {
   switch (colour) {
     case 'yellow':

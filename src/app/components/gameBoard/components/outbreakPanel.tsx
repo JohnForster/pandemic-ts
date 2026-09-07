@@ -20,6 +20,27 @@ const Number = styled.div`
   align-items: center;
 `;
 
+const OutbreakCount = styled.p`
+  font-size: 2.5vw;
+`;
+
+const ButtonRow = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 5vw;
+`;
+
+const Label = styled.span`
+  font-size: 1vw;
+  padding: 0 0.5vw;
+`;
+
+const IconSvg = styled.svg`
+  cursor: pointer;
+`;
+
 export const OutbreakPanel = () => {
   const [gameState, dispatch] = useContext(GameStateContext);
 
@@ -31,27 +52,16 @@ export const OutbreakPanel = () => {
     dispatch({ type: ActionType.DECREMENT_OUTBREAKS });
   };
 
-  // Add Component Logic Here
   return (
     <OutbreakPanelContainer>
       <NewsModal title="">
         <Number>
-          <p style={{ fontSize: '2.5vw' }}>{gameState.outbreaks}/8</p>
-          <div
-            style={{
-              display: 'flex',
-              width: '100%',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              fontSize: '5vw',
-            }}
-          >
+          <OutbreakCount>{gameState.outbreaks}/8</OutbreakCount>
+          <ButtonRow>
             <MinusIcon onClick={decreaseOutbreaks} />
-            <span style={{ fontSize: '1vw', padding: '0 0.5vw' }}>
-              OUTBREAKS
-            </span>
+            <Label>OUTBREAKS</Label>
             <PlusIcon onClick={increaseOutbreaks} />
-          </div>
+          </ButtonRow>
         </Number>
       </NewsModal>
     </OutbreakPanelContainer>
@@ -63,14 +73,13 @@ type ButtonProps = {
 };
 
 const PlusIcon = (props: ButtonProps) => (
-  <svg
+  <IconSvg
     viewBox="0 0 32 32"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     fill="#ffffff"
     role="button"
     onClick={props.onClick}
-    style={{ cursor: 'pointer' }}
   >
     <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
     <g
@@ -100,18 +109,17 @@ const PlusIcon = (props: ButtonProps) => (
         </g>
       </g>
     </g>
-  </svg>
+  </IconSvg>
 );
 
 const MinusIcon = (props: ButtonProps) => (
-  <svg
+  <IconSvg
     viewBox="0 0 32 32"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     fill="#ffffff"
     role="button"
     onClick={props.onClick}
-    style={{ cursor: 'pointer' }}
   >
     <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
     <g
@@ -140,5 +148,5 @@ const MinusIcon = (props: ButtonProps) => (
         </g>
       </g>
     </g>
-  </svg>
+  </IconSvg>
 );

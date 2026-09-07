@@ -72,9 +72,9 @@ export const DevPanel: React.FC<DevPanelProps> = (props: DevPanelProps) => {
         <button onClick={save}>Copy Board to Clipboard</button>
         <button onClick={reset}>Reset</button>
       </div>
-      <button style={{ marginTop: 'auto' }} onClick={disableDevMode}>
+      <Styled.DisableDevModeButton onClick={disableDevMode}>
         Disable Dev Options
-      </button>
+      </Styled.DisableDevModeButton>
     </Styled.Container>
   );
 };

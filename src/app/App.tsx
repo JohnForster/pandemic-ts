@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import { ThemeProvider } from 'styled-components';
 
 import { GameBoard } from './components/gameBoard/gameBoard';
 
@@ -8,6 +9,7 @@ import GameStateContext from './contexts/gameStateContext';
 import ClickHandlers from './contexts/clickHandler.context';
 import createInitialGameState from './helpers/createInitialGameState';
 import { gameStateReducer } from './state/gameStateReducer';
+import { theme } from './colours';
 import { ActionType } from '../types/actions';
 import CityColour from '../types/enums/cityColour';
 
@@ -83,15 +85,17 @@ const App: React.FC = () => {
   const loadGame = (): void => dispatch({ type: ActionType.LOAD });
 
   return (
-    <Styled.App>
-      <GameStateContext.Provider value={[gameState, dispatch]}>
-        <ClickHandlers.Provider value={clickHandlers}>
-          <GameBoard boardData={gameState.board} />
-        </ClickHandlers.Provider>
-      </GameStateContext.Provider>
-      <button onClick={loadGame}>Load game</button>
-      <button onClick={logRoutes}>Log Routes</button>
-    </Styled.App>
+    <ThemeProvider theme={theme}>
+      <Styled.App>
+        <GameStateContext.Provider value={[gameState, dispatch]}>
+          <ClickHandlers.Provider value={clickHandlers}>
+            <GameBoard boardData={gameState.board} />
+          </ClickHandlers.Provider>
+        </GameStateContext.Provider>
+        <button onClick={loadGame}>Load game</button>
+        <button onClick={logRoutes}>Log Routes</button>
+      </Styled.App>
+    </ThemeProvider>
   );
 };
 

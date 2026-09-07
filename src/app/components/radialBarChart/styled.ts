@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { lighten, darken } from 'polished';
 import CityColour from '../../../types/enums/cityColour';
-import { COLOURS } from '../../colours';
 
 export const Chart = styled.div``;
 
@@ -10,11 +9,11 @@ interface CircleProps {
 }
 
 export const Circle = styled.circle<CircleProps>`
-  stroke: ${({ $fillColour }) => lighten(0.2, COLOURS[$fillColour])};
+  stroke: ${({ $fillColour, theme }) => lighten(0.2, theme.colours[$fillColour])};
 `;
 
 export const Progress = styled.circle<CircleProps>`
-  stroke: ${({ $fillColour }) => darken(0.1, COLOURS[$fillColour])};
+  stroke: ${({ $fillColour, theme }) => darken(0.1, theme.colours[$fillColour])};
   transform: rotate(-90deg);
   transform-origin: center;
   transition: all 0.2s cubic-bezier(0.58, 0.16, 0.5, 1.14);
